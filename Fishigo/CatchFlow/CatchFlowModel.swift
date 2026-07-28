@@ -152,6 +152,31 @@ final class CatchFlowModel {
         app.log.count
     }
 
+    // MARK: Deks summary for the saved screen
+
+    var deksCaughtCount: Int {
+        DeksProgress.caughtIds(app.log.records).count
+    }
+
+    var deksTotal: Int {
+        app.species.all.count
+    }
+
+    /// True when the just-saved record filled the LAST missing band of the
+    /// species' size-name chain (§8: completing a line triggers a ceremony).
+    var lineJustCompleted: Bool {
+        guard let record = savedRecord,
+              let tur = app.species.species(id: record.speciesId),
+              tur.hasEvolutionLine else { return false }
+        let own = app.log.records.filter { $0.speciesId == tur.id }
+        let bandsNow = Set(own.map { DeksProgress.bandIndex(of: tur, lengthCm: $0.lengthCm) })
+        guard bandsNow.count == tur.boyAdlari.count else { return false }
+        let bandsBefore = Set(own
+            .filter { $0.persistentModelID != record.persistentModelID }
+            .map { DeksProgress.bandIndex(of: tur, lengthCm: $0.lengthCm) })
+        return bandsBefore.count < bandsNow.count
+    }
+
     func reset() {
         photo = nil
         photoJPEG = nil

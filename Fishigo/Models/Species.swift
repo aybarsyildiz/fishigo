@@ -7,9 +7,17 @@ struct Species: Identifiable, Codable, Hashable {
     let ad: String
     let latince: String
     let nadirlik: Rarity
+    /// Rough body outline used for the deks engraving silhouette.
+    let siluet: Siluet?
     /// Ordered size-name chain with cm thresholds; also the evolution line.
     /// `maxCm == nil` marks the open-ended top of the chain.
     let boyAdlari: [SizeName]
+
+    var siluetTipi: Siluet { siluet ?? .uzun }
+
+    enum Siluet: String, Codable {
+        case uzun, oval, yassi, yilansi, kafadan
+    }
 
     /// §4 display-name rule: species + length → local size-name.
     func displayName(lengthCm: Int) -> String {

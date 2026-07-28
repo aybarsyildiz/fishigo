@@ -7,6 +7,15 @@
     "%lld" : {
 
     },
+    "%lld KAYIT" : {
+
+    },
+    "Adet" : {
+
+    },
+    "Ay" : {
+
+    },
     "BALIĞI BİRAZ DAHA YAKINDAN DENE" : {
 
     },
@@ -25,6 +34,9 @@
     "Defter" : {
 
     },
+    "Defter henüz boş" : {
+
+    },
     "DEFTERDE %lld KAYIT" : {
 
     },
@@ -37,6 +49,9 @@
     "Denize geri bıraktım" : {
 
     },
+    "Dilim" : {
+
+    },
     "Emin değilim —\nhangisi?" : {
 
     },
@@ -46,13 +61,28 @@
     "Fotoğrafta balık\ngöremedim" : {
 
     },
+    "HAVA KAYDIYLA BİRLİKTE GELECEK — M7" : {
+
+    },
+    "İLK" : {
+
+    },
     "İLK YAKALAYIŞ" : {
 
     },
     "LİSTEDEN ARA" : {
 
     },
+    "NOKTAN SENDE KALIR — BU HARİTA SADECE SENİN" : {
+
+    },
     "Not (isteğe bağlı)" : {
+
+    },
+    "REKOR" : {
+
+    },
+    "Tümü" : {
 
     },
     "Tür ara" : {

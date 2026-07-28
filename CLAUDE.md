@@ -56,7 +56,7 @@ iOS 17+, SwiftUI, Swift 5 language mode. iPhone only, portrait only.
 - [x] M0 scaffold, tokens, FeelKit
 - [x] M1 catch flow with MOCKED recognition (full anticipation→reveal→stamp choreography)
 - [x] M2 SwiftData models + log + private map + stats v1 (CloudKit sync deferred — needs team/entitlements)
-- [ ] M3 deks grid + silhouettes + cascade + new-species ceremony + evolution lines
+- [x] M3 deks grid + silhouettes + cascade + evolution lines + hook page v1
 - [ ] M4 specimen card renderer + 9:16 export + share sheet (design for future video export)
 - [ ] M5 proxy (Cloud Function/Worker) + real recognition + quota + corrections log
 - [ ] M6 regulations loader + legality states + disclaimer
@@ -95,3 +95,15 @@ iOS 17+, SwiftUI, Swift 5 language mode. iPhone only, portrait only.
   Location = one-shot CoreLocation fix started at photo pick, awaited max 3 s at
   save — a catch is never blocked by GPS. Defter tab = KAYITLAR/HARİTA/İSTATİSTİK
   under a rule bar; list uses @Query, flow writes via CatchLog (ModelContext).
+- HOOK PAGE (owner: "main page is the most important — it's the HOOK"): Yakala
+  tab is an archive desk (procedural ChartFragment background, catch plate,
+  module shelf). Grows per milestone: M3 shipped deks-progress + last-catch
+  modules; M7 MUST add sefer serisi + koşullar modules to the same shelf; M8
+  polishes. Do not let the main page stay static.
+- M3: species.json now has 69 real species (rarity + thresholds still
+  PLACEHOLDER). No per-species artwork: 5 generic body-type silhouettes
+  (`siluet`: uzun/oval/yassi/yilansi/kafadan) drawn as Paths — dotted stroke =
+  uncaught engraving, solid fill = inked/caught. Deks tiles cascade-flip on
+  first open with capped ticks. Evolution lines: 4 chains (lüfer, palamut,
+  levrek, istavrit); band = any catch whose length falls in it; completing a
+  chain → SERİ TAMAMLANDI banner + ceremony haptic on the saved screen.

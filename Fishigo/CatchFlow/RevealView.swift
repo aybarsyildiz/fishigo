@@ -184,7 +184,8 @@ struct IlkYakalayisStamp: View {
     }
 }
 
-/// Saved confirmation — quiet, then straight back to fishing.
+/// Saved confirmation — quiet, plus the deks progress pull. A completed
+/// size-name chain gets its banner and haptic here (§8).
 struct SavedView: View {
     let model: CatchFlowModel
 
@@ -201,6 +202,29 @@ struct SavedView: View {
                 .font(Typo.data(11))
                 .kerning(1.5)
                 .foregroundStyle(Ink.kagit.opacity(0.5))
+
+            HStack(spacing: 8) {
+                Text("BALIKDEKS \(model.deksCaughtCount)/\(model.deksTotal)")
+                if model.savedRecord?.isFirstOfSpecies == true {
+                    Text("· YENİ TÜR")
+                        .foregroundStyle(Ink.pirinc)
+                }
+            }
+            .font(Typo.data(11, weight: .medium))
+            .kerning(1.5)
+            .foregroundStyle(Ink.kagit.opacity(0.7))
+            .monospacedDigit()
+
+            if model.lineJustCompleted {
+                Text("BOY SERİSİ TAMAMLANDI")
+                    .font(Typo.data(11, weight: .semibold))
+                    .kerning(2)
+                    .foregroundStyle(Ink.pirinc)
+                    .padding(.horizontal, 14)
+                    .padding(.vertical, 8)
+                    .overlay(DoubleRuleFrame(color: Ink.pirinc))
+                    .onAppear { Feel.shared.newSpeciesCeremony() }
+            }
 
             ArchiveButton(title: "Yeni yakalayış", systemImage: "camera") {
                 model.reset()

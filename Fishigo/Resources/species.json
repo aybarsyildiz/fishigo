@@ -1,100 +1,73 @@
 {
-  "version": "M1-sample",
-  "_not": "ORNEK VERI - ~70 türlük tam liste M3'te gelecek. Boy eşikleri ve nadirlik değerleri PLACEHOLDER, sahibi ayarlayacak.",
+  "version": "M3-v1",
+  "_not": "Tür listesi gerçek; NADİRLİK ve BOY EŞİKLERİ PLACEHOLDER — sahibi ayarlayacak. siluet: uzun|oval|yassi|yilansi|kafadan",
   "turler": [
-    {
-      "id": "lufer",
-      "ad": "Lüfer",
-      "latince": "Pomatomus saltatrix",
-      "nadirlik": "yaygın",
-      "boy_adlari": [
-        { "ad": "Çinekop", "max_cm": 18 },
-        { "ad": "Sarıkanat", "max_cm": 25 },
-        { "ad": "Lüfer", "max_cm": 35 },
-        { "ad": "Kofana", "max_cm": null }
-      ]
-    },
-    {
-      "id": "palamut",
-      "ad": "Palamut",
-      "latince": "Sarda sarda",
-      "nadirlik": "yaygın",
-      "boy_adlari": [
-        { "ad": "Palamut", "max_cm": 40 },
-        { "ad": "Torik", "max_cm": null }
-      ]
-    },
-    {
-      "id": "levrek",
-      "ad": "Levrek",
-      "latince": "Dicentrarchus labrax",
-      "nadirlik": "az bulunur",
-      "boy_adlari": [
-        { "ad": "Levrek", "max_cm": null }
-      ]
-    },
-    {
-      "id": "cipura",
-      "ad": "Çipura",
-      "latince": "Sparus aurata",
-      "nadirlik": "yaygın",
-      "boy_adlari": [
-        { "ad": "Çipura", "max_cm": null }
-      ]
-    },
-    {
-      "id": "istavrit",
-      "ad": "İstavrit",
-      "latince": "Trachurus trachurus",
-      "nadirlik": "yaygın",
-      "boy_adlari": [
-        { "ad": "İstavrit", "max_cm": null }
-      ]
-    },
-    {
-      "id": "mezgit",
-      "ad": "Mezgit",
-      "latince": "Merlangius merlangus",
-      "nadirlik": "yaygın",
-      "boy_adlari": [
-        { "ad": "Mezgit", "max_cm": null }
-      ]
-    },
-    {
-      "id": "barbun",
-      "ad": "Barbun",
-      "latince": "Mullus barbatus",
-      "nadirlik": "az bulunur",
-      "boy_adlari": [
-        { "ad": "Barbun", "max_cm": null }
-      ]
-    },
-    {
-      "id": "karagoz",
-      "ad": "Karagöz",
-      "latince": "Diplodus vulgaris",
-      "nadirlik": "yaygın",
-      "boy_adlari": [
-        { "ad": "Karagöz", "max_cm": null }
-      ]
-    },
-    {
-      "id": "kalkan",
-      "ad": "Kalkan",
-      "latince": "Scophthalmus maximus",
-      "nadirlik": "epik",
-      "boy_adlari": [
-        { "ad": "Kalkan", "max_cm": null }
-      ]
-    },
-    {
-      "id": "akya",
-      "ad": "Akya",
-      "latince": "Lichia amia",
-      "nadirlik": "efsanevi",
-      "boy_adlari": [
-        { "ad": "Akya", "max_cm": null }
-      ]
-    }
+    { "id": "lufer", "ad": "Lüfer", "latince": "Pomatomus saltatrix", "nadirlik": "yaygın", "siluet": "uzun", "boy_adlari": [ { "ad": "Çinekop", "max_cm": 18 }, { "ad": "Sarıkanat", "max_cm": 25 }, { "ad": "Lüfer", "max_cm": 35 }, { "ad": "Kofana", "max_cm": null } ] },
+    { "id": "palamut", "ad": "Palamut", "latince": "Sarda sarda", "nadirlik": "yaygın", "siluet": "uzun", "boy_adlari": [ { "ad": "Çingene Palamudu", "max_cm": 25 }, { "ad": "Palamut", "max_cm": 45 }, { "ad": "Torik", "max_cm": 60 }, { "ad": "Altıparmak", "max_cm": null } ] },
+    { "id": "levrek", "ad": "Levrek", "latince": "Dicentrarchus labrax", "nadirlik": "az bulunur", "siluet": "uzun", "boy_adlari": [ { "ad": "İspendek", "max_cm": 25 }, { "ad": "Levrek", "max_cm": null } ] },
+    { "id": "istavrit", "ad": "İstavrit", "latince": "Trachurus trachurus", "nadirlik": "yaygın", "siluet": "uzun", "boy_adlari": [ { "ad": "Kraça", "max_cm": 13 }, { "ad": "İstavrit", "max_cm": null } ] },
+    { "id": "cipura", "ad": "Çipura", "latince": "Sparus aurata", "nadirlik": "yaygın", "siluet": "oval", "boy_adlari": [ { "ad": "Çipura", "max_cm": null } ] },
+    { "id": "mezgit", "ad": "Mezgit", "latince": "Merlangius merlangus", "nadirlik": "yaygın", "siluet": "uzun", "boy_adlari": [ { "ad": "Mezgit", "max_cm": null } ] },
+    { "id": "barbun", "ad": "Barbun", "latince": "Mullus barbatus", "nadirlik": "yaygın", "siluet": "oval", "boy_adlari": [ { "ad": "Barbun", "max_cm": null } ] },
+    { "id": "tekir", "ad": "Tekir", "latince": "Mullus surmuletus", "nadirlik": "yaygın", "siluet": "oval", "boy_adlari": [ { "ad": "Tekir", "max_cm": null } ] },
+    { "id": "karagoz", "ad": "Karagöz", "latince": "Diplodus vulgaris", "nadirlik": "yaygın", "siluet": "oval", "boy_adlari": [ { "ad": "Karagöz", "max_cm": null } ] },
+    { "id": "sargoz", "ad": "Sargoz", "latince": "Diplodus sargus", "nadirlik": "yaygın", "siluet": "oval", "boy_adlari": [ { "ad": "Sargoz", "max_cm": null } ] },
+    { "id": "sivriburun-karagoz", "ad": "Sivriburun Karagöz", "latince": "Diplodus puntazzo", "nadirlik": "az bulunur", "siluet": "oval", "boy_adlari": [ { "ad": "Sivriburun Karagöz", "max_cm": null } ] },
+    { "id": "isparoz", "ad": "İsparoz", "latince": "Diplodus annularis", "nadirlik": "yaygın", "siluet": "oval", "boy_adlari": [ { "ad": "İsparoz", "max_cm": null } ] },
+    { "id": "sarigoz", "ad": "Sarıgöz", "latince": "Spondyliosoma cantharus", "nadirlik": "az bulunur", "siluet": "oval", "boy_adlari": [ { "ad": "Sarıgöz", "max_cm": null } ] },
+    { "id": "melanur", "ad": "Melanur", "latince": "Oblada melanura", "nadirlik": "yaygın", "siluet": "oval", "boy_adlari": [ { "ad": "Melanur", "max_cm": null } ] },
+    { "id": "salpa", "ad": "Salpa", "latince": "Sarpa salpa", "nadirlik": "yaygın", "siluet": "oval", "boy_adlari": [ { "ad": "Salpa", "max_cm": null } ] },
+    { "id": "kupes", "ad": "Kupes", "latince": "Boops boops", "nadirlik": "yaygın", "siluet": "uzun", "boy_adlari": [ { "ad": "Kupes", "max_cm": null } ] },
+    { "id": "izmarit", "ad": "İzmarit", "latince": "Spicara maena", "nadirlik": "yaygın", "siluet": "oval", "boy_adlari": [ { "ad": "İzmarit", "max_cm": null } ] },
+    { "id": "mirmir", "ad": "Mırmır", "latince": "Lithognathus mormyrus", "nadirlik": "yaygın", "siluet": "oval", "boy_adlari": [ { "ad": "Mırmır", "max_cm": null } ] },
+    { "id": "mercan", "ad": "Mercan", "latince": "Pagellus erythrinus", "nadirlik": "az bulunur", "siluet": "oval", "boy_adlari": [ { "ad": "Mercan", "max_cm": null } ] },
+    { "id": "kirma-mercan", "ad": "Kırma Mercan", "latince": "Pagellus acarne", "nadirlik": "az bulunur", "siluet": "oval", "boy_adlari": [ { "ad": "Kırma Mercan", "max_cm": null } ] },
+    { "id": "fangri", "ad": "Fangri", "latince": "Pagrus pagrus", "nadirlik": "epik", "siluet": "oval", "boy_adlari": [ { "ad": "Fangri", "max_cm": null } ] },
+    { "id": "sinarit", "ad": "Sinarit", "latince": "Dentex dentex", "nadirlik": "epik", "siluet": "oval", "boy_adlari": [ { "ad": "Sinarit", "max_cm": null } ] },
+    { "id": "tranca", "ad": "Trança", "latince": "Dentex gibbosus", "nadirlik": "epik", "siluet": "oval", "boy_adlari": [ { "ad": "Trança", "max_cm": null } ] },
+    { "id": "kalkan", "ad": "Kalkan", "latince": "Scophthalmus maximus", "nadirlik": "epik", "siluet": "yassi", "boy_adlari": [ { "ad": "Kalkan", "max_cm": null } ] },
+    { "id": "pisi", "ad": "Pisi", "latince": "Platichthys flesus", "nadirlik": "az bulunur", "siluet": "yassi", "boy_adlari": [ { "ad": "Pisi", "max_cm": null } ] },
+    { "id": "dil", "ad": "Dil", "latince": "Solea solea", "nadirlik": "az bulunur", "siluet": "yassi", "boy_adlari": [ { "ad": "Dil", "max_cm": null } ] },
+    { "id": "vatoz", "ad": "Vatoz", "latince": "Raja clavata", "nadirlik": "epik", "siluet": "yassi", "boy_adlari": [ { "ad": "Vatoz", "max_cm": null } ] },
+    { "id": "akya", "ad": "Akya", "latince": "Lichia amia", "nadirlik": "efsanevi", "siluet": "uzun", "boy_adlari": [ { "ad": "Akya", "max_cm": null } ] },
+    { "id": "sarikuyruk", "ad": "Sarıkuyruk", "latince": "Seriola dumerili", "nadirlik": "epik", "siluet": "uzun", "boy_adlari": [ { "ad": "Sarıkuyruk", "max_cm": null } ] },
+    { "id": "minekop", "ad": "Minekop", "latince": "Umbrina cirrosa", "nadirlik": "epik", "siluet": "oval", "boy_adlari": [ { "ad": "Minekop", "max_cm": null } ] },
+    { "id": "eskina", "ad": "Eşkina", "latince": "Sciaena umbra", "nadirlik": "epik", "siluet": "oval", "boy_adlari": [ { "ad": "Eşkina", "max_cm": null } ] },
+    { "id": "granyoz", "ad": "Granyoz", "latince": "Argyrosomus regius", "nadirlik": "efsanevi", "siluet": "uzun", "boy_adlari": [ { "ad": "Granyoz", "max_cm": null } ] },
+    { "id": "lahos", "ad": "Lahos", "latince": "Epinephelus aeneus", "nadirlik": "epik", "siluet": "oval", "boy_adlari": [ { "ad": "Lahos", "max_cm": null } ] },
+    { "id": "orfoz", "ad": "Orfoz", "latince": "Epinephelus marginatus", "nadirlik": "efsanevi", "siluet": "oval", "boy_adlari": [ { "ad": "Orfoz", "max_cm": null } ] },
+    { "id": "hani", "ad": "Hani", "latince": "Serranus cabrilla", "nadirlik": "yaygın", "siluet": "uzun", "boy_adlari": [ { "ad": "Hani", "max_cm": null } ] },
+    { "id": "iskorpit", "ad": "İskorpit", "latince": "Scorpaena porcus", "nadirlik": "yaygın", "siluet": "oval", "boy_adlari": [ { "ad": "İskorpit", "max_cm": null } ] },
+    { "id": "lipsos", "ad": "Lipsos", "latince": "Scorpaena scrofa", "nadirlik": "az bulunur", "siluet": "oval", "boy_adlari": [ { "ad": "Lipsos", "max_cm": null } ] },
+    { "id": "gelincik", "ad": "Gelincik", "latince": "Gaidropsarus mediterraneus", "nadirlik": "az bulunur", "siluet": "yilansi", "boy_adlari": [ { "ad": "Gelincik", "max_cm": null } ] },
+    { "id": "kefal", "ad": "Kefal", "latince": "Mugil cephalus", "nadirlik": "yaygın", "siluet": "uzun", "boy_adlari": [ { "ad": "Kefal", "max_cm": null } ] },
+    { "id": "sardalya", "ad": "Sardalya", "latince": "Sardina pilchardus", "nadirlik": "yaygın", "siluet": "uzun", "boy_adlari": [ { "ad": "Sardalya", "max_cm": null } ] },
+    { "id": "hamsi", "ad": "Hamsi", "latince": "Engraulis encrasicolus", "nadirlik": "yaygın", "siluet": "uzun", "boy_adlari": [ { "ad": "Hamsi", "max_cm": null } ] },
+    { "id": "caca", "ad": "Çaça", "latince": "Sprattus sprattus", "nadirlik": "yaygın", "siluet": "uzun", "boy_adlari": [ { "ad": "Çaça", "max_cm": null } ] },
+    { "id": "gumus", "ad": "Gümüş", "latince": "Atherina boyeri", "nadirlik": "yaygın", "siluet": "uzun", "boy_adlari": [ { "ad": "Gümüş", "max_cm": null } ] },
+    { "id": "zargana", "ad": "Zargana", "latince": "Belone belone", "nadirlik": "yaygın", "siluet": "yilansi", "boy_adlari": [ { "ad": "Zargana", "max_cm": null } ] },
+    { "id": "kolyoz", "ad": "Kolyoz", "latince": "Scomber colias", "nadirlik": "yaygın", "siluet": "uzun", "boy_adlari": [ { "ad": "Kolyoz", "max_cm": null } ] },
+    { "id": "uskumru", "ad": "Uskumru", "latince": "Scomber scombrus", "nadirlik": "az bulunur", "siluet": "uzun", "boy_adlari": [ { "ad": "Uskumru", "max_cm": null } ] },
+    { "id": "orkinos", "ad": "Orkinos", "latince": "Thunnus thynnus", "nadirlik": "efsanevi", "siluet": "uzun", "boy_adlari": [ { "ad": "Orkinos", "max_cm": null } ] },
+    { "id": "yazili-orkinos", "ad": "Yazılı Orkinos", "latince": "Euthynnus alletteratus", "nadirlik": "az bulunur", "siluet": "uzun", "boy_adlari": [ { "ad": "Yazılı Orkinos", "max_cm": null } ] },
+    { "id": "tombik", "ad": "Tombik", "latince": "Auxis rochei", "nadirlik": "yaygın", "siluet": "uzun", "boy_adlari": [ { "ad": "Tombik", "max_cm": null } ] },
+    { "id": "kilic", "ad": "Kılıç", "latince": "Xiphias gladius", "nadirlik": "efsanevi", "siluet": "uzun", "boy_adlari": [ { "ad": "Kılıç", "max_cm": null } ] },
+    { "id": "lambuka", "ad": "Lambuka", "latince": "Coryphaena hippurus", "nadirlik": "epik", "siluet": "uzun", "boy_adlari": [ { "ad": "Lambuka", "max_cm": null } ] },
+    { "id": "kirlangic", "ad": "Kırlangıç", "latince": "Chelidonichthys lucerna", "nadirlik": "az bulunur", "siluet": "uzun", "boy_adlari": [ { "ad": "Kırlangıç", "max_cm": null } ] },
+    { "id": "oksuz", "ad": "Öksüz", "latince": "Trigla lyra", "nadirlik": "az bulunur", "siluet": "uzun", "boy_adlari": [ { "ad": "Öksüz", "max_cm": null } ] },
+    { "id": "muren", "ad": "Müren", "latince": "Muraena helena", "nadirlik": "az bulunur", "siluet": "yilansi", "boy_adlari": [ { "ad": "Müren", "max_cm": null } ] },
+    { "id": "iskarmoz", "ad": "İskarmoz", "latince": "Sphyraena sphyraena", "nadirlik": "az bulunur", "siluet": "uzun", "boy_adlari": [ { "ad": "İskarmoz", "max_cm": null } ] },
+    { "id": "trakonya", "ad": "Trakonya", "latince": "Trachinus draco", "nadirlik": "az bulunur", "siluet": "uzun", "boy_adlari": [ { "ad": "Trakonya", "max_cm": null } ] },
+    { "id": "dulger", "ad": "Dülger", "latince": "Zeus faber", "nadirlik": "efsanevi", "siluet": "oval", "boy_adlari": [ { "ad": "Dülger", "max_cm": null } ] },
+    { "id": "berlam", "ad": "Berlam", "latince": "Merluccius merluccius", "nadirlik": "az bulunur", "siluet": "uzun", "boy_adlari": [ { "ad": "Berlam", "max_cm": null } ] },
+    { "id": "tirsi", "ad": "Tirsi", "latince": "Alosa fallax", "nadirlik": "az bulunur", "siluet": "uzun", "boy_adlari": [ { "ad": "Tirsi", "max_cm": null } ] },
+    { "id": "kaya-baligi", "ad": "Kaya Balığı", "latince": "Gobius niger", "nadirlik": "yaygın", "siluet": "uzun", "boy_adlari": [ { "ad": "Kaya Balığı", "max_cm": null } ] },
+    { "id": "circir", "ad": "Çırçır", "latince": "Symphodus tinca", "nadirlik": "yaygın", "siluet": "oval", "boy_adlari": [ { "ad": "Çırçır", "max_cm": null } ] },
+    { "id": "sokar", "ad": "Sokar", "latince": "Siganus rivulatus", "nadirlik": "yaygın", "siluet": "oval", "boy_adlari": [ { "ad": "Sokar", "max_cm": null } ] },
+    { "id": "balon", "ad": "Balon Balığı", "latince": "Lagocephalus sceleratus", "nadirlik": "yaygın", "siluet": "oval", "boy_adlari": [ { "ad": "Balon Balığı", "max_cm": null } ] },
+    { "id": "aslan-baligi", "ad": "Aslan Balığı", "latince": "Pterois miles", "nadirlik": "az bulunur", "siluet": "oval", "boy_adlari": [ { "ad": "Aslan Balığı", "max_cm": null } ] },
+    { "id": "kalamar", "ad": "Kalamar", "latince": "Loligo vulgaris", "nadirlik": "az bulunur", "siluet": "kafadan", "boy_adlari": [ { "ad": "Kalamar", "max_cm": null } ] },
+    { "id": "ahtapot", "ad": "Ahtapot", "latince": "Octopus vulgaris", "nadirlik": "az bulunur", "siluet": "kafadan", "boy_adlari": [ { "ad": "Ahtapot", "max_cm": null } ] },
+    { "id": "subye", "ad": "Sübye", "latince": "Sepia officinalis", "nadirlik": "az bulunur", "siluet": "kafadan", "boy_adlari": [ { "ad": "Sübye", "max_cm": null } ] }
   ]
 }
