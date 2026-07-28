@@ -54,6 +54,9 @@
     "Ay" : {
 
     },
+    "Bağlantı\nkurulamadı" : {
+
+    },
     "BALIĞI BİRAZ DAHA YAKINDAN DENE" : {
 
     },
@@ -73,6 +76,9 @@
     "Balığını fotoğrafla" : {
 
     },
+    "Balığını yine de kaydedebilirsin —\ntanıma hakkı sadece otomatik teşhis için." : {
+
+    },
     "Balıkdeks" : {
 
     },
@@ -86,6 +92,12 @@
 
     },
     "BU AY" : {
+
+    },
+    "BU AY KALAN TANIMA: %lld" : {
+
+    },
+    "BU AYKİ 10 TANIMA HAKKIN DOLDU" : {
 
     },
     "CM" : {
@@ -127,6 +139,9 @@
     "FISHIGO ARŞİVİ" : {
 
     },
+    "Fishigo Pro" : {
+
+    },
     "Fotoğrafta balık\ngöremedim" : {
 
     },
@@ -155,6 +170,9 @@
 
     },
     "KIRILMAYI BEKLİYOR" : {
+
+    },
+    "KIYIDA ÇEKMİYOR OLABİLİR — KAYIT YİNE DE SENDE" : {
 
     },
     "LİSTEDEN ARA" : {
@@ -205,6 +223,9 @@
     "Vazgeç" : {
 
     },
+    "VAZGEÇ" : {
+
+    },
     "Yakala" : {
 
     },
@@ -212,6 +233,9 @@
 
     },
     "Yakalayış" : {
+
+    },
+    "YAKINDA" : {
 
     }
   },

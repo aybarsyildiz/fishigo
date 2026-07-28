@@ -1,0 +1,15 @@
+{
+  "version": "ORNEK-0",
+  "kaynak": "ÖRNEK VERİ — Tarım ve Orman Bakanlığı amatör balıkçılık tebliği değerlerini sahibi girecek",
+  "_not": "BU DOSYA ŞEMA ÖRNEĞİDİR. Gerçek min boy / dönem yasağı / günlük limit değerlerini SADECE resmî tebliğden doldurun. 'ornek-tur' gerçek bir tür değildir; gerçek türler doldurulana kadar uygulama 'kural bilgisi yok' gösterir. Alanlar: min_boy_cm (sayı|null), yasak ([{bas: MM-DD, bit: MM-DD}] — yıl dönümünü sarabilir), gunluk_limit (metin|null), not (metin|null). Güncelleme: bu dosyayı düzenle + `npm run deploy` — uygulama ETag ile kendi çeker, App Store sürümü gerekmez. Fishigo/Resources/regulations.json paketli kopyasını da eşitleyin (ilk açılış/çevrimdışı için).",
+  "türler": {
+    "ornek-tur": {
+      "min_boy_cm": 99,
+      "yasak": [
+        { "bas": "12-15", "bit": "02-28" }
+      ],
+      "gunluk_limit": "ÖRNEK: 5 kg",
+      "not": "ŞEMA ÖRNEĞİ — gerçek bir kural değildir"
+    }
+  }
+}

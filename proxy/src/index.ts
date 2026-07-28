@@ -1,5 +1,6 @@
 import Anthropic from "@anthropic-ai/sdk";
 import { SISTEM_TALIMATI, TUR_IDLERI } from "./tur-listesi";
+import kurallar from "../regulations.json";
 
 /**
  * Fishigo recognition proxy (§3/§4 of the brief).
@@ -45,6 +46,9 @@ export default {
       }
       if (request.method === "POST" && url.pathname === "/duzeltme") {
         return await duzeltme(request, env, ctx);
+      }
+      if (request.method === "GET" && url.pathname === "/kurallar") {
+        return kurallarYaniti(request);
       }
       return json({ hata: "bulunamadi" }, 404);
     } catch (error) {
@@ -153,6 +157,22 @@ async function duzeltme(request: Request, env: Env, ctx: ExecutionContext): Prom
     ),
   );
   return json({ tamam: true });
+}
+
+/** §5: regulations as static JSON, ETag-cached — rule updates ship with a
+ * Worker deploy, never an App Store release. The LLM never touches this. */
+function kurallarYaniti(request: Request): Response {
+  const etag = `"${(kurallar as { version: string }).version}"`;
+  if (request.headers.get("if-none-match") === etag) {
+    return new Response(null, { status: 304, headers: { etag } });
+  }
+  return new Response(JSON.stringify(kurallar), {
+    headers: {
+      "content-type": "application/json",
+      etag,
+      "cache-control": "max-age=3600",
+    },
+  });
 }
 
 function cihazId(request: Request): string | null {

@@ -63,6 +63,15 @@ final class CatchFlowModel {
         secilenTur.map { $0.displayName(lengthCm: lengthCm) } ?? ""
     }
 
+    /// §5: the source line accompanies every legality status.
+    var mevzuatKaynagi: String {
+        app.regulations.kaynak
+    }
+
+    var gunlukLimit: String? {
+        secilenTur.flatMap { app.regulations.kural(for: $0.id)?.gunlukLimit }
+    }
+
     var isFirstOfSpecies: Bool {
         guard let tur = secilenTur else { return false }
         return app.log.isFirst(speciesId: tur.id)

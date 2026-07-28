@@ -46,11 +46,20 @@ struct RevealView: View {
                     .rotation3DEffect(.degrees(flip - 180), axis: (x: 0, y: 1, z: 0))
             }
 
-            Text(LegalityCopy.disclaimer)
-                .font(Typo.data(9))
-                .foregroundStyle(Ink.kagit.opacity(0.4))
-                .multilineTextAlignment(.center)
-                .padding(.horizontal, 32)
+            VStack(spacing: 4) {
+                if model.legality != .bilgiYok {
+                    Text("KAYNAK: \(model.mevzuatKaynagi)")
+                        .lineLimit(2)
+                    if let limit = model.gunlukLimit {
+                        Text("GÜNLÜK LİMİT: \(limit.localizedUppercase)")
+                    }
+                }
+                Text(LegalityCopy.disclaimer)
+            }
+            .font(Typo.data(9))
+            .foregroundStyle(Ink.kagit.opacity(0.4))
+            .multilineTextAlignment(.center)
+            .padding(.horizontal, 32)
 
             ArchiveButton(title: "Deftere kaydet", systemImage: "book.closed") {
                 model.saveCatch()

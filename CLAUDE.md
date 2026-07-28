@@ -59,7 +59,7 @@ iOS 17+, SwiftUI, Swift 5 language mode. iPhone only, portrait only.
 - [x] M3 deks grid + silhouettes + cascade + evolution lines + hook page v1
 - [x] M4 specimen card renderer + 9:16 export + share sheet (video-ready via progress param)
 - [x] M5 Cloudflare Worker proxy + real recognition + quota + corrections log
-- [ ] M6 regulations loader + legality states + disclaimer
+- [x] M6 regulations loader + legality states + disclaimer (values = SAMPLE; owner fills)
 - [ ] M7 weather snapshot + condition score + sefer serisi streak + notification
 - [ ] M8 polish pass, Reduce Motion audit, empty states, onboarding, ASO stubs
 
@@ -85,6 +85,12 @@ iOS 17+, SwiftUI, Swift 5 language mode. iPhone only, portrait only.
   NetworkErrorView. Both offer manual species pick — logging is never blocked.
 - Corrections: CorrectionEntry (photo SHA256 + suggested + corrected), local
   first, best-effort upload; launch sweep TODO(M8).
+- M6 regulations: `proxy/regulations.json` is the SOURCE (edit + `npm run
+  deploy`; app pulls via GET /kurallar with ETag). `Fishigo/Resources/
+  regulations.json` is the bundled offline/first-launch copy — keep in sync.
+  Current content is a SCHEMA SAMPLE ('ornek-tur' only) → every real species
+  shows "kural bilgisi yok" until the owner enters tebliğ values. Closed-season
+  ranges are MM-DD and may wrap the year end; season outranks size limit.
 
 ## Decisions log
 

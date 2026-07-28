@@ -20,6 +20,7 @@ final class AppModel {
     let log: CatchLog
     let corrections: CorrectionStore
     let location: LocationService
+    let regulations: RegulationsStore
     let recognizer: any SpeciesRecognizing
     let legality: any LegalityChecking
 
@@ -33,8 +34,12 @@ final class AppModel {
         log = CatchLog(context: container.mainContext)
         corrections = CorrectionStore(context: container.mainContext)
         location = LocationService()
+        regulations = RegulationsStore()
         // Geliştirme fikstürleri gerekirse: MockSpeciesRecognizer()
         recognizer = ProxySpeciesRecognizer()
-        legality = StubLegality()
+        legality = RegulationsLegality(store: regulations)
+
+        let regulations = self.regulations
+        Task { await regulations.refresh() }
     }
 }
