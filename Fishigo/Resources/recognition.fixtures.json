@@ -1,0 +1,9 @@
+{
+  "_not": "M1 mock tanıma sonuçları — sırayla döner ki her §4 durumu cihazda denenebilsin.",
+  "fixtures": [
+    { "tur_id": "lufer", "guven": 0.93, "alternatifler": [], "balik_yok": false },
+    { "tur_id": "istavrit", "guven": 0.61, "alternatifler": ["mezgit", "barbun"], "balik_yok": false },
+    { "tur_id": null, "guven": 0.0, "alternatifler": [], "balik_yok": true },
+    { "tur_id": "kalkan", "guven": 0.88, "alternatifler": [], "balik_yok": false }
+  ]
+}

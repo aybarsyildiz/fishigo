@@ -16,10 +16,7 @@ struct RootView: View {
                 .tabItem { Label("Balıkdeks", systemImage: "square.grid.3x3") }
                 .tag(Tab.deks)
 
-            PlaceholderScreen(
-                title: "Yakala",
-                latin: "Momentum Sacrum",
-                note: "M1: fotoğraf → tanıma → kart açılışı")
+            CatchFlowView()
                 .tabItem { Label("Yakala", systemImage: "camera") }
                 .tag(Tab.yakala)
 

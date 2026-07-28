@@ -54,7 +54,7 @@ iOS 17+, SwiftUI, Swift 5 language mode. iPhone only, portrait only.
 ## Milestones
 
 - [x] M0 scaffold, tokens, FeelKit
-- [ ] M1 catch flow with MOCKED recognition (full anticipation→reveal→stamp choreography)
+- [x] M1 catch flow with MOCKED recognition (full anticipation→reveal→stamp choreography)
 - [ ] M2 SwiftData models + log + private map + stats v1
 - [ ] M3 deks grid + silhouettes + cascade + new-species ceremony + evolution lines
 - [ ] M4 specimen card renderer + 9:16 export + share sheet (design for future video export)
@@ -76,4 +76,13 @@ iOS 17+, SwiftUI, Swift 5 language mode. iPhone only, portrait only.
 - AccentColor = kagit (#EDE5D1); muhur is reserved for THE accent moment per screen.
 - App forced dark (`preferredColorScheme(.dark)`) — archive has no light chrome.
 - Bundle id placeholder `com.netnucleus.fishigo` — confirm before App Store work.
-- Not a git repo yet — suggest `git init` when owner is ready.
+- Repo lives at github.com:aybarsyildiz/fishigo (main). Commit per milestone.
+- M1: legality UI states (enum + chip + disclaimer) pulled forward from M6 with a
+  stub checker returning `bilgiYok` — M6 becomes pure data plumbing. Recognition is
+  `MockSpeciesRecognizer` cycling 4 fixtures (confident lüfer / low-conf istavrit /
+  balık yok / epik kalkan) with a 1.7 s delay to exercise the anticipation state.
+- M1: `species.json` is a 10-species SAMPLE with PLACEHOLDER thresholds/rarities
+  (marked in the file); full ~70 list lands with M3.
+- M1: camera = UIImagePickerController (upgrade to AVFoundation only if needed);
+  gallery = PhotosPicker (no permission prompt). Photos downscaled through
+  `ImagePipeline` (1024 px / JPEG 0.7) — same bytes go to recognizer and log.

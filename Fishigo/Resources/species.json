@@ -1,0 +1,100 @@
+{
+  "version": "M1-sample",
+  "_not": "ORNEK VERI - ~70 türlük tam liste M3'te gelecek. Boy eşikleri ve nadirlik değerleri PLACEHOLDER, sahibi ayarlayacak.",
+  "turler": [
+    {
+      "id": "lufer",
+      "ad": "Lüfer",
+      "latince": "Pomatomus saltatrix",
+      "nadirlik": "yaygın",
+      "boy_adlari": [
+        { "ad": "Çinekop", "max_cm": 18 },
+        { "ad": "Sarıkanat", "max_cm": 25 },
+        { "ad": "Lüfer", "max_cm": 35 },
+        { "ad": "Kofana", "max_cm": null }
+      ]
+    },
+    {
+      "id": "palamut",
+      "ad": "Palamut",
+      "latince": "Sarda sarda",
+      "nadirlik": "yaygın",
+      "boy_adlari": [
+        { "ad": "Palamut", "max_cm": 40 },
+        { "ad": "Torik", "max_cm": null }
+      ]
+    },
+    {
+      "id": "levrek",
+      "ad": "Levrek",
+      "latince": "Dicentrarchus labrax",
+      "nadirlik": "az bulunur",
+      "boy_adlari": [
+        { "ad": "Levrek", "max_cm": null }
+      ]
+    },
+    {
+      "id": "cipura",
+      "ad": "Çipura",
+      "latince": "Sparus aurata",
+      "nadirlik": "yaygın",
+      "boy_adlari": [
+        { "ad": "Çipura", "max_cm": null }
+      ]
+    },
+    {
+      "id": "istavrit",
+      "ad": "İstavrit",
+      "latince": "Trachurus trachurus",
+      "nadirlik": "yaygın",
+      "boy_adlari": [
+        { "ad": "İstavrit", "max_cm": null }
+      ]
+    },
+    {
+      "id": "mezgit",
+      "ad": "Mezgit",
+      "latince": "Merlangius merlangus",
+      "nadirlik": "yaygın",
+      "boy_adlari": [
+        { "ad": "Mezgit", "max_cm": null }
+      ]
+    },
+    {
+      "id": "barbun",
+      "ad": "Barbun",
+      "latince": "Mullus barbatus",
+      "nadirlik": "az bulunur",
+      "boy_adlari": [
+        { "ad": "Barbun", "max_cm": null }
+      ]
+    },
+    {
+      "id": "karagoz",
+      "ad": "Karagöz",
+      "latince": "Diplodus vulgaris",
+      "nadirlik": "yaygın",
+      "boy_adlari": [
+        { "ad": "Karagöz", "max_cm": null }
+      ]
+    },
+    {
+      "id": "kalkan",
+      "ad": "Kalkan",
+      "latince": "Scophthalmus maximus",
+      "nadirlik": "epik",
+      "boy_adlari": [
+        { "ad": "Kalkan", "max_cm": null }
+      ]
+    },
+    {
+      "id": "akya",
+      "ad": "Akya",
+      "latince": "Lichia amia",
+      "nadirlik": "efsanevi",
+      "boy_adlari": [
+        { "ad": "Akya", "max_cm": null }
+      ]
+    }
+  ]
+}
