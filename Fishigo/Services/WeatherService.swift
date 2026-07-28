@@ -9,6 +9,13 @@ struct HavaDurumu {
     let ruzgarYonuDeg: Double
 }
 
+/// Marine snapshot — wave height + sea-surface temperature (SST). Nil far from
+/// open water. SST feeds the condition score and the catch snapshot.
+struct DenizDurumu {
+    let dalgaM: Double?
+    let sstC: Double?
+}
+
 /// Open-Meteo forecast + marine (§3: free, no key). Best-effort everywhere —
 /// missing weather never blocks a catch or the app.
 enum WeatherService {
@@ -29,18 +36,21 @@ enum WeatherService {
             ruzgarYonuDeg: yanit.current.windDirection)
     }
 
-    /// Marine wave height; nil far from open water or on service failure.
-    static func waveHeight(_ coordinate: CLLocationCoordinate2D) async -> Double? {
+    /// Marine wave height + sea-surface temperature; nil fields far from open
+    /// water or on service failure.
+    static func marine(_ coordinate: CLLocationCoordinate2D) async -> DenizDurumu {
         var components = URLComponents(string: "https://marine-api.open-meteo.com/v1/marine")!
         components.queryItems = [
             URLQueryItem(name: "latitude", value: String(coordinate.latitude)),
             URLQueryItem(name: "longitude", value: String(coordinate.longitude)),
-            URLQueryItem(name: "current", value: "wave_height"),
+            URLQueryItem(name: "current", value: "wave_height,sea_surface_temperature"),
         ]
         guard let url = components.url,
               let (data, _) = try? await URLSession.shared.data(from: url),
-              let yanit = try? JSONDecoder().decode(MarineYanit.self, from: data) else { return nil }
-        return yanit.current.waveHeight
+              let yanit = try? JSONDecoder().decode(MarineYanit.self, from: data) else {
+            return DenizDurumu(dalgaM: nil, sstC: nil)
+        }
+        return DenizDurumu(dalgaM: yanit.current.waveHeight, sstC: yanit.current.sst)
     }
 
     // MARK: Wire types
@@ -67,10 +77,12 @@ enum WeatherService {
         let current: Current
 
         struct Current: Codable {
-            let waveHeight: Double
+            let waveHeight: Double?
+            let sst: Double?
 
             enum CodingKeys: String, CodingKey {
                 case waveHeight = "wave_height"
+                case sst = "sea_surface_temperature"
             }
         }
     }

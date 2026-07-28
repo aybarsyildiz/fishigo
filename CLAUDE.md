@@ -125,6 +125,24 @@ iOS 17+, SwiftUI, Swift 5 language mode. iPhone only, portrait only.
   (RuzgarYonu); insight prefers wind habit ("En çok lodosta tutuyorsun") once
   ≥3 weather-tagged records exist.
 
+## Data enrichment (GBIF/OBIS + SST)
+
+- Per-species sea presence + observation months baked into species.json
+  (`denizler`, `gozlem_aylari`). Pipeline: `python3 proxy/fetch-presence.py`
+  (GBIF per-sea WKT + month facet, OBIS cross-check → proxy/presence.json with
+  counts as evidence) then `python3 proxy/merge-presence.py`. 64/67 have sea
+  data; 3 sparse (granyoz, tombik, öksüz) left empty → "veri yok" in UI.
+- HONESTY: `denizler` = reliable presence signal. `gozlem_aylari` = scientific
+  OBSERVATION records (when researchers sampled), NOT fishing season — labelled
+  "AV SEZONU DEĞİL" in RegionPanel; binding season stays the regulations.json
+  closed period. Never phrase presence as a fish promise.
+- Occurrence DBs are sparse for Turkish seas — treat as a starting signal the
+  owner refines with local knowledge. Public/community heatmap stays OUT; the
+  owner's OWN Defter map is a private heatmap (stacked muhur glow).
+- SST: Open-Meteo marine `sea_surface_temperature` added to WeatherService.marine
+  → catch snapshot (CatchRecord.sstC) + condition score factor (14–22°C sweet
+  spot, placeholder band). No API key. Balıkdeks detail shows the RegionPanel.
+
 ## Decisions log
 
 - Project name **Fishigo** (brief header) — brief body once says "Fishing"; assumed typo.

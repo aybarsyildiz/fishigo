@@ -58,6 +58,10 @@ struct DeksDetailSheet: View {
                             .padding(.top, 6)
                     }
 
+                    if species.denizler?.isEmpty == false || species.gozlemAylari?.isEmpty == false {
+                        RegionPanel(species: species)
+                    }
+
                     if species.hasEvolutionLine {
                         EvolutionLineView(
                             species: species,

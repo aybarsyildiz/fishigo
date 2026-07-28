@@ -1,0 +1,2536 @@
+{
+  "lufer": {
+    "denizler": [
+      "karadeniz",
+      "marmara",
+      "ege",
+      "akdeniz"
+    ],
+    "aylar": [
+      1,
+      5,
+      6,
+      7,
+      9,
+      10,
+      11,
+      12
+    ],
+    "kanit": {
+      "per_sea": {
+        "karadeniz": {
+          "gbif": 16,
+          "obis": 8
+        },
+        "marmara": {
+          "gbif": 15,
+          "obis": 2
+        },
+        "ege": {
+          "gbif": 4,
+          "obis": 0
+        },
+        "akdeniz": {
+          "gbif": 4,
+          "obis": 0
+        }
+      },
+      "ay_kayit": 35
+    }
+  },
+  "palamut": {
+    "denizler": [
+      "karadeniz",
+      "marmara"
+    ],
+    "aylar": [
+      1,
+      4,
+      6,
+      8,
+      9,
+      12
+    ],
+    "kanit": {
+      "per_sea": {
+        "karadeniz": {
+          "gbif": 11,
+          "obis": 2
+        },
+        "marmara": {
+          "gbif": 7,
+          "obis": 2
+        },
+        "ege": {
+          "gbif": 1,
+          "obis": 0
+        },
+        "akdeniz": {
+          "gbif": 0,
+          "obis": 0
+        }
+      },
+      "ay_kayit": 16
+    }
+  },
+  "levrek": {
+    "denizler": [
+      "karadeniz",
+      "marmara",
+      "ege",
+      "akdeniz"
+    ],
+    "aylar": [
+      1,
+      3,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "kanit": {
+      "per_sea": {
+        "karadeniz": {
+          "gbif": 3,
+          "obis": 0
+        },
+        "marmara": {
+          "gbif": 10,
+          "obis": 0
+        },
+        "ege": {
+          "gbif": 122,
+          "obis": 0
+        },
+        "akdeniz": {
+          "gbif": 32,
+          "obis": 0
+        }
+      },
+      "ay_kayit": 237
+    }
+  },
+  "istavrit": {
+    "denizler": [
+      "karadeniz",
+      "marmara"
+    ],
+    "aylar": [
+      1,
+      3,
+      4,
+      5,
+      6,
+      7,
+      11,
+      12
+    ],
+    "kanit": {
+      "per_sea": {
+        "karadeniz": {
+          "gbif": 3,
+          "obis": 0
+        },
+        "marmara": {
+          "gbif": 5,
+          "obis": 0
+        },
+        "ege": {
+          "gbif": 0,
+          "obis": 0
+        },
+        "akdeniz": {
+          "gbif": 0,
+          "obis": 0
+        }
+      },
+      "ay_kayit": 13
+    }
+  },
+  "cipura": {
+    "denizler": [
+      "marmara",
+      "ege",
+      "akdeniz"
+    ],
+    "aylar": [
+      1,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "kanit": {
+      "per_sea": {
+        "karadeniz": {
+          "gbif": 1,
+          "obis": 0
+        },
+        "marmara": {
+          "gbif": 15,
+          "obis": 0
+        },
+        "ege": {
+          "gbif": 158,
+          "obis": 0
+        },
+        "akdeniz": {
+          "gbif": 43,
+          "obis": 0
+        }
+      },
+      "ay_kayit": 364
+    }
+  },
+  "mezgit": {
+    "denizler": [
+      "karadeniz",
+      "marmara"
+    ],
+    "aylar": [
+      1,
+      3,
+      6,
+      7,
+      9,
+      12
+    ],
+    "kanit": {
+      "per_sea": {
+        "karadeniz": {
+          "gbif": 16,
+          "obis": 0
+        },
+        "marmara": {
+          "gbif": 3,
+          "obis": 0
+        },
+        "ege": {
+          "gbif": 1,
+          "obis": 0
+        },
+        "akdeniz": {
+          "gbif": 0,
+          "obis": 0
+        }
+      },
+      "ay_kayit": 16
+    }
+  },
+  "barbun": {
+    "denizler": [
+      "karadeniz",
+      "marmara",
+      "ege",
+      "akdeniz"
+    ],
+    "aylar": [
+      1,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "kanit": {
+      "per_sea": {
+        "karadeniz": {
+          "gbif": 26,
+          "obis": 2
+        },
+        "marmara": {
+          "gbif": 8,
+          "obis": 2
+        },
+        "ege": {
+          "gbif": 19,
+          "obis": 0
+        },
+        "akdeniz": {
+          "gbif": 4,
+          "obis": 0
+        }
+      },
+      "ay_kayit": 109
+    }
+  },
+  "tekir": {
+    "denizler": [
+      "karadeniz",
+      "marmara",
+      "ege",
+      "akdeniz"
+    ],
+    "aylar": [
+      1,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "kanit": {
+      "per_sea": {
+        "karadeniz": {
+          "gbif": 0,
+          "obis": 2
+        },
+        "marmara": {
+          "gbif": 12,
+          "obis": 2
+        },
+        "ege": {
+          "gbif": 116,
+          "obis": 0
+        },
+        "akdeniz": {
+          "gbif": 10,
+          "obis": 0
+        }
+      },
+      "ay_kayit": 523
+    }
+  },
+  "karagoz": {
+    "denizler": [
+      "marmara",
+      "ege",
+      "akdeniz"
+    ],
+    "aylar": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "kanit": {
+      "per_sea": {
+        "karadeniz": {
+          "gbif": 0,
+          "obis": 0
+        },
+        "marmara": {
+          "gbif": 22,
+          "obis": 0
+        },
+        "ege": {
+          "gbif": 246,
+          "obis": 0
+        },
+        "akdeniz": {
+          "gbif": 60,
+          "obis": 0
+        }
+      },
+      "ay_kayit": 1009
+    }
+  },
+  "sargoz": {
+    "denizler": [
+      "marmara",
+      "ege",
+      "akdeniz"
+    ],
+    "aylar": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "kanit": {
+      "per_sea": {
+        "karadeniz": {
+          "gbif": 0,
+          "obis": 0
+        },
+        "marmara": {
+          "gbif": 22,
+          "obis": 0
+        },
+        "ege": {
+          "gbif": 298,
+          "obis": 1
+        },
+        "akdeniz": {
+          "gbif": 161,
+          "obis": 0
+        }
+      },
+      "ay_kayit": 1191
+    }
+  },
+  "sivriburun-karagoz": {
+    "denizler": [
+      "karadeniz",
+      "marmara",
+      "ege",
+      "akdeniz"
+    ],
+    "aylar": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "kanit": {
+      "per_sea": {
+        "karadeniz": {
+          "gbif": 6,
+          "obis": 0
+        },
+        "marmara": {
+          "gbif": 13,
+          "obis": 0
+        },
+        "ege": {
+          "gbif": 107,
+          "obis": 0
+        },
+        "akdeniz": {
+          "gbif": 19,
+          "obis": 0
+        }
+      },
+      "ay_kayit": 305
+    }
+  },
+  "isparoz": {
+    "denizler": [
+      "karadeniz",
+      "marmara",
+      "ege",
+      "akdeniz"
+    ],
+    "aylar": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "kanit": {
+      "per_sea": {
+        "karadeniz": {
+          "gbif": 15,
+          "obis": 6
+        },
+        "marmara": {
+          "gbif": 13,
+          "obis": 0
+        },
+        "ege": {
+          "gbif": 100,
+          "obis": 0
+        },
+        "akdeniz": {
+          "gbif": 17,
+          "obis": 0
+        }
+      },
+      "ay_kayit": 595
+    }
+  },
+  "sarigoz": {
+    "denizler": [
+      "karadeniz",
+      "ege"
+    ],
+    "aylar": [
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "kanit": {
+      "per_sea": {
+        "karadeniz": {
+          "gbif": 2,
+          "obis": 4
+        },
+        "marmara": {
+          "gbif": 1,
+          "obis": 0
+        },
+        "ege": {
+          "gbif": 4,
+          "obis": 0
+        },
+        "akdeniz": {
+          "gbif": 0,
+          "obis": 0
+        }
+      },
+      "ay_kayit": 34
+    }
+  },
+  "melanur": {
+    "denizler": [
+      "marmara",
+      "ege",
+      "akdeniz"
+    ],
+    "aylar": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "kanit": {
+      "per_sea": {
+        "karadeniz": {
+          "gbif": 0,
+          "obis": 0
+        },
+        "marmara": {
+          "gbif": 12,
+          "obis": 0
+        },
+        "ege": {
+          "gbif": 196,
+          "obis": 0
+        },
+        "akdeniz": {
+          "gbif": 63,
+          "obis": 0
+        }
+      },
+      "ay_kayit": 845
+    }
+  },
+  "salpa": {
+    "denizler": [
+      "karadeniz",
+      "marmara",
+      "ege",
+      "akdeniz"
+    ],
+    "aylar": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "kanit": {
+      "per_sea": {
+        "karadeniz": {
+          "gbif": 1,
+          "obis": 2
+        },
+        "marmara": {
+          "gbif": 17,
+          "obis": 0
+        },
+        "ege": {
+          "gbif": 182,
+          "obis": 1
+        },
+        "akdeniz": {
+          "gbif": 27,
+          "obis": 0
+        }
+      },
+      "ay_kayit": 858
+    }
+  },
+  "kupes": {
+    "denizler": [
+      "karadeniz",
+      "marmara",
+      "ege",
+      "akdeniz"
+    ],
+    "aylar": [
+      1,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "kanit": {
+      "per_sea": {
+        "karadeniz": {
+          "gbif": 2,
+          "obis": 2
+        },
+        "marmara": {
+          "gbif": 2,
+          "obis": 0
+        },
+        "ege": {
+          "gbif": 43,
+          "obis": 0
+        },
+        "akdeniz": {
+          "gbif": 26,
+          "obis": 0
+        }
+      },
+      "ay_kayit": 219
+    }
+  },
+  "izmarit": {
+    "denizler": [
+      "karadeniz",
+      "marmara",
+      "ege",
+      "akdeniz"
+    ],
+    "aylar": [
+      1,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "kanit": {
+      "per_sea": {
+        "karadeniz": {
+          "gbif": 8,
+          "obis": 1
+        },
+        "marmara": {
+          "gbif": 9,
+          "obis": 0
+        },
+        "ege": {
+          "gbif": 15,
+          "obis": 0
+        },
+        "akdeniz": {
+          "gbif": 14,
+          "obis": 0
+        }
+      },
+      "ay_kayit": 73
+    }
+  },
+  "mirmir": {
+    "denizler": [
+      "karadeniz",
+      "marmara",
+      "ege",
+      "akdeniz"
+    ],
+    "aylar": [
+      1,
+      2,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "kanit": {
+      "per_sea": {
+        "karadeniz": {
+          "gbif": 4,
+          "obis": 2
+        },
+        "marmara": {
+          "gbif": 18,
+          "obis": 0
+        },
+        "ege": {
+          "gbif": 92,
+          "obis": 0
+        },
+        "akdeniz": {
+          "gbif": 48,
+          "obis": 0
+        }
+      },
+      "ay_kayit": 516
+    }
+  },
+  "mercan": {
+    "denizler": [
+      "karadeniz",
+      "marmara",
+      "ege",
+      "akdeniz"
+    ],
+    "aylar": [
+      1,
+      2,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "kanit": {
+      "per_sea": {
+        "karadeniz": {
+          "gbif": 2,
+          "obis": 0
+        },
+        "marmara": {
+          "gbif": 4,
+          "obis": 0
+        },
+        "ege": {
+          "gbif": 6,
+          "obis": 0
+        },
+        "akdeniz": {
+          "gbif": 16,
+          "obis": 0
+        }
+      },
+      "ay_kayit": 59
+    }
+  },
+  "kirma-mercan": {
+    "denizler": [
+      "ege",
+      "akdeniz"
+    ],
+    "aylar": [
+      1,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "kanit": {
+      "per_sea": {
+        "karadeniz": {
+          "gbif": 0,
+          "obis": 0
+        },
+        "marmara": {
+          "gbif": 1,
+          "obis": 0
+        },
+        "ege": {
+          "gbif": 10,
+          "obis": 0
+        },
+        "akdeniz": {
+          "gbif": 2,
+          "obis": 0
+        }
+      },
+      "ay_kayit": 48
+    }
+  },
+  "fangri": {
+    "denizler": [
+      "ege",
+      "akdeniz"
+    ],
+    "aylar": [
+      1,
+      3,
+      4,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "kanit": {
+      "per_sea": {
+        "karadeniz": {
+          "gbif": 0,
+          "obis": 0
+        },
+        "marmara": {
+          "gbif": 1,
+          "obis": 0
+        },
+        "ege": {
+          "gbif": 6,
+          "obis": 1
+        },
+        "akdeniz": {
+          "gbif": 6,
+          "obis": 0
+        }
+      },
+      "ay_kayit": 49
+    }
+  },
+  "sinarit": {
+    "denizler": [
+      "ege",
+      "akdeniz"
+    ],
+    "aylar": [
+      1,
+      2,
+      4,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "kanit": {
+      "per_sea": {
+        "karadeniz": {
+          "gbif": 0,
+          "obis": 0
+        },
+        "marmara": {
+          "gbif": 0,
+          "obis": 0
+        },
+        "ege": {
+          "gbif": 67,
+          "obis": 0
+        },
+        "akdeniz": {
+          "gbif": 6,
+          "obis": 0
+        }
+      },
+      "ay_kayit": 121
+    }
+  },
+  "tranca": {
+    "denizler": [
+      "ege"
+    ],
+    "aylar": [],
+    "kanit": {
+      "per_sea": {
+        "karadeniz": {
+          "gbif": 0,
+          "obis": 0
+        },
+        "marmara": {
+          "gbif": 0,
+          "obis": 0
+        },
+        "ege": {
+          "gbif": 2,
+          "obis": 0
+        },
+        "akdeniz": {
+          "gbif": 0,
+          "obis": 0
+        }
+      },
+      "ay_kayit": 5
+    }
+  },
+  "kalkan": {
+    "denizler": [
+      "karadeniz"
+    ],
+    "aylar": [
+      1,
+      7
+    ],
+    "kanit": {
+      "per_sea": {
+        "karadeniz": {
+          "gbif": 78,
+          "obis": 0
+        },
+        "marmara": {
+          "gbif": 1,
+          "obis": 0
+        },
+        "ege": {
+          "gbif": 0,
+          "obis": 0
+        },
+        "akdeniz": {
+          "gbif": 0,
+          "obis": 0
+        }
+      },
+      "ay_kayit": 30
+    }
+  },
+  "pisi": {
+    "denizler": [
+      "karadeniz",
+      "marmara"
+    ],
+    "aylar": [
+      5,
+      7,
+      8,
+      9
+    ],
+    "kanit": {
+      "per_sea": {
+        "karadeniz": {
+          "gbif": 6,
+          "obis": 4
+        },
+        "marmara": {
+          "gbif": 4,
+          "obis": 0
+        },
+        "ege": {
+          "gbif": 0,
+          "obis": 0
+        },
+        "akdeniz": {
+          "gbif": 0,
+          "obis": 0
+        }
+      },
+      "ay_kayit": 8
+    }
+  },
+  "dil": {
+    "denizler": [
+      "ege"
+    ],
+    "aylar": [
+      4,
+      5,
+      6,
+      7,
+      8,
+      10,
+      12
+    ],
+    "kanit": {
+      "per_sea": {
+        "karadeniz": {
+          "gbif": 0,
+          "obis": 0
+        },
+        "marmara": {
+          "gbif": 0,
+          "obis": 0
+        },
+        "ege": {
+          "gbif": 3,
+          "obis": 2
+        },
+        "akdeniz": {
+          "gbif": 1,
+          "obis": 0
+        }
+      },
+      "ay_kayit": 16
+    }
+  },
+  "vatoz": {
+    "denizler": [
+      "karadeniz",
+      "marmara",
+      "ege"
+    ],
+    "aylar": [
+      1,
+      2,
+      3,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "kanit": {
+      "per_sea": {
+        "karadeniz": {
+          "gbif": 1,
+          "obis": 1
+        },
+        "marmara": {
+          "gbif": 5,
+          "obis": 0
+        },
+        "ege": {
+          "gbif": 4,
+          "obis": 0
+        },
+        "akdeniz": {
+          "gbif": 0,
+          "obis": 0
+        }
+      },
+      "ay_kayit": 17
+    }
+  },
+  "akya": {
+    "denizler": [
+      "ege"
+    ],
+    "aylar": [
+      5,
+      7,
+      8,
+      9,
+      10
+    ],
+    "kanit": {
+      "per_sea": {
+        "karadeniz": {
+          "gbif": 0,
+          "obis": 0
+        },
+        "marmara": {
+          "gbif": 0,
+          "obis": 0
+        },
+        "ege": {
+          "gbif": 3,
+          "obis": 0
+        },
+        "akdeniz": {
+          "gbif": 1,
+          "obis": 0
+        }
+      },
+      "ay_kayit": 10
+    }
+  },
+  "sarikuyruk": {
+    "denizler": [
+      "ege",
+      "akdeniz"
+    ],
+    "aylar": [
+      1,
+      2,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "kanit": {
+      "per_sea": {
+        "karadeniz": {
+          "gbif": 0,
+          "obis": 0
+        },
+        "marmara": {
+          "gbif": 0,
+          "obis": 0
+        },
+        "ege": {
+          "gbif": 4,
+          "obis": 0
+        },
+        "akdeniz": {
+          "gbif": 15,
+          "obis": 0
+        }
+      },
+      "ay_kayit": 86
+    }
+  },
+  "minekop": {
+    "denizler": [
+      "karadeniz",
+      "marmara"
+    ],
+    "aylar": [],
+    "kanit": {
+      "per_sea": {
+        "karadeniz": {
+          "gbif": 3,
+          "obis": 4
+        },
+        "marmara": {
+          "gbif": 2,
+          "obis": 2
+        },
+        "ege": {
+          "gbif": 0,
+          "obis": 0
+        },
+        "akdeniz": {
+          "gbif": 0,
+          "obis": 0
+        }
+      },
+      "ay_kayit": 6
+    }
+  },
+  "eskina": {
+    "denizler": [
+      "karadeniz",
+      "marmara",
+      "ege"
+    ],
+    "aylar": [
+      1,
+      2,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "kanit": {
+      "per_sea": {
+        "karadeniz": {
+          "gbif": 10,
+          "obis": 2
+        },
+        "marmara": {
+          "gbif": 5,
+          "obis": 0
+        },
+        "ege": {
+          "gbif": 13,
+          "obis": 0
+        },
+        "akdeniz": {
+          "gbif": 1,
+          "obis": 0
+        }
+      },
+      "ay_kayit": 38
+    }
+  },
+  "granyoz": {
+    "denizler": [],
+    "aylar": [],
+    "kanit": {
+      "per_sea": {
+        "karadeniz": {
+          "gbif": 0,
+          "obis": 0
+        },
+        "marmara": {
+          "gbif": 0,
+          "obis": 0
+        },
+        "ege": {
+          "gbif": 1,
+          "obis": 0
+        },
+        "akdeniz": {
+          "gbif": 0,
+          "obis": 0
+        }
+      },
+      "ay_kayit": 1
+    }
+  },
+  "lahos": {
+    "denizler": [
+      "ege",
+      "akdeniz"
+    ],
+    "aylar": [
+      2,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "kanit": {
+      "per_sea": {
+        "karadeniz": {
+          "gbif": 1,
+          "obis": 0
+        },
+        "marmara": {
+          "gbif": 1,
+          "obis": 0
+        },
+        "ege": {
+          "gbif": 9,
+          "obis": 0
+        },
+        "akdeniz": {
+          "gbif": 14,
+          "obis": 0
+        }
+      },
+      "ay_kayit": 47
+    }
+  },
+  "orfoz": {
+    "denizler": [
+      "ege",
+      "akdeniz"
+    ],
+    "aylar": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "kanit": {
+      "per_sea": {
+        "karadeniz": {
+          "gbif": 0,
+          "obis": 0
+        },
+        "marmara": {
+          "gbif": 1,
+          "obis": 0
+        },
+        "ege": {
+          "gbif": 55,
+          "obis": 0
+        },
+        "akdeniz": {
+          "gbif": 116,
+          "obis": 0
+        }
+      },
+      "ay_kayit": 646
+    }
+  },
+  "hani": {
+    "denizler": [
+      "karadeniz",
+      "marmara",
+      "ege",
+      "akdeniz"
+    ],
+    "aylar": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "kanit": {
+      "per_sea": {
+        "karadeniz": {
+          "gbif": 2,
+          "obis": 2
+        },
+        "marmara": {
+          "gbif": 2,
+          "obis": 0
+        },
+        "ege": {
+          "gbif": 107,
+          "obis": 0
+        },
+        "akdeniz": {
+          "gbif": 15,
+          "obis": 0
+        }
+      },
+      "ay_kayit": 452
+    }
+  },
+  "iskorpit": {
+    "denizler": [
+      "karadeniz",
+      "marmara",
+      "ege",
+      "akdeniz"
+    ],
+    "aylar": [
+      1,
+      2,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "kanit": {
+      "per_sea": {
+        "karadeniz": {
+          "gbif": 12,
+          "obis": 5
+        },
+        "marmara": {
+          "gbif": 14,
+          "obis": 2
+        },
+        "ege": {
+          "gbif": 27,
+          "obis": 1
+        },
+        "akdeniz": {
+          "gbif": 8,
+          "obis": 0
+        }
+      },
+      "ay_kayit": 250
+    }
+  },
+  "lipsos": {
+    "denizler": [
+      "ege",
+      "akdeniz"
+    ],
+    "aylar": [
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "kanit": {
+      "per_sea": {
+        "karadeniz": {
+          "gbif": 0,
+          "obis": 0
+        },
+        "marmara": {
+          "gbif": 0,
+          "obis": 0
+        },
+        "ege": {
+          "gbif": 15,
+          "obis": 0
+        },
+        "akdeniz": {
+          "gbif": 5,
+          "obis": 0
+        }
+      },
+      "ay_kayit": 102
+    }
+  },
+  "gelincik": {
+    "denizler": [
+      "karadeniz",
+      "marmara"
+    ],
+    "aylar": [],
+    "kanit": {
+      "per_sea": {
+        "karadeniz": {
+          "gbif": 8,
+          "obis": 0
+        },
+        "marmara": {
+          "gbif": 5,
+          "obis": 0
+        },
+        "ege": {
+          "gbif": 0,
+          "obis": 0
+        },
+        "akdeniz": {
+          "gbif": 0,
+          "obis": 0
+        }
+      },
+      "ay_kayit": 6
+    }
+  },
+  "kefal": {
+    "denizler": [
+      "karadeniz",
+      "ege",
+      "akdeniz"
+    ],
+    "aylar": [
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "kanit": {
+      "per_sea": {
+        "karadeniz": {
+          "gbif": 7,
+          "obis": 0
+        },
+        "marmara": {
+          "gbif": 0,
+          "obis": 0
+        },
+        "ege": {
+          "gbif": 24,
+          "obis": 0
+        },
+        "akdeniz": {
+          "gbif": 5,
+          "obis": 1
+        }
+      },
+      "ay_kayit": 95
+    }
+  },
+  "sardalya": {
+    "denizler": [
+      "marmara",
+      "ege"
+    ],
+    "aylar": [
+      1,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      11,
+      12
+    ],
+    "kanit": {
+      "per_sea": {
+        "karadeniz": {
+          "gbif": 1,
+          "obis": 0
+        },
+        "marmara": {
+          "gbif": 3,
+          "obis": 0
+        },
+        "ege": {
+          "gbif": 6,
+          "obis": 0
+        },
+        "akdeniz": {
+          "gbif": 1,
+          "obis": 0
+        }
+      },
+      "ay_kayit": 23
+    }
+  },
+  "hamsi": {
+    "denizler": [
+      "karadeniz",
+      "marmara",
+      "ege",
+      "akdeniz"
+    ],
+    "aylar": [
+      1,
+      4,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "kanit": {
+      "per_sea": {
+        "karadeniz": {
+          "gbif": 27,
+          "obis": 135
+        },
+        "marmara": {
+          "gbif": 12,
+          "obis": 10
+        },
+        "ege": {
+          "gbif": 11,
+          "obis": 9
+        },
+        "akdeniz": {
+          "gbif": 4,
+          "obis": 0
+        }
+      },
+      "ay_kayit": 63
+    }
+  },
+  "caca": {
+    "denizler": [
+      "karadeniz"
+    ],
+    "aylar": [
+      1,
+      5,
+      7,
+      8
+    ],
+    "kanit": {
+      "per_sea": {
+        "karadeniz": {
+          "gbif": 16,
+          "obis": 2
+        },
+        "marmara": {
+          "gbif": 1,
+          "obis": 0
+        },
+        "ege": {
+          "gbif": 0,
+          "obis": 0
+        },
+        "akdeniz": {
+          "gbif": 0,
+          "obis": 0
+        }
+      },
+      "ay_kayit": 14
+    }
+  },
+  "gumus": {
+    "denizler": [
+      "karadeniz",
+      "marmara",
+      "ege",
+      "akdeniz"
+    ],
+    "aylar": [
+      1,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "kanit": {
+      "per_sea": {
+        "karadeniz": {
+          "gbif": 7,
+          "obis": 2
+        },
+        "marmara": {
+          "gbif": 11,
+          "obis": 0
+        },
+        "ege": {
+          "gbif": 38,
+          "obis": 1
+        },
+        "akdeniz": {
+          "gbif": 11,
+          "obis": 0
+        }
+      },
+      "ay_kayit": 331
+    }
+  },
+  "zargana": {
+    "denizler": [
+      "karadeniz",
+      "marmara",
+      "ege",
+      "akdeniz"
+    ],
+    "aylar": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "kanit": {
+      "per_sea": {
+        "karadeniz": {
+          "gbif": 17,
+          "obis": 0
+        },
+        "marmara": {
+          "gbif": 3,
+          "obis": 0
+        },
+        "ege": {
+          "gbif": 12,
+          "obis": 1
+        },
+        "akdeniz": {
+          "gbif": 6,
+          "obis": 0
+        }
+      },
+      "ay_kayit": 106
+    }
+  },
+  "kolyoz": {
+    "denizler": [
+      "ege",
+      "akdeniz"
+    ],
+    "aylar": [
+      4,
+      7,
+      8,
+      9,
+      11,
+      12
+    ],
+    "kanit": {
+      "per_sea": {
+        "karadeniz": {
+          "gbif": 1,
+          "obis": 0
+        },
+        "marmara": {
+          "gbif": 1,
+          "obis": 0
+        },
+        "ege": {
+          "gbif": 3,
+          "obis": 0
+        },
+        "akdeniz": {
+          "gbif": 2,
+          "obis": 0
+        }
+      },
+      "ay_kayit": 16
+    }
+  },
+  "uskumru": {
+    "denizler": [
+      "karadeniz",
+      "marmara",
+      "ege"
+    ],
+    "aylar": [
+      2,
+      5,
+      7,
+      11
+    ],
+    "kanit": {
+      "per_sea": {
+        "karadeniz": {
+          "gbif": 4,
+          "obis": 6
+        },
+        "marmara": {
+          "gbif": 3,
+          "obis": 2
+        },
+        "ege": {
+          "gbif": 2,
+          "obis": 0
+        },
+        "akdeniz": {
+          "gbif": 0,
+          "obis": 0
+        }
+      },
+      "ay_kayit": 16
+    }
+  },
+  "orkinos": {
+    "denizler": [
+      "ege",
+      "akdeniz"
+    ],
+    "aylar": [
+      3,
+      4,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "kanit": {
+      "per_sea": {
+        "karadeniz": {
+          "gbif": 1,
+          "obis": 0
+        },
+        "marmara": {
+          "gbif": 0,
+          "obis": 0
+        },
+        "ege": {
+          "gbif": 6,
+          "obis": 0
+        },
+        "akdeniz": {
+          "gbif": 5,
+          "obis": 0
+        }
+      },
+      "ay_kayit": 17
+    }
+  },
+  "yazili-orkinos": {
+    "denizler": [
+      "akdeniz"
+    ],
+    "aylar": [
+      2,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "kanit": {
+      "per_sea": {
+        "karadeniz": {
+          "gbif": 0,
+          "obis": 0
+        },
+        "marmara": {
+          "gbif": 0,
+          "obis": 0
+        },
+        "ege": {
+          "gbif": 0,
+          "obis": 0
+        },
+        "akdeniz": {
+          "gbif": 10,
+          "obis": 0
+        }
+      },
+      "ay_kayit": 20
+    }
+  },
+  "tombik": {
+    "denizler": [],
+    "aylar": [],
+    "kanit": {
+      "per_sea": {
+        "karadeniz": {
+          "gbif": 0,
+          "obis": 0
+        },
+        "marmara": {
+          "gbif": 0,
+          "obis": 0
+        },
+        "ege": {
+          "gbif": 0,
+          "obis": 0
+        },
+        "akdeniz": {
+          "gbif": 1,
+          "obis": 0
+        }
+      },
+      "ay_kayit": 3
+    }
+  },
+  "kilic": {
+    "denizler": [
+      "ege",
+      "akdeniz"
+    ],
+    "aylar": [
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      12
+    ],
+    "kanit": {
+      "per_sea": {
+        "karadeniz": {
+          "gbif": 0,
+          "obis": 0
+        },
+        "marmara": {
+          "gbif": 1,
+          "obis": 0
+        },
+        "ege": {
+          "gbif": 9,
+          "obis": 0
+        },
+        "akdeniz": {
+          "gbif": 2,
+          "obis": 0
+        }
+      },
+      "ay_kayit": 17
+    }
+  },
+  "lambuka": {
+    "denizler": [
+      "ege",
+      "akdeniz"
+    ],
+    "aylar": [
+      2,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "kanit": {
+      "per_sea": {
+        "karadeniz": {
+          "gbif": 0,
+          "obis": 0
+        },
+        "marmara": {
+          "gbif": 0,
+          "obis": 0
+        },
+        "ege": {
+          "gbif": 2,
+          "obis": 0
+        },
+        "akdeniz": {
+          "gbif": 7,
+          "obis": 0
+        }
+      },
+      "ay_kayit": 24
+    }
+  },
+  "kirlangic": {
+    "denizler": [
+      "karadeniz",
+      "marmara",
+      "ege",
+      "akdeniz"
+    ],
+    "aylar": [
+      1,
+      3,
+      4,
+      5,
+      6,
+      7,
+      9,
+      10,
+      12
+    ],
+    "kanit": {
+      "per_sea": {
+        "karadeniz": {
+          "gbif": 4,
+          "obis": 0
+        },
+        "marmara": {
+          "gbif": 6,
+          "obis": 0
+        },
+        "ege": {
+          "gbif": 3,
+          "obis": 0
+        },
+        "akdeniz": {
+          "gbif": 2,
+          "obis": 0
+        }
+      },
+      "ay_kayit": 34
+    }
+  },
+  "oksuz": {
+    "denizler": [],
+    "aylar": [],
+    "kanit": {
+      "per_sea": {
+        "karadeniz": {
+          "gbif": 0,
+          "obis": 0
+        },
+        "marmara": {
+          "gbif": 0,
+          "obis": 0
+        },
+        "ege": {
+          "gbif": 0,
+          "obis": 0
+        },
+        "akdeniz": {
+          "gbif": 0,
+          "obis": 0
+        }
+      },
+      "ay_kayit": 5
+    }
+  },
+  "muren": {
+    "denizler": [
+      "ege",
+      "akdeniz"
+    ],
+    "aylar": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "kanit": {
+      "per_sea": {
+        "karadeniz": {
+          "gbif": 0,
+          "obis": 0
+        },
+        "marmara": {
+          "gbif": 0,
+          "obis": 0
+        },
+        "ege": {
+          "gbif": 92,
+          "obis": 0
+        },
+        "akdeniz": {
+          "gbif": 60,
+          "obis": 0
+        }
+      },
+      "ay_kayit": 345
+    }
+  },
+  "iskarmoz": {
+    "denizler": [
+      "ege",
+      "akdeniz"
+    ],
+    "aylar": [
+      1,
+      2,
+      4,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "kanit": {
+      "per_sea": {
+        "karadeniz": {
+          "gbif": 0,
+          "obis": 0
+        },
+        "marmara": {
+          "gbif": 1,
+          "obis": 0
+        },
+        "ege": {
+          "gbif": 4,
+          "obis": 0
+        },
+        "akdeniz": {
+          "gbif": 4,
+          "obis": 0
+        }
+      },
+      "ay_kayit": 31
+    }
+  },
+  "trakonya": {
+    "denizler": [
+      "karadeniz",
+      "marmara",
+      "ege",
+      "akdeniz"
+    ],
+    "aylar": [
+      1,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "kanit": {
+      "per_sea": {
+        "karadeniz": {
+          "gbif": 6,
+          "obis": 2
+        },
+        "marmara": {
+          "gbif": 3,
+          "obis": 0
+        },
+        "ege": {
+          "gbif": 25,
+          "obis": 2
+        },
+        "akdeniz": {
+          "gbif": 2,
+          "obis": 0
+        }
+      },
+      "ay_kayit": 106
+    }
+  },
+  "dulger": {
+    "denizler": [
+      "ege"
+    ],
+    "aylar": [
+      1,
+      2,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "kanit": {
+      "per_sea": {
+        "karadeniz": {
+          "gbif": 0,
+          "obis": 0
+        },
+        "marmara": {
+          "gbif": 0,
+          "obis": 0
+        },
+        "ege": {
+          "gbif": 6,
+          "obis": 0
+        },
+        "akdeniz": {
+          "gbif": 1,
+          "obis": 0
+        }
+      },
+      "ay_kayit": 16
+    }
+  },
+  "berlam": {
+    "denizler": [
+      "ege"
+    ],
+    "aylar": [
+      1,
+      4,
+      5,
+      7,
+      8
+    ],
+    "kanit": {
+      "per_sea": {
+        "karadeniz": {
+          "gbif": 0,
+          "obis": 0
+        },
+        "marmara": {
+          "gbif": 1,
+          "obis": 0
+        },
+        "ege": {
+          "gbif": 2,
+          "obis": 0
+        },
+        "akdeniz": {
+          "gbif": 0,
+          "obis": 0
+        }
+      },
+      "ay_kayit": 19
+    }
+  },
+  "tirsi": {
+    "denizler": [
+      "karadeniz"
+    ],
+    "aylar": [],
+    "kanit": {
+      "per_sea": {
+        "karadeniz": {
+          "gbif": 0,
+          "obis": 2
+        },
+        "marmara": {
+          "gbif": 0,
+          "obis": 0
+        },
+        "ege": {
+          "gbif": 1,
+          "obis": 0
+        },
+        "akdeniz": {
+          "gbif": 0,
+          "obis": 0
+        }
+      },
+      "ay_kayit": 4
+    }
+  },
+  "kaya-baligi": {
+    "denizler": [
+      "karadeniz",
+      "marmara",
+      "ege",
+      "akdeniz"
+    ],
+    "aylar": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "kanit": {
+      "per_sea": {
+        "karadeniz": {
+          "gbif": 8,
+          "obis": 1
+        },
+        "marmara": {
+          "gbif": 21,
+          "obis": 0
+        },
+        "ege": {
+          "gbif": 26,
+          "obis": 0
+        },
+        "akdeniz": {
+          "gbif": 9,
+          "obis": 0
+        }
+      },
+      "ay_kayit": 171
+    }
+  },
+  "circir": {
+    "denizler": [
+      "karadeniz",
+      "marmara",
+      "ege",
+      "akdeniz"
+    ],
+    "aylar": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "kanit": {
+      "per_sea": {
+        "karadeniz": {
+          "gbif": 1,
+          "obis": 2
+        },
+        "marmara": {
+          "gbif": 17,
+          "obis": 0
+        },
+        "ege": {
+          "gbif": 84,
+          "obis": 0
+        },
+        "akdeniz": {
+          "gbif": 18,
+          "obis": 0
+        }
+      },
+      "ay_kayit": 435
+    }
+  },
+  "sokar": {
+    "denizler": [
+      "ege",
+      "akdeniz"
+    ],
+    "aylar": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "kanit": {
+      "per_sea": {
+        "karadeniz": {
+          "gbif": 0,
+          "obis": 0
+        },
+        "marmara": {
+          "gbif": 0,
+          "obis": 0
+        },
+        "ege": {
+          "gbif": 555,
+          "obis": 416
+        },
+        "akdeniz": {
+          "gbif": 374,
+          "obis": 178
+        }
+      },
+      "ay_kayit": 1248
+    }
+  },
+  "balon": {
+    "denizler": [
+      "marmara",
+      "ege",
+      "akdeniz"
+    ],
+    "aylar": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "kanit": {
+      "per_sea": {
+        "karadeniz": {
+          "gbif": 0,
+          "obis": 0
+        },
+        "marmara": {
+          "gbif": 1,
+          "obis": 1
+        },
+        "ege": {
+          "gbif": 112,
+          "obis": 106
+        },
+        "akdeniz": {
+          "gbif": 148,
+          "obis": 103
+        }
+      },
+      "ay_kayit": 177
+    }
+  },
+  "aslan-baligi": {
+    "denizler": [
+      "ege",
+      "akdeniz"
+    ],
+    "aylar": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "kanit": {
+      "per_sea": {
+        "karadeniz": {
+          "gbif": 0,
+          "obis": 0
+        },
+        "marmara": {
+          "gbif": 0,
+          "obis": 0
+        },
+        "ege": {
+          "gbif": 396,
+          "obis": 324
+        },
+        "akdeniz": {
+          "gbif": 545,
+          "obis": 398
+        }
+      },
+      "ay_kayit": 935
+    }
+  },
+  "kalamar": {
+    "denizler": [
+      "ege"
+    ],
+    "aylar": [
+      2,
+      3,
+      5,
+      6,
+      7,
+      10,
+      11,
+      12
+    ],
+    "kanit": {
+      "per_sea": {
+        "karadeniz": {
+          "gbif": 0,
+          "obis": 0
+        },
+        "marmara": {
+          "gbif": 0,
+          "obis": 0
+        },
+        "ege": {
+          "gbif": 3,
+          "obis": 0
+        },
+        "akdeniz": {
+          "gbif": 1,
+          "obis": 0
+        }
+      },
+      "ay_kayit": 14
+    }
+  },
+  "ahtapot": {
+    "denizler": [
+      "marmara",
+      "ege",
+      "akdeniz"
+    ],
+    "aylar": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "kanit": {
+      "per_sea": {
+        "karadeniz": {
+          "gbif": 0,
+          "obis": 0
+        },
+        "marmara": {
+          "gbif": 4,
+          "obis": 0
+        },
+        "ege": {
+          "gbif": 111,
+          "obis": 0
+        },
+        "akdeniz": {
+          "gbif": 27,
+          "obis": 0
+        }
+      },
+      "ay_kayit": 373
+    }
+  },
+  "subye": {
+    "denizler": [
+      "marmara",
+      "ege",
+      "akdeniz"
+    ],
+    "aylar": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "kanit": {
+      "per_sea": {
+        "karadeniz": {
+          "gbif": 1,
+          "obis": 0
+        },
+        "marmara": {
+          "gbif": 4,
+          "obis": 0
+        },
+        "ege": {
+          "gbif": 57,
+          "obis": 0
+        },
+        "akdeniz": {
+          "gbif": 15,
+          "obis": 0
+        }
+      },
+      "ay_kayit": 316
+    }
+  }
+}

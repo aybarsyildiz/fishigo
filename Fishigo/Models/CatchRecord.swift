@@ -30,6 +30,8 @@ final class CatchRecord {
     var windSpeedKmh: Double?
     var pressureHPa: Double?
     var temperatureC: Double?
+    /// Sea-surface temperature at catch time (Open-Meteo marine).
+    var sstC: Double?
 
     init(
         speciesId: String,

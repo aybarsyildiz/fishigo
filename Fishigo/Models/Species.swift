@@ -12,11 +12,29 @@ struct Species: Identifiable, Codable, Hashable {
     /// Ordered size-name chain with cm thresholds; also the evolution line.
     /// `maxCm == nil` marks the open-ended top of the chain.
     let boyAdlari: [SizeName]
+    /// Turkish seas the species is recorded in (GBIF/OBIS — reliable signal).
+    let denizler: [Deniz]?
+    /// Months with occurrence records (GBIF). OBSERVATION data, NOT fishing
+    /// season — the binding season is the closed period in regulations.json.
+    let gozlemAylari: [Int]?
 
     var siluetTipi: Siluet { siluet ?? .uzun }
 
     enum Siluet: String, Codable {
         case uzun, oval, yassi, yilansi, kafadan
+    }
+
+    enum Deniz: String, Codable, CaseIterable {
+        case karadeniz, marmara, ege, akdeniz
+
+        var ad: String {
+            switch self {
+            case .karadeniz: "Karadeniz"
+            case .marmara: "Marmara"
+            case .ege: "Ege"
+            case .akdeniz: "Akdeniz"
+            }
+        }
     }
 
     /// §4 display-name rule: species + length → local size-name.

@@ -203,8 +203,10 @@ final class CatchFlowModel {
                     }
                 }
                 Task {
-                    if let hava = await WeatherService.current(coordinate) {
-                        log.attachWeather(hava, to: record)
+                    async let havaTask = WeatherService.current(coordinate)
+                    async let denizTask = WeatherService.marine(coordinate)
+                    if let hava = await havaTask {
+                        log.attachWeather(hava, deniz: await denizTask, to: record)
                     }
                 }
             }

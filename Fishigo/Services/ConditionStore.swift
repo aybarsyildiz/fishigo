@@ -58,16 +58,16 @@ final class ConditionStore {
         durum = .yukleniyor
 
         async let havaTask = WeatherService.current(coordinate)
-        async let dalgaTask = WeatherService.waveHeight(coordinate)
+        async let denizTask = WeatherService.marine(coordinate)
         guard let hava = await havaTask else {
             durum = .bekliyor("HAVA SERVİSİNE ULAŞILAMADI — SONRA TEKRAR DENE")
             return
         }
-        let dalgaM = await dalgaTask
+        let deniz = await denizTask
 
         durum = .hazir(hesapla(
             hava: hava,
-            dalgaM: dalgaM,
+            deniz: deniz,
             coordinate: coordinate,
             il: bolgeKaydi.il,
             catchDates: records.map(\.date),
@@ -79,12 +79,13 @@ final class ConditionStore {
 
     private func hesapla(
         hava: HavaDurumu,
-        dalgaM: Double?,
+        deniz: DenizDurumu,
         coordinate: CLLocationCoordinate2D,
         il: String?,
         catchDates: [Date],
         now: Date
     ) -> KosulRaporu {
+        let dalgaM = deniz.dalgaM
         var faktorler: [KosulFaktoru] = []
         var puan = 50
 
@@ -126,6 +127,22 @@ final class ConditionStore {
             deger: "\(Int(hava.basincHPa)) HPA",
             etki: basincEtki))
         puan += basincEtki
+
+        // SST (Open-Meteo marine). 14–22 °C is the broad temperate-fishing
+        // sweet spot; extremes push fish deep/off the bite. Placeholder band.
+        if let sst = deniz.sstC {
+            let sstEtki: Int
+            switch sst {
+            case 14...22: sstEtki = 10
+            case 10..<14, 22..<26: sstEtki = 3
+            default: sstEtki = -8
+            }
+            faktorler.append(KosulFaktoru(
+                ad: "DENİZ SICAKLIĞI",
+                deger: String(format: "%.1f °C", sst),
+                etki: sstEtki))
+            puan += sstEtki
+        }
 
         // Solunar
         let pencereler = Solunar.windows(on: now, longitude: coordinate.longitude)

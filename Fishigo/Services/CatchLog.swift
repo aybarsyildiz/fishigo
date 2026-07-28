@@ -70,12 +70,13 @@ final class CatchLog {
         try? context.save()
     }
 
-    /// Late enrichment: the §2.1-2 weather snapshot at catch time.
-    func attachWeather(_ hava: HavaDurumu, to record: CatchRecord) {
+    /// Late enrichment: the §2.1-2 weather snapshot at catch time (+ SST).
+    func attachWeather(_ hava: HavaDurumu, deniz: DenizDurumu, to record: CatchRecord) {
         record.windDirectionDeg = hava.ruzgarYonuDeg
         record.windSpeedKmh = hava.ruzgarKmh
         record.pressureHPa = hava.basincHPa
         record.temperatureC = hava.sicaklikC
+        record.sstC = deniz.sstC
         try? context.save()
     }
 
