@@ -25,21 +25,27 @@ struct PhotoPickView: View {
 
     var body: some View {
         ZStack {
-            ChartFragment()
+            ChartFragment(ornaments: true)
                 .ignoresSafeArea()
                 .opacity(0.55)
 
-            VStack(spacing: 18) {
-                // Ledger line
-                HStack {
-                    Text("SEYİR ARŞİVİ")
-                        .kerning(2)
-                    Spacer()
-                    Text(Self.dateFormatter.string(from: .now).localizedUppercase)
-                        .kerning(1)
+            VStack(spacing: 14) {
+                // Ledger head
+                VStack(spacing: 6) {
+                    HStack {
+                        Text("SEYİR ARŞİVİ")
+                            .kerning(2)
+                        Spacer()
+                        Text(Self.dateFormatter.string(from: .now).localizedUppercase)
+                            .kerning(1)
+                    }
+                    .font(Typo.data(10))
+                    .foregroundStyle(Ink.kagit.opacity(0.45))
+                    Rectangle()
+                        .fill(Ink.cizgi.opacity(0.7))
+                        .frame(height: 0.5)
+                    LedgerLine()
                 }
-                .font(Typo.data(10))
-                .foregroundStyle(Ink.kagit.opacity(0.45))
                 .padding(.top, 8)
 
                 Spacer(minLength: 0)
@@ -80,9 +86,15 @@ struct PhotoPickView: View {
                 .overlay(DoubleRuleFrame())
 
                 // The shelf: live hook modules. M7 adds streak + koşullar here.
-                HStack(spacing: 12) {
-                    DeksHookModule()
-                    LastCatchHookModule()
+                VStack(spacing: 10) {
+                    HStack(spacing: 10) {
+                        DeksHookModule()
+                        LastCatchHookModule()
+                    }
+                    HStack(spacing: 10) {
+                        RecordHookModule()
+                        ThisMonthHookModule()
+                    }
                 }
 
                 Spacer(minLength: 0)
@@ -154,6 +166,129 @@ private struct DeksHookModule: View {
         let total = app.species.all.count
         guard total > 0 else { return 0 }
         return CGFloat(caughtCount) / CGFloat(total)
+    }
+}
+
+/// Archive-ledger flavor line with live numbers: record count and next entry no.
+private struct LedgerLine: View {
+    @Query private var records: [CatchRecord]
+
+    var body: some View {
+        HStack {
+            Text("DEFTER · \(records.count) KAYIT")
+                .kerning(1)
+            Spacer()
+            Text("SIRADAKİ KAYIT NO. \(records.count + 1)")
+                .kerning(1)
+        }
+        .font(Typo.data(8))
+        .foregroundStyle(Ink.kagit.opacity(0.35))
+        .monospacedDigit()
+    }
+}
+
+/// Personal best across all species — the number to beat.
+private struct RecordHookModule: View {
+    @Environment(AppModel.self) private var app
+    @Query private var records: [CatchRecord]
+
+    private var best: CatchRecord? {
+        records.max { $0.lengthCm < $1.lengthCm }
+    }
+
+    var body: some View {
+        Button {
+            Feel.shared.buttonTap()
+            app.tab = .defter
+        } label: {
+            VStack(alignment: .leading, spacing: 7) {
+                Text("REKORUN")
+                    .font(Typo.data(9, weight: .medium))
+                    .kerning(1.5)
+                    .foregroundStyle(Ink.kagit.opacity(0.45))
+                if let best {
+                    HStack(alignment: .firstTextBaseline, spacing: 4) {
+                        Text("\(best.lengthCm)")
+                            .font(Typo.data(22, weight: .medium))
+                            .foregroundStyle(Ink.pirinc)
+                            .monospacedDigit()
+                        Text("CM")
+                            .font(Typo.data(10))
+                            .foregroundStyle(Ink.kagit.opacity(0.5))
+                    }
+                    Text(name(best).localizedUppercase)
+                        .font(Typo.data(9))
+                        .kerning(0.5)
+                        .foregroundStyle(Ink.kagit.opacity(0.55))
+                        .lineLimit(1)
+                } else {
+                    Text("—")
+                        .font(Typo.data(22, weight: .medium))
+                        .foregroundStyle(Ink.kagit.opacity(0.35))
+                    Text("KIRILMAYI BEKLİYOR")
+                        .font(Typo.data(8))
+                        .kerning(0.5)
+                        .foregroundStyle(Ink.kagit.opacity(0.35))
+                }
+            }
+            .padding(14)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .background(Ink.murekkep, in: RoundedRectangle(cornerRadius: 12, style: .continuous))
+            .overlay(
+                RoundedRectangle(cornerRadius: 12, style: .continuous)
+                    .strokeBorder(Ink.cizgi.opacity(0.6), lineWidth: 0.5))
+        }
+        .buttonStyle(PressableStyle())
+    }
+
+    private func name(_ record: CatchRecord) -> String {
+        app.species.species(id: record.speciesId)?.displayName(lengthCm: record.lengthCm) ?? record.speciesId
+    }
+}
+
+/// This month's outings — the habit meter until M7's real streak lands here.
+private struct ThisMonthHookModule: View {
+    @Environment(AppModel.self) private var app
+    @Query private var records: [CatchRecord]
+
+    private var thisMonth: Int {
+        let calendar = Calendar.current
+        let now = calendar.dateComponents([.year, .month], from: .now)
+        return records.count { calendar.dateComponents([.year, .month], from: $0.date) == now }
+    }
+
+    var body: some View {
+        Button {
+            Feel.shared.buttonTap()
+            app.tab = .defter
+        } label: {
+            VStack(alignment: .leading, spacing: 7) {
+                Text("BU AY")
+                    .font(Typo.data(9, weight: .medium))
+                    .kerning(1.5)
+                    .foregroundStyle(Ink.kagit.opacity(0.45))
+                HStack(alignment: .firstTextBaseline, spacing: 4) {
+                    Text("\(thisMonth)")
+                        .font(Typo.data(22, weight: .medium))
+                        .foregroundStyle(Ink.kagit)
+                        .monospacedDigit()
+                    Text("YAKALAYIŞ")
+                        .font(Typo.data(10))
+                        .foregroundStyle(Ink.kagit.opacity(0.5))
+                }
+                Text("SEFER SERİSİ M7'DE BURADA")
+                    .font(Typo.data(8))
+                    .kerning(0.5)
+                    .foregroundStyle(Ink.kagit.opacity(0.3))
+            }
+            .padding(14)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .background(Ink.murekkep, in: RoundedRectangle(cornerRadius: 12, style: .continuous))
+            .overlay(
+                RoundedRectangle(cornerRadius: 12, style: .continuous)
+                    .strokeBorder(Ink.cizgi.opacity(0.6), lineWidth: 0.5))
+        }
+        .buttonStyle(PressableStyle())
     }
 }
 

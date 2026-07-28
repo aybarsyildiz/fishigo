@@ -100,6 +100,16 @@ iOS 17+, SwiftUI, Swift 5 language mode. iPhone only, portrait only.
   module shelf). Grows per milestone: M3 shipped deks-progress + last-catch
   modules; M7 MUST add sefer serisi + koşullar modules to the same shelf; M8
   polishes. Do not let the main page stay static.
+- App icon: generated programmatically (scratchpad CoreGraphics script → 1024px
+  PNG in AppIcon.appiconset) — paper fish on ink, double-rule frame, muhur
+  bobber. Regenerate by editing the script if the design changes.
+- Onboarding: 3 pages, guide fish swims between pages with tail-stroke haptics,
+  stamp demo on page 2. Gated by @AppStorage("karsilamaGoruldu"). NO permission
+  prompts in onboarding (§9 — they stay in-context at first catch).
+- Hook density (owner: "more crowded"): ledger head with live record counts,
+  ChartFragment `ornaments` mode (compass rose + extra soundings), 2×2 module
+  shelf (deks / son yakalayış / rekor / bu ay). M7 swaps "bu ay" for the real
+  sefer serisi module and adds koşullar.
 - M3: species.json now has 69 real species (rarity + thresholds still
   PLACEHOLDER). No per-species artwork: 5 generic body-type silhouettes
   (`siluet`: uzun/oval/yassi/yilansi/kafadan) drawn as Paths — dotted stroke =
