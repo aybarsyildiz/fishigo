@@ -193,13 +193,18 @@ final class CatchFlowModel {
             savedRecord = record
             phase = .kaydedildi
 
-            // §9: enrich with the province (the only shareable location fact),
-            // best-effort in the background.
+            // Best-effort background enrichment: §9 province (the only
+            // shareable location fact) + §2.1-2 weather snapshot at catch time.
             if let coordinate {
                 let log = app.log
                 Task {
                     if let il = await ProvinceResolver.il(for: coordinate) {
                         log.attachProvince(il, to: record)
+                    }
+                }
+                Task {
+                    if let hava = await WeatherService.current(coordinate) {
+                        log.attachWeather(hava, to: record)
                     }
                 }
             }

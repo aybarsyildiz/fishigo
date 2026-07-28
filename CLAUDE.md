@@ -60,7 +60,7 @@ iOS 17+, SwiftUI, Swift 5 language mode. iPhone only, portrait only.
 - [x] M4 specimen card renderer + 9:16 export + share sheet (video-ready via progress param)
 - [x] M5 Cloudflare Worker proxy + real recognition + quota + corrections log
 - [x] M6 regulations loader + legality states + disclaimer (values = SAMPLE; owner fills)
-- [ ] M7 weather snapshot + condition score + sefer serisi streak + notification
+- [x] M7 weather snapshot + condition score + sefer serisi streak + notification
 - [ ] M8 polish pass, Reduce Motion audit, empty states, onboarding, ASO stubs
 
 ## Proxy (M5)
@@ -102,6 +102,28 @@ iOS 17+, SwiftUI, Swift 5 language mode. iPhone only, portrait only.
   Current content is a SCHEMA SAMPLE ('ornek-tur' only) → every real species
   shows "kural bilgisi yok" until the owner enters tebliğ values. Closed-season
   ranges are MM-DD and may wrap the year end; season outranks size limit.
+
+## M7 notes
+
+- Weather snapshot: Open-Meteo forecast API fetched best-effort right after
+  save (like province); fills the reserved CatchRecord columns. Marine API
+  gives wave height for the score only.
+- Condition score v1: region = most recent LOCATED catch (simplification —
+  "saved regions" can come later). Weights in ConditionStore.hesapla are
+  PLACEHOLDER (wind/wave/pressure/solunar/senin-saatin). Phrase is always
+  "Koşullar uygun/orta/zayıf" — NEVER a fish promise; disclaimers in the sheet.
+- Solunar: lunar-lag approximation (transit ≈ solar noon + age×50.47 min),
+  ±30-40 dk. Meeus upgrade optional later (documented in Solunar.swift).
+- Sefer serisi: weekly; outing = CatchRecord OR EmptyTrip. Streak survives the
+  current week being empty until the week actually passes. "BOŞ DÖNDÜM" bar on
+  the hook page (warning haptic, never error; copy never shames).
+- Daily notice: opt-in toggle inside KosullarSheet, visible only after first
+  catch (§9); one repeating local notification 07:30, static invite copy
+  (score is computed on open — BGTask real-score version is v1.x).
+- Hook shelf final: [deks, son yakalayış] / [sefer serisi, rekor] / koşullar
+  (wide) / boş-döndüm bar. Stats wind rose uses the 8 Turkish wind names
+  (RuzgarYonu); insight prefers wind habit ("En çok lodosta tutuyorsun") once
+  ≥3 weather-tagged records exist.
 
 ## Decisions log
 

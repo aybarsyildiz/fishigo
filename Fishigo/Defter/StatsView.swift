@@ -43,11 +43,22 @@ struct StatsView: View {
                     }
 
                     StatPanel(title: "RÜZGÂRA GÖRE") {
-                        Text("HAVA KAYDIYLA BİRLİKTE GELECEK — M7")
-                            .font(Typo.data(10))
-                            .kerning(1)
-                            .foregroundStyle(Ink.kagit.opacity(0.4))
-                            .frame(maxWidth: .infinity, minHeight: 60)
+                        if windBars.contains(where: { $0.count > 0 }) {
+                            Chart(windBars) { bar in
+                                BarMark(
+                                    x: .value("Yön", bar.label),
+                                    y: .value("Adet", bar.count))
+                                    .foregroundStyle(Ink.kagit.opacity(0.85))
+                            }
+                            .chartXScale(domain: windBars.map(\.label))
+                        } else {
+                            Text("HAVA KAYITLI SEFER HENÜZ YOK —\nYENİ YAKALAYIŞLARLA DOLACAK")
+                                .font(Typo.data(10))
+                                .kerning(1)
+                                .foregroundStyle(Ink.kagit.opacity(0.4))
+                                .multilineTextAlignment(.center)
+                                .frame(maxWidth: .infinity, minHeight: 60)
+                        }
                     }
                 }
                 .padding(20)
@@ -86,35 +97,12 @@ struct StatsView: View {
         }
     }
 
-    private enum HourBand: Int, CaseIterable {
-        case sabah, ogle, aksam, gece
-
-        var label: String {
-            switch self {
-            case .sabah: "SABAH"
-            case .ogle: "ÖĞLE"
-            case .aksam: "AKŞAM"
-            case .gece: "GECE"
+    private var windBars: [CountBar] {
+        RuzgarYonu.allCases.map { yon in
+            let count = records.count { record in
+                record.windDirectionDeg.map { RuzgarYonu.from(degrees: $0) } == yon
             }
-        }
-
-        /// "En çok ___ tutuyorsun"
-        var insightPhrase: String {
-            switch self {
-            case .sabah: "sabahları"
-            case .ogle: "öğlen"
-            case .aksam: "akşamları"
-            case .gece: "geceleri"
-            }
-        }
-
-        static func band(forHour hour: Int) -> HourBand {
-            switch hour {
-            case 5..<11: .sabah
-            case 11..<17: .ogle
-            case 17..<22: .aksam
-            default: .gece
-            }
+            return CountBar(id: 100 + yon.rawValue, label: yon.ad.localizedUppercase, count: count)
         }
     }
 
@@ -129,14 +117,17 @@ struct StatsView: View {
     }
 
     /// One insight line, phrased as observed habit — never a promise of fish.
+    /// Prefers the wind habit once weather-tagged records exist (the brief's
+    /// own example: "En çok lodosta tutuyorsun").
     private var insight: String? {
-        guard records.count >= 3 else { return nil }
-        let calendar = Calendar.current
-        let counts = Dictionary(grouping: records) {
-            HourBand.band(forHour: calendar.component(.hour, from: $0.date))
+        let winds = records.compactMap(\.windDirectionDeg).map { RuzgarYonu.from(degrees: $0) }
+        if winds.count >= 3,
+           let top = Dictionary(grouping: winds, by: { $0 })
+               .max(by: { $0.value.count < $1.value.count })?.key {
+            return "En çok \(top.lokatif) tutuyorsun"
         }
-        guard let top = counts.max(by: { $0.value.count < $1.value.count }) else { return nil }
-        return "En çok \(top.key.insightPhrase) tutuyorsun"
+        guard let top = HourBand.topBand(dates: records.map(\.date)) else { return nil }
+        return "En çok \(top.insightPhrase) tutuyorsun"
     }
 }
 

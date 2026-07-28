@@ -31,7 +31,8 @@ struct PhotoPickView: View {
                 .ignoresSafeArea()
                 .opacity(0.55)
 
-            VStack(spacing: 14) {
+            ScrollView(showsIndicators: false) {
+              VStack(spacing: 14) {
                 // Ledger head
                 VStack(spacing: 6) {
                     HStack {
@@ -49,8 +50,6 @@ struct PhotoPickView: View {
                     LedgerLine()
                 }
                 .padding(.top, 8)
-
-                Spacer(minLength: 0)
 
                 // The catch plate — centerpiece
                 VStack(spacing: 18) {
@@ -95,21 +94,22 @@ struct PhotoPickView: View {
                 .background(Ink.murekkep)
                 .overlay(DoubleRuleFrame())
 
-                // The shelf: live hook modules. M7 adds streak + koşullar here.
+                // The shelf: every module is live data; koşullar gets full width.
                 VStack(spacing: 10) {
                     HStack(spacing: 10) {
                         DeksHookModule()
                         LastCatchHookModule()
                     }
                     HStack(spacing: 10) {
+                        SeferSerisiModule()
                         RecordHookModule()
-                        ThisMonthHookModule()
                     }
+                    KosullarModule()
+                    BosDondumBar()
                 }
-
-                Spacer(minLength: 0)
+              }
+              .padding(20)
             }
-            .padding(20)
         }
         .fullScreenCover(isPresented: $showCamera) {
             CameraPicker { image in
@@ -256,15 +256,15 @@ private struct RecordHookModule: View {
     }
 }
 
-/// This month's outings — the habit meter until M7's real streak lands here.
-private struct ThisMonthHookModule: View {
+/// §2.1-9 sefer serisi: weekly outing streak with a six-week tally row.
+/// An outing = any catch OR any logged empty trip.
+private struct SeferSerisiModule: View {
     @Environment(AppModel.self) private var app
     @Query private var records: [CatchRecord]
+    @Query private var trips: [EmptyTrip]
 
-    private var thisMonth: Int {
-        let calendar = Calendar.current
-        let now = calendar.dateComponents([.year, .month], from: .now)
-        return records.count { calendar.dateComponents([.year, .month], from: $0.date) == now }
+    private var outings: [Date] {
+        records.map(\.date) + trips.map(\.date)
     }
 
     var body: some View {
@@ -273,23 +273,34 @@ private struct ThisMonthHookModule: View {
             app.tab = .defter
         } label: {
             VStack(alignment: .leading, spacing: 7) {
-                Text("BU AY")
+                Text("SEFER SERİSİ")
                     .font(Typo.data(9, weight: .medium))
                     .kerning(1.5)
                     .foregroundStyle(Ink.kagit.opacity(0.45))
                 HStack(alignment: .firstTextBaseline, spacing: 4) {
-                    Text("\(thisMonth)")
+                    Text("\(Sefer.haftalikSeri(outings: outings))")
                         .font(Typo.data(22, weight: .medium))
                         .foregroundStyle(Ink.kagit)
                         .monospacedDigit()
-                    Text("YAKALAYIŞ")
+                    Text("HAFTA")
                         .font(Typo.data(10))
                         .foregroundStyle(Ink.kagit.opacity(0.5))
                 }
-                Text("SEFER SERİSİ M7'DE BURADA")
-                    .font(Typo.data(8))
-                    .kerning(0.5)
-                    .foregroundStyle(Ink.kagit.opacity(0.3))
+                HStack(spacing: 4) {
+                    ForEach(Array(Sefer.sonHaftalar(6, outings: outings).enumerated()), id: \.offset) { _, dolu in
+                        Rectangle()
+                            .fill(dolu ? Ink.kagit : Color.clear)
+                            .frame(width: 8, height: 8)
+                            .overlay(Rectangle().strokeBorder(
+                                dolu ? Ink.kagit : Ink.cizgi,
+                                lineWidth: dolu ? 0 : 0.8))
+                    }
+                    Spacer()
+                    Text(Sefer.buHaftaVar(outings: outings) ? "BU HAFTA ✓" : "BU HAFTA BEKLİYOR")
+                        .font(Typo.data(7))
+                        .kerning(0.5)
+                        .foregroundStyle(Ink.kagit.opacity(0.4))
+                }
             }
             .padding(14)
             .frame(maxWidth: .infinity, alignment: .leading)
@@ -299,6 +310,44 @@ private struct ThisMonthHookModule: View {
                     .strokeBorder(Ink.cizgi.opacity(0.6), lineWidth: 0.5))
         }
         .buttonStyle(PressableStyle())
+    }
+}
+
+/// §2.1-9: logging a fishless day is one tap, and the copy thanks you for it.
+/// Warning haptic, NEVER error — a fishless day is not a failure (§7).
+private struct BosDondumBar: View {
+    @Environment(AppModel.self) private var app
+    @Query private var records: [CatchRecord]
+    @Query private var trips: [EmptyTrip]
+
+    var body: some View {
+        let outings = records.map(\.date) + trips.map(\.date)
+        if Sefer.bugunVar(outings: outings) {
+            Text(trips.contains(where: { Calendar.current.isDateInToday($0.date) })
+                ? "SEFER İŞLENDİ — BOŞ DÖNMEK DE BALIKÇILIKTIR"
+                : "BUGÜNÜN SEFERİ DEFTERDE")
+                .font(Typo.data(9))
+                .kerning(1)
+                .foregroundStyle(Ink.kagit.opacity(0.4))
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, 10)
+        } else {
+            Button {
+                Feel.shared.emptyCatch()
+                app.log.logEmptyTrip()
+            } label: {
+                Text("BOŞ DÖNDÜM · SEFERİ YİNE DE İŞLE")
+                    .font(Typo.data(10))
+                    .kerning(1.5)
+                    .foregroundStyle(Ink.kagit.opacity(0.6))
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 12)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 10, style: .continuous)
+                            .strokeBorder(Ink.cizgi.opacity(0.7), style: StrokeStyle(lineWidth: 1, dash: [2, 3])))
+            }
+            .buttonStyle(PressableStyle())
+        }
     }
 }
 

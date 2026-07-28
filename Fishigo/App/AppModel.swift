@@ -21,12 +21,13 @@ final class AppModel {
     let corrections: CorrectionStore
     let location: LocationService
     let regulations: RegulationsStore
+    let conditions: ConditionStore
     let recognizer: any SpeciesRecognizing
     let legality: any LegalityChecking
 
     init() {
         do {
-            container = try ModelContainer(for: CatchRecord.self, CorrectionEntry.self)
+            container = try ModelContainer(for: CatchRecord.self, CorrectionEntry.self, EmptyTrip.self)
         } catch {
             fatalError("ModelContainer kurulamadı: \(error)")
         }
@@ -35,11 +36,17 @@ final class AppModel {
         corrections = CorrectionStore(context: container.mainContext)
         location = LocationService()
         regulations = RegulationsStore()
+        conditions = ConditionStore()
         // Geliştirme fikstürleri gerekirse: MockSpeciesRecognizer()
         recognizer = ProxySpeciesRecognizer()
         legality = RegulationsLegality(store: regulations)
 
         let regulations = self.regulations
-        Task { await regulations.refresh() }
+        let conditions = self.conditions
+        let log = self.log
+        Task {
+            await regulations.refresh()
+            await conditions.refresh(records: log.records)
+        }
     }
 }

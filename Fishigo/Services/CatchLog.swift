@@ -69,4 +69,19 @@ final class CatchLog {
         record.il = il
         try? context.save()
     }
+
+    /// Late enrichment: the §2.1-2 weather snapshot at catch time.
+    func attachWeather(_ hava: HavaDurumu, to record: CatchRecord) {
+        record.windDirectionDeg = hava.ruzgarYonuDeg
+        record.windSpeedKmh = hava.ruzgarKmh
+        record.pressureHPa = hava.basincHPa
+        record.temperatureC = hava.sicaklikC
+        try? context.save()
+    }
+
+    /// §2.1-9: "boş döndüm" — an outing with no fish, logged proudly.
+    func logEmptyTrip() {
+        context.insert(EmptyTrip(date: .now))
+        try? context.save()
+    }
 }
