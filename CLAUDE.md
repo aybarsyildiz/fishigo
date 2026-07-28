@@ -75,10 +75,21 @@ iOS 17+, SwiftUI, Swift 5 language mode. iPhone only, portrait only.
   against the closed list (never invent). POST /duzeltme stores corrections.
 - species prompt is GENERATED: `python3 proxy/generate-species.py` after every
   species.json change (single source of truth).
-- Prompt caching: cache_control is set but INERT — prompt ~1.2k tokens, Haiku
-  4.5 cache floor is 4096. Engages automatically if the prompt grows past it.
-- Cost ≈ $0.004/recognition uncached (image ~1.3k tok + prompt ~1.2k @$1/MTok,
-  ~80 out @$5/MTok) → ≤ $0.04/free-user/month. Deploy: `npm run deploy`.
+- MODEL = claude-sonnet-4-6 (constant in index.ts). Haiku 4.5 confidently
+  misread body plans on hard photos (real mırmır at night → "müren 0.85");
+  prompt fixes lowered confidence but not the wrong perception; Sonnet read
+  the correct bream family on the same image. Cost ≈ $0.013/recognition
+  (~3.3k in @$3/MTok + ~130 out @$15/MTok) → ≤ $0.13/free-user/month.
+- Prompt structure (generate-species.py): per-species BODY PLAN from siluet,
+  see-first required "analiz" field (described before naming; logged
+  server-side, stripped from client response), and confidence calibration
+  (≥0.8 only clear+unambiguous; dark/blurry/angled → cap 0.6 so the UI shows
+  candidate chips). Wrong-but-confident is the failure mode to prevent.
+- Prompt caching: cache_control set but INERT — prompt ~1.7k tokens vs
+  Sonnet 4.6 cache floor 2048. Engages automatically if the prompt grows.
+- Accuracy testing: reproduce cases by POSTing a JPEG to /tanima with a test
+  x-cihaz id (each run burns that test id's quota, not the owner's phone).
+  Owner corrections via DEĞİŞTİR feed the corrections dataset.
 - Client: ProxySpeciesRecognizer default; MockSpeciesRecognizer kept for dev
   (swap in AppModel). Quota counter via @AppStorage("kalanTanima"); 429 →
   PaywallStubView (product ids TODO: fishigo.pro.aylik/yillik); network error →

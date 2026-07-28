@@ -15,10 +15,17 @@ import kurallar from "../regulations.json";
  */
 
 const AYLIK_LIMIT = 10;
+/** Recognition model. haiku-4-5 ≈ $0.004/tanima; sonnet-4-6 ≈ $0.013/tanima —
+ * switched after haiku misread body plans on hard photos (see CLAUDE.md). */
+const MODEL = "claude-sonnet-4-6";
 /** ~1.4M base64 chars ≈ 1 MB JPEG; client sends ≤1024px @0.7 so far less. */
 const MAX_GORSEL_B64 = 2_000_000;
 
 interface TanimaSonucu {
+  /** See-first reasoning (§4 accuracy fix): the model must describe the body
+   * plan before naming a species. Logged server-side, stripped from the
+   * client response. */
+  analiz: string;
   tur_id: string | null;
   guven: number;
   alternatifler: string[];
@@ -28,12 +35,13 @@ interface TanimaSonucu {
 const CIKTI_SEMASI = {
   type: "object",
   properties: {
+    analiz: { type: "string" },
     tur_id: { anyOf: [{ type: "string" }, { type: "null" }] },
     guven: { type: "number" },
     alternatifler: { type: "array", items: { type: "string" } },
     balik_yok: { type: "boolean" },
   },
-  required: ["tur_id", "guven", "alternatifler", "balik_yok"],
+  required: ["analiz", "tur_id", "guven", "alternatifler", "balik_yok"],
   additionalProperties: false,
 } as const;
 
@@ -76,7 +84,7 @@ async function tanima(request: Request, env: Env): Promise<Response> {
 
   const anthropic = new Anthropic({ apiKey: env.ANTHROPIC_API_KEY });
   const yanit = await anthropic.messages.create({
-    model: "claude-haiku-4-5",
+    model: MODEL,
     max_tokens: 300,
     // cache_control is inert until the prompt crosses Haiku 4.5's 4096-token
     // cache floor (~1.2k today) — it engages automatically as the list grows.
@@ -122,13 +130,16 @@ async function tanima(request: Request, env: Env): Promise<Response> {
       olay: "tanima",
       tur: sonuc.tur_id,
       guven: sonuc.guven,
+      analiz: sonuc.analiz,
       girdi_token: yanit.usage.input_tokens,
       cikti_token: yanit.usage.output_tokens,
       onbellek_okuma: yanit.usage.cache_read_input_tokens,
     }),
   );
 
-  return json({ ...sonuc, kalan_hak: AYLIK_LIMIT - kullanilan - 1 });
+  // analiz is server-side telemetry — the client contract stays §4-exact.
+  const { analiz: _analiz, ...istemciYaniti } = sonuc;
+  return json({ ...istemciYaniti, kalan_hak: AYLIK_LIMIT - kullanilan - 1 });
 }
 
 /** Correction log (§4): photo hash + suggested vs corrected id — the future
