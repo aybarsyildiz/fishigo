@@ -97,6 +97,7 @@ struct KosullarSheet: View {
     @Query(sort: \CatchRecord.date, order: .reverse) private var records: [CatchRecord]
 
     @AppStorage("kosulBildirimi") private var bildirim = false
+    @AppStorage("sesAcik") private var sesAcik = true
 
     private static let saatFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -143,6 +144,8 @@ struct KosullarSheet: View {
                     if app.log.count > 0 {
                         bildirimBolumu
                     }
+
+                    sesBolumu
 
                     VStack(spacing: 4) {
                         Text("KOŞUL PUANI BALIK SÖZÜ DEĞİLDİR — SADECE ŞARTLARI ÖZETLER.")
@@ -272,6 +275,27 @@ struct KosullarSheet: View {
                 }
             }
         }
+        .padding(14)
+        .background(Ink.murekkep)
+        .overlay(DoubleRuleFrame())
+    }
+
+    /// §7: all sounds optional. The silent switch is the hardware control; this
+    /// is the in-app one. (Onboarding/settings screen can host it too in M8.)
+    private var sesBolumu: some View {
+        Toggle(isOn: $sesAcik) {
+            VStack(alignment: .leading, spacing: 3) {
+                Text("Sesler")
+                    .font(Typo.data(13))
+                    .foregroundStyle(Ink.kagit)
+                Text("MAKARA TIKLARI · DAMGA · YENİ TÜR")
+                    .font(Typo.data(8))
+                    .kerning(1)
+                    .foregroundStyle(Ink.kagit.opacity(0.45))
+            }
+        }
+        .tint(Ink.cizgi)
+        .onChange(of: sesAcik) { Feel.shared.buttonTap() }
         .padding(14)
         .background(Ink.murekkep)
         .overlay(DoubleRuleFrame())

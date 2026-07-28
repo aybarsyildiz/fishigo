@@ -65,6 +65,49 @@ final class ProxySpeciesRecognizer: SpeciesRecognizing {
     }
 }
 
+/// One detected fish from bucket mode.
+struct KovaBaligi: Identifiable {
+    let id = UUID()
+    var turId: String
+    var guven: Double
+}
+
+/// Bucket-mode recognizer — one photo of a whole catch → a list of fish.
+enum BucketRecognizer {
+    static func identifyMany(_ jpeg: Data) async throws -> (baliklar: [KovaBaligi], kalanHak: Int?) {
+        var request = URLRequest(url: ProxyConfig.baseURL.appending(path: "coklu"))
+        request.httpMethod = "POST"
+        request.timeoutInterval = 40
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue(DeviceIdentity.id, forHTTPHeaderField: "x-cihaz")
+        request.httpBody = try? JSONEncoder().encode(["gorsel": jpeg.base64EncodedString()])
+
+        let data: Data
+        let response: URLResponse
+        do {
+            (data, response) = try await URLSession.shared.data(for: request)
+        } catch {
+            throw TanimaHata.ag
+        }
+        guard let http = response as? HTTPURLResponse else { throw TanimaHata.ag }
+        if http.statusCode == 429 { throw TanimaHata.kotaBitti }
+        guard http.statusCode == 200 else { throw TanimaHata.ag }
+
+        let decoder = JSONDecoder()
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+        guard let yanit = try? decoder.decode(CokluYanit.self, from: data) else { throw TanimaHata.ag }
+        let baliklar = yanit.baliklar.map { KovaBaligi(turId: $0.turId, guven: $0.guven) }
+        return (baliklar, yanit.kalanHak)
+    }
+
+    private struct CokluYanit: Codable {
+        struct Balik: Codable { let turId: String; let guven: Double }
+        let baliklar: [Balik]
+        let balikYok: Bool
+        let kalanHak: Int?
+    }
+}
+
 /// Best-effort correction upload (§4 accuracy dataset). Returns success so the
 /// local queue can mark entries uploaded; failures just stay queued.
 enum ProxyAPI {

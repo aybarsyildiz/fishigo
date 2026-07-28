@@ -11,6 +11,9 @@ struct PhotoPickView: View {
 
     @State private var pickerItem: PhotosPickerItem?
     @State private var showCamera = false
+    /// Bucket mode: a whole-catch photo routed to bulk recognition.
+    @State private var bucketItem: PhotosPickerItem?
+    @State private var bucketImage: UIImage?
     /// §2.1-11: the free-quota counter is always visible once known (-1 = unknown).
     @AppStorage("kalanTanima") private var kalanTanima = -1
 
@@ -77,6 +80,21 @@ struct PhotoPickView: View {
                             ArchiveButtonLabel(title: "Galeriden seç", systemImage: "photo.on.rectangle")
                         }
                         .simultaneousGesture(TapGesture().onEnded { Feel.shared.buttonTap() })
+
+                        PhotosPicker(selection: $bucketItem, matching: .images) {
+                            HStack(spacing: 8) {
+                                Image(systemName: "square.grid.2x2")
+                                Text("Kova modu · birden fazla balık")
+                                    .font(Typo.data(11))
+                            }
+                            .foregroundStyle(Ink.kagit.opacity(0.65))
+                            .frame(maxWidth: .infinity)
+                            .padding(.vertical, 10)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 10, style: .continuous)
+                                    .strokeBorder(Ink.cizgi.opacity(0.7), style: StrokeStyle(lineWidth: 1, dash: [3, 3])))
+                        }
+                        .simultaneousGesture(TapGesture().onEnded { Feel.shared.buttonTap() })
                     }
                     .frame(maxWidth: 250)
 
@@ -128,7 +146,24 @@ struct PhotoPickView: View {
                 self.pickerItem = nil
             }
         }
+        .onChange(of: bucketItem) {
+            guard let bucketItem else { return }
+            Task {
+                if let data = try? await bucketItem.loadTransferable(type: Data.self),
+                   let image = UIImage(data: data) {
+                    bucketImage = image
+                }
+                self.bucketItem = nil
+            }
+        }
+        .fullScreenCover(item: $bucketImage) { image in
+            BucketView(image: image)
+        }
     }
+}
+
+extension UIImage: @retroactive Identifiable {
+    public var id: ObjectIdentifier { ObjectIdentifier(self) }
 }
 
 /// Deks progress on the front door — the collection pull, one tap from filling it.

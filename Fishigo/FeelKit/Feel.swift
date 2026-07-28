@@ -51,19 +51,21 @@ final class Feel {
     func buttonTap() { impactLight.impactOccurred() }
     func cardLift() { impactSoft.impactOccurred() }
     func cardDrop() { impactRigid.impactOccurred() }
-    /// One tick per card as the deks cascade flips.
-    func deksCascadeTick() { selection.selectionChanged() }
+    /// One tick per card as the deks cascade flips. §7 signature reel-click.
+    func deksCascadeTick() { selection.selectionChanged(); Ses.shared.tik() }
     func shutter() { impactMedium.impactOccurred() }
     func speciesConfirmed() { notify.notificationOccurred(.success) }
-    /// One tick per centimeter on the ruler input.
-    func rulerTick() { selection.selectionChanged() }
+    /// One tick per centimeter on the ruler input. §7 signature reel-click.
+    func rulerTick() { selection.selectionChanged(); Ses.shared.tik() }
     /// Empty trip logged. §7: warning, NEVER error — a fishless day is not a failure.
     func emptyCatch() { notify.notificationOccurred(.warning) }
 
-    /// İLK YAKALAYIŞ stamp: heavy impact + sharp transient (intensity 1.0, sharpness 0.9).
+    /// İLK YAKALAYIŞ stamp: heavy impact + sharp transient (intensity 1.0,
+    /// sharpness 0.9) + dry ink-thunk sound (§7 signature).
     func stamp() {
         impactHeavy.impactOccurred()
         playTransients([(delay: 0, intensity: 1.0, sharpness: 0.9)])
+        Ses.shared.damga()
     }
 
     /// Personal record: success, then heavy, 120 ms apart.
@@ -75,8 +77,9 @@ final class Feel {
     }
 
     /// New-species ceremony: ramp 0.2→0.7 over 600 ms → 80 ms silence →
-    /// heavy transient → two decaying softs.
+    /// heavy transient → two decaying softs, with the brass-paper sting (§7).
     func newSpeciesCeremony() {
+        Ses.shared.yeniTur()
         guard let engine else {
             // Generator approximation for devices without CoreHaptics.
             impactSoft.impactOccurred(intensity: 0.4)

@@ -10,6 +10,16 @@
     "· YENİ TÜR" : {
 
     },
+    "%@ – %@" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ – %2$@"
+          }
+        }
+      }
+    },
     "%@ mi?" : {
 
     },
@@ -82,6 +92,15 @@
     "Balıkdeks" : {
 
     },
+    "BÖLGE & KAYIT" : {
+
+    },
+    "BÖLGE: %@ — SON KONUMLU KAYDINA GÖRE" : {
+
+    },
+    "BOŞ DÖNDÜM · SEFERİ YİNE DE İŞLE" : {
+
+    },
     "BOY SERİSİ" : {
 
     },
@@ -91,13 +110,22 @@
     "BOYA GÖRE AD DEĞİŞİR" : {
 
     },
-    "BU AY" : {
-
-    },
     "BU AY KALAN TANIMA: %lld" : {
 
     },
     "BU AYKİ 10 TANIMA HAKKIN DOLDU" : {
+
+    },
+    "BU HAFTA ✓" : {
+
+    },
+    "BU HAFTA BEKLİYOR" : {
+
+    },
+    "BUGÜNÜN SEFERİ DEFTERDE" : {
+
+    },
+    "BUGÜNÜN SOLUNAR PENCERELERİ" : {
 
     },
     "CM" : {
@@ -145,10 +173,31 @@
     "Fotoğrafta balık\ngöremedim" : {
 
     },
-    "HAVA KAYDIYLA BİRLİKTE GELECEK — M7" : {
+    "GÖZLEM KAYITLARI (GBIF) — AV SEZONU DEĞİL" : {
+
+    },
+    "Günlük koşul bildirimi" : {
+
+    },
+    "GÜNLÜK LİMİT: %@" : {
+
+    },
+    "GÜNÜN KOŞULLARI" : {
+
+    },
+    "HAFTA" : {
+
+    },
+    "HAVA KAYITLI SEFER HENÜZ YOK —\nYENİ YAKALAYIŞLARLA DOLACAK" : {
+
+    },
+    "HAVA OKUNUYOR…" : {
 
     },
     "HENÜZ YAKALANMADI" : {
+
+    },
+    "HER SABAH 07:30 · GÜNDE EN FAZLA 1" : {
 
     },
     "İLK" : {
@@ -169,10 +218,25 @@
     "Kartta konum olarak yalnızca il görünür. Noktan sende kalır." : {
 
     },
+    "KAYNAK: %@" : {
+
+    },
+    "Kaynak: GBIF & OBIS açık veri. Bölge bilgisi yol göstericidir." : {
+
+    },
     "KIRILMAYI BEKLİYOR" : {
 
     },
     "KIYIDA ÇEKMİYOR OLABİLİR — KAYIT YİNE DE SENDE" : {
+
+    },
+    "KOŞUL PUANI BALIK SÖZÜ DEĞİLDİR — SADECE ŞARTLARI ÖZETLER." : {
+
+    },
+    "KOŞUL RAPORU İÇİN KONUMLU BİR KAYIT GEREK —\nİLK YAKALAYIŞTA KENDİLİĞİNDEN GELİR" : {
+
+    },
+    "KOŞULLAR" : {
 
     },
     "LİSTEDEN ARA" : {
@@ -193,7 +257,10 @@
     "REKORUN" : {
 
     },
-    "SEFER SERİSİ M7'DE BURADA" : {
+    "SEFER İŞLENDİ — BOŞ DÖNMEK DE BALIKÇILIKTIR" : {
+
+    },
+    "SEFER SERİSİ" : {
 
     },
     "SERİ TAMAM" : {
@@ -203,6 +270,9 @@
 
     },
     "SIRADAKİ KAYIT NO. %lld" : {
+
+    },
+    "SOLUNAR YAKLAŞIK HESAPTIR (±30 DK)." : {
 
     },
     "SON YAKALAYIŞ" : {
@@ -229,13 +299,13 @@
     "Yakala" : {
 
     },
-    "YAKALAYIŞ" : {
-
-    },
     "Yakalayış" : {
 
     },
     "YAKINDA" : {
+
+    },
+    "Yön" : {
 
     }
   },

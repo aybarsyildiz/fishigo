@@ -1,0 +1,79 @@
+import CoreGraphics
+import ImageIO
+import Foundation
+
+// Fishigo icon v2 — the "specimen seal": a rubber-stamp roundel (the app's
+// signature İLK YAKALAYIŞ motif) with a fish carved out of it, pressed slightly
+// askew onto chart paper. Bolder, more ownable, reads at 60 px.
+
+let S: CGFloat = 1024
+func color(_ hex: UInt32, _ a: CGFloat = 1) -> CGColor {
+    CGColor(red: CGFloat((hex >> 16) & 0xFF)/255, green: CGFloat((hex >> 8) & 0xFF)/255,
+            blue: CGFloat(hex & 0xFF)/255, alpha: a)
+}
+let murekkepKoyu = color(0x0F222C), murekkep = color(0x16303D)
+let kagit = color(0xEDE5D1), cizgi = color(0x28414E), muhur = color(0xC2402F)
+
+let ctx = CGContext(data: nil, width: Int(S), height: Int(S), bitsPerComponent: 8,
+    bytesPerRow: 0, space: CGColorSpace(name: CGColorSpace.sRGB)!,
+    bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue)!
+
+// Chart-paper ground
+ctx.setFillColor(kagit)
+ctx.fill(CGRect(x: 0, y: 0, width: S, height: S))
+
+// Faint depth contours
+ctx.setStrokeColor(color(0x28414E, 0.28)); ctx.setLineWidth(3)
+for (baseY, phase) in [(CGFloat(150), 0.0), (CGFloat(880), 2.3)] {
+    ctx.beginPath(); var first = true
+    for step in stride(from: CGFloat(-0.02), through: 1.02, by: 0.02) {
+        let x = step * S
+        let y = baseY + CGFloat(sin(Double(step)*5.2+phase)*20 + sin(Double(step)*11.7+phase*2)*8)
+        if first { ctx.move(to: CGPoint(x: x, y: y)); first = false } else { ctx.addLine(to: CGPoint(x: x, y: y)) }
+    }
+    ctx.strokePath()
+}
+
+// The stamp — pressed askew
+ctx.saveGState()
+ctx.translateBy(x: S/2, y: S/2)
+ctx.rotate(by: -7 * .pi/180)
+let R: CGFloat = 340
+
+// Double ring, ink-worn (slightly uneven alpha)
+ctx.setStrokeColor(muhur)
+ctx.setLineWidth(26)
+ctx.strokeEllipse(in: CGRect(x: -R, y: -R, width: 2*R, height: 2*R))
+ctx.setLineWidth(9)
+ctx.strokeEllipse(in: CGRect(x: -R+44, y: -R+44, width: 2*(R-44), height: 2*(R-44)))
+
+// Fish carved in muhur, swimming right, centered in the ring
+func pt(_ nx: CGFloat, _ ny: CGFloat) -> CGPoint {
+    CGPoint(x: -270 + nx*540, y: -150 + (1-ny)*300)
+}
+let fish = CGMutablePath()
+fish.move(to: pt(0.03, 0.50))
+fish.addQuadCurve(to: pt(0.72, 0.28), control: pt(0.30, 0.06))
+fish.addLine(to: pt(0.96, 0.14))
+fish.addQuadCurve(to: pt(0.96, 0.86), control: pt(0.85, 0.50))
+fish.addLine(to: pt(0.72, 0.72))
+fish.addQuadCurve(to: pt(0.03, 0.50), control: pt(0.30, 0.94))
+fish.closeSubpath()
+ctx.addPath(fish); ctx.setFillColor(muhur); ctx.fillPath()
+
+// Eye — punched out to paper (negative space)
+ctx.setBlendMode(.clear)
+ctx.fillEllipse(in: CGRect(x: pt(0.14, 0.54).x-17, y: pt(0.14, 0.54).y-17, width: 34, height: 34))
+// Gill line — punched out
+ctx.setLineWidth(11); ctx.setStrokeColor(color(0, 0))
+ctx.beginPath()
+ctx.move(to: pt(0.26, 0.30)); ctx.addQuadCurve(to: pt(0.26, 0.70), control: pt(0.20, 0.50))
+ctx.strokePath()
+ctx.setBlendMode(.normal)
+ctx.restoreGState()
+
+let img = ctx.makeImage()!
+let dest = CGImageDestinationCreateWithURL(URL(fileURLWithPath: CommandLine.arguments[1]) as CFURL, "public.png" as CFString, 1, nil)!
+CGImageDestinationAddImage(dest, img, nil)
+CGImageDestinationFinalize(dest)
+print("written")

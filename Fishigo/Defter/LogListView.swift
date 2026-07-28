@@ -189,7 +189,9 @@ struct LogRow: View {
     }
 
     private var statsLine: String {
-        var parts = ["\(record.lengthCm) CM", Self.dateFormatter.string(from: record.date).localizedUppercase]
+        // Bucket-mode records are logged without length (0).
+        var parts = [record.lengthCm > 0 ? "\(record.lengthCm) CM" : "BOY YOK",
+                     Self.dateFormatter.string(from: record.date).localizedUppercase]
         if record.released { parts.append("SALINDI") }
         return parts.joined(separator: " · ")
     }

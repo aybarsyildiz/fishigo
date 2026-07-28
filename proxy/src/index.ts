@@ -52,6 +52,9 @@ export default {
       if (request.method === "POST" && url.pathname === "/tanima") {
         return await tanima(request, env);
       }
+      if (request.method === "POST" && url.pathname === "/coklu") {
+        return await coklu(request, env);
+      }
       if (request.method === "POST" && url.pathname === "/duzeltme") {
         return await duzeltme(request, env, ctx);
       }
@@ -140,6 +143,92 @@ async function tanima(request: Request, env: Env): Promise<Response> {
   // analiz is server-side telemetry — the client contract stays §4-exact.
   const { analiz: _analiz, ...istemciYaniti } = sonuc;
   return json({ ...istemciYaniti, kalan_hak: AYLIK_LIMIT - kullanilan - 1 });
+}
+
+/** Bucket mode: identify EVERY fish in one photo (a full catch), so anglers
+ * with a bucket don't shoot them one by one. Returns a list; the app lets the
+ * user review/edit before bulk-saving. One API call = one quota unit. */
+const COKLU_SEMASI = {
+  type: "object",
+  properties: {
+    analiz: { type: "string" },
+    baliklar: {
+      type: "array",
+      items: {
+        type: "object",
+        properties: {
+          tur_id: { anyOf: [{ type: "string" }, { type: "null" }] },
+          guven: { type: "number" },
+        },
+        required: ["tur_id", "guven"],
+        additionalProperties: false,
+      },
+    },
+    balik_yok: { type: "boolean" },
+  },
+  required: ["analiz", "baliklar", "balik_yok"],
+  additionalProperties: false,
+} as const;
+
+interface CokluSonuc {
+  analiz: string;
+  baliklar: { tur_id: string | null; guven: number }[];
+  balik_yok: boolean;
+}
+
+async function coklu(request: Request, env: Env): Promise<Response> {
+  const cihaz = cihazId(request);
+  if (!cihaz) return json({ hata: "cihaz" }, 400);
+
+  const govde = await request.json<{ gorsel?: string }>();
+  const gorsel = govde.gorsel;
+  if (!gorsel || gorsel.length > MAX_GORSEL_B64) return json({ hata: "gorsel" }, 400);
+
+  const ay = new Date().toISOString().slice(0, 7);
+  const kotaAnahtari = `kota:${cihaz}:${ay}`;
+  const kullanilan = parseInt((await env.KOTA.get(kotaAnahtari)) ?? "0", 10);
+  if (kullanilan >= AYLIK_LIMIT) return json({ hata: "kota", kalan_hak: 0 }, 429);
+
+  const anthropic = new Anthropic({ apiKey: env.ANTHROPIC_API_KEY });
+  const yanit = await anthropic.messages.create({
+    model: MODEL,
+    max_tokens: 700,
+    system: [{ type: "text", text: SISTEM_TALIMATI, cache_control: { type: "ephemeral" } }],
+    output_config: { format: { type: "json_schema", schema: COKLU_SEMASI } },
+    messages: [
+      {
+        role: "user",
+        content: [
+          { type: "image", source: { type: "base64", media_type: "image/jpeg", data: gorsel } },
+          {
+            type: "text",
+            text: "This photo shows a recreational angler's CATCH — likely several fish together (a bucket, a stringer, laid on the ground). Identify EVERY distinct fish you can see, one entry per fish, up to 20. Follow the same see-first, body-plan, confidence rules. If they are all the same species, still list one entry per individual.",
+          },
+        ],
+      },
+    ],
+  });
+
+  const metin = yanit.content.find((b) => b.type === "text");
+  if (!metin || metin.type !== "text") return json({ hata: "servis" }, 502);
+  const sonuc = JSON.parse(metin.text) as CokluSonuc;
+
+  const temiz = sonuc.baliklar
+    .filter((b) => b.tur_id !== null && TUR_IDLERI.has(b.tur_id))
+    .slice(0, 20);
+
+  console.log(
+    JSON.stringify({
+      olay: "coklu",
+      adet: temiz.length,
+      analiz: sonuc.analiz,
+      girdi_token: yanit.usage.input_tokens,
+      cikti_token: yanit.usage.output_tokens,
+    }),
+  );
+
+  await env.KOTA.put(kotaAnahtari, String(kullanilan + 1), { expirationTtl: 60 * 60 * 24 * 40 });
+  return json({ baliklar: temiz, balik_yok: sonuc.balik_yok, kalan_hak: AYLIK_LIMIT - kullanilan - 1 });
 }
 
 /** Correction log (§4): photo hash + suggested vs corrected id — the future

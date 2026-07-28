@@ -61,7 +61,10 @@ iOS 17+, SwiftUI, Swift 5 language mode. iPhone only, portrait only.
 - [x] M5 Cloudflare Worker proxy + real recognition + quota + corrections log
 - [x] M6 regulations loader + legality states + disclaimer (values = SAMPLE; owner fills)
 - [x] M7 weather snapshot + condition score + sefer serisi streak + notification
-- [ ] M8 polish pass, Reduce Motion audit, empty states, onboarding, ASO stubs
+- [~] M8 IN PROGRESS: sound done ✓; onboarding done ✓ (earlier); remaining →
+      Reduce Motion full audit, VoiceOver/Dynamic Type, corrections launch sweep,
+      settings screen, App Store metadata + screenshots. Owner-only: real
+      regulation values, rarity/threshold tuning, signing team, bundle id.
 
 ## Proxy (M5)
 
@@ -142,6 +145,26 @@ iOS 17+, SwiftUI, Swift 5 language mode. iPhone only, portrait only.
 - SST: Open-Meteo marine `sea_surface_temperature` added to WeatherService.marine
   → catch snapshot (CatchRecord.sstC) + condition score factor (14–22°C sweet
   spot, placeholder band). No API key. Balıkdeks detail shows the RegionPanel.
+
+## M8 / additions
+
+- Logo v2: "specimen seal" — muhur rubber-stamp ring with a fish carved in
+  negative space, ties to the İLK YAKALAYIŞ ceremony. Generator kept at
+  Fishigo/Resources/AppIcon-generator.swift.txt; render + copy to AppIcon.png.
+- Sound (§7): 3 placeholder WAVs in Resources/Sounds (make-sounds.py, stdlib) —
+  tik (reel-click → ruler/cascade), damga (ink-thunk → stamp), yeni-tur
+  (brass sting → new species/line complete). Ses.swift plays via AVAudioPlayer,
+  category .ambient (silent switch respected; TRADEOFF: no ducking under music —
+  chose the switch). Optional via @AppStorage("sesAcik"); toggle in KosullarSheet.
+  TODO(sound): replace placeholders with recorded foley.
+- Kova modu (bucket mode): whole-catch photo → proxy /coklu → editable species
+  list → bulk save. NOT ceremonial (single-catch flow keeps its reveal). Records
+  saved with length 0 ("BOY YOK" in log), note "Kova modu", shared photo, one
+  weather stamp for the batch. Entry: dashed button on the catch screen.
+- LEADERBOARD: NOT built. "leaderboards" are a permanent OUT; ranking users
+  needs a backend (§3 forbids) and breaks NOT-a-social-network + spots-sacred.
+  Channel that energy into single-player hooks instead (achievements, monthly
+  recap card, "bugün ne tutulur" region suggestions) — proposed, await owner.
 
 ## Decisions log
 
