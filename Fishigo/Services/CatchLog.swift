@@ -1,30 +1,54 @@
 import Foundation
+import SwiftData
 import Observation
 
-/// M1 in-memory catch log. M2 swaps the storage for SwiftData behind the same
-/// surface; view code must not care which one it is talking to.
+/// Write side + flow queries over the SwiftData store. List/map/stats views
+/// observe the store directly via @Query; this type exists so the catch flow
+/// and future services never touch ModelContext themselves.
+@MainActor
 @Observable
 final class CatchLog {
-    private(set) var records: [CatchRecord] = []
+    private let context: ModelContext
 
-    var caughtSpeciesIds: Set<String> {
-        Set(records.map(\.speciesId))
+    init(context: ModelContext) {
+        self.context = context
+    }
+
+    var records: [CatchRecord] {
+        let descriptor = FetchDescriptor<CatchRecord>(sortBy: [SortDescriptor(\.date, order: .reverse)])
+        return (try? context.fetch(descriptor)) ?? []
+    }
+
+    var count: Int {
+        (try? context.fetchCount(FetchDescriptor<CatchRecord>())) ?? 0
     }
 
     func isFirst(speciesId: String) -> Bool {
-        !caughtSpeciesIds.contains(speciesId)
+        let descriptor = FetchDescriptor<CatchRecord>(
+            predicate: #Predicate { $0.speciesId == speciesId })
+        return ((try? context.fetchCount(descriptor)) ?? 0) == 0
     }
 
     func personalBest(speciesId: String) -> Int? {
-        records.filter { $0.speciesId == speciesId }.map(\.lengthCm).max()
+        let descriptor = FetchDescriptor<CatchRecord>(
+            predicate: #Predicate { $0.speciesId == speciesId })
+        let lengths = (try? context.fetch(descriptor))?.map(\.lengthCm) ?? []
+        return lengths.max()
     }
 
-    /// Builds and appends the record; first-catch and record flags are decided
-    /// here, once, so the reveal and the log always agree.
+    /// First-catch and record flags are decided here, once, so the reveal and
+    /// the log always agree.
     @discardableResult
-    func save(speciesId: String, lengthCm: Int, photoJPEG: Data?, released: Bool, note: String) -> CatchRecord {
+    func save(
+        speciesId: String,
+        lengthCm: Int,
+        photoJPEG: Data?,
+        released: Bool,
+        note: String,
+        latitude: Double?,
+        longitude: Double?
+    ) -> CatchRecord {
         let record = CatchRecord(
-            id: UUID(),
             speciesId: speciesId,
             lengthCm: lengthCm,
             photoJPEG: photoJPEG,
@@ -32,8 +56,11 @@ final class CatchLog {
             released: released,
             note: note,
             isFirstOfSpecies: isFirst(speciesId: speciesId),
-            isPersonalRecord: lengthCm > (personalBest(speciesId: speciesId) ?? 0))
-        records.append(record)
+            isPersonalRecord: lengthCm > (personalBest(speciesId: speciesId) ?? 0),
+            latitude: latitude,
+            longitude: longitude)
+        context.insert(record)
+        try? context.save()
         return record
     }
 }

@@ -108,8 +108,11 @@ struct CandidateChip: View {
             }
             .padding(.horizontal, 16)
             .padding(.vertical, 12)
-            .background(Ink.kagit)
-            .overlay(Rectangle().strokeBorder(Ink.cizgi.opacity(0.4), lineWidth: 0.5).padding(3))
+            .background(Ink.kagit, in: RoundedRectangle(cornerRadius: 12, style: .continuous))
+            .overlay(
+                RoundedRectangle(cornerRadius: 9, style: .continuous)
+                    .strokeBorder(Ink.cizgi.opacity(0.4), lineWidth: 0.5)
+                    .padding(3))
         }
         .buttonStyle(PressableStyle())
     }

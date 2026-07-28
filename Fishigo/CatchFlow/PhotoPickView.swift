@@ -88,6 +88,9 @@ struct ArchiveButton: View {
     }
 }
 
+/// UI principle (owner feedback): archival ARTIFACTS (cards, frames, stamps)
+/// stay square-ruled; INTERACTIVE controls get soft continuous corners so they
+/// read as tappable, not as printed matter.
 struct ArchiveButtonLabel: View {
     let title: String
     let systemImage: String
@@ -101,8 +104,11 @@ struct ArchiveButtonLabel: View {
         .foregroundStyle(Ink.murekkepKoyu)
         .frame(maxWidth: .infinity)
         .padding(.vertical, 14)
-        .background(Ink.kagit)
-        .overlay(Rectangle().strokeBorder(Ink.cizgi.opacity(0.4), lineWidth: 0.5).padding(3))
+        .background(Ink.kagit, in: RoundedRectangle(cornerRadius: 12, style: .continuous))
+        .overlay(
+            RoundedRectangle(cornerRadius: 9, style: .continuous)
+                .strokeBorder(Ink.cizgi.opacity(0.4), lineWidth: 0.5)
+                .padding(3))
     }
 }
 

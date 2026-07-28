@@ -20,10 +20,7 @@ struct RootView: View {
                 .tabItem { Label("Yakala", systemImage: "camera") }
                 .tag(Tab.yakala)
 
-            PlaceholderScreen(
-                title: "Seyir Defteri",
-                latin: "Diarium Nauticum",
-                note: "M2: kayıtlar, özel harita, istatistik")
+            DefterView()
                 .tabItem { Label("Defter", systemImage: "book.closed") }
                 .tag(Tab.defter)
         }

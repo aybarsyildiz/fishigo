@@ -13,6 +13,7 @@ struct FishigoApp: App {
         WindowGroup {
             RootView()
                 .environment(app)
+                .modelContainer(app.container)
                 // §6: the archive is dark-ink only; paper lives on cards, not the chrome.
                 .preferredColorScheme(.dark)
         }

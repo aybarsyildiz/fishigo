@@ -55,7 +55,7 @@ iOS 17+, SwiftUI, Swift 5 language mode. iPhone only, portrait only.
 
 - [x] M0 scaffold, tokens, FeelKit
 - [x] M1 catch flow with MOCKED recognition (full anticipation→reveal→stamp choreography)
-- [ ] M2 SwiftData models + log + private map + stats v1
+- [x] M2 SwiftData models + log + private map + stats v1 (CloudKit sync deferred — needs team/entitlements)
 - [ ] M3 deks grid + silhouettes + cascade + new-species ceremony + evolution lines
 - [ ] M4 specimen card renderer + 9:16 export + share sheet (design for future video export)
 - [ ] M5 proxy (Cloud Function/Worker) + real recognition + quota + corrections log
@@ -86,3 +86,12 @@ iOS 17+, SwiftUI, Swift 5 language mode. iPhone only, portrait only.
 - M1: camera = UIImagePickerController (upgrade to AVFoundation only if needed);
   gallery = PhotosPicker (no permission prompt). Photos downscaled through
   `ImagePipeline` (1024 px / JPEG 0.7) — same bytes go to recognizer and log.
+- UI principle (owner feedback after M1): archival ARTIFACTS (cards, frames,
+  stamps, specimen plates) stay square-ruled; INTERACTIVE controls (buttons,
+  chips, fields) use continuous rounded corners (9–12 pt) so they read as
+  tappable. Full UI review happens at M8 — collect owner nits until then.
+- M2: `CatchRecord` is SwiftData `@Model` (photo via `.externalStorage`);
+  weather columns already exist as optionals so M7 needs no migration.
+  Location = one-shot CoreLocation fix started at photo pick, awaited max 3 s at
+  save — a catch is never blocked by GPS. Defter tab = KAYITLAR/HARİTA/İSTATİSTİK
+  under a rule bar; list uses @Query, flow writes via CatchLog (ModelContext).

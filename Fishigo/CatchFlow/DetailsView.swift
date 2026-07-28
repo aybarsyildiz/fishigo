@@ -56,8 +56,10 @@ struct DetailsView: View {
                     .foregroundStyle(Ink.kagit)
                     .lineLimit(2...3)
                     .padding(12)
-                    .background(Ink.murekkep)
-                    .overlay(Rectangle().strokeBorder(Ink.cizgi, lineWidth: 0.5))
+                    .background(Ink.murekkep, in: RoundedRectangle(cornerRadius: 10, style: .continuous))
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 10, style: .continuous)
+                            .strokeBorder(Ink.cizgi, lineWidth: 0.5))
             }
 
             ArchiveButton(title: "Kartı aç", systemImage: "seal") {

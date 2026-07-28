@@ -1,7 +1,75 @@
 {
   "sourceLanguage" : "tr",
   "strings" : {
+    "%@ mi?" : {
 
+    },
+    "%lld" : {
+
+    },
+    "BALIĞI BİRAZ DAHA YAKINDAN DENE" : {
+
+    },
+    "Balığını fotoğrafla" : {
+
+    },
+    "Balıkdeks" : {
+
+    },
+    "BOYA GÖRE AD DEĞİŞİR" : {
+
+    },
+    "CM" : {
+
+    },
+    "Defter" : {
+
+    },
+    "DEFTERDE %lld KAYIT" : {
+
+    },
+    "Deftere işlendi" : {
+
+    },
+    "DEĞİŞTİR" : {
+
+    },
+    "Denize geri bıraktım" : {
+
+    },
+    "Emin değilim —\nhangisi?" : {
+
+    },
+    "FISHIGO ARŞİVİ" : {
+
+    },
+    "Fotoğrafta balık\ngöremedim" : {
+
+    },
+    "İLK YAKALAYIŞ" : {
+
+    },
+    "LİSTEDEN ARA" : {
+
+    },
+    "Not (isteğe bağlı)" : {
+
+    },
+    "Tür ara" : {
+
+    },
+    "Tür seç" : {
+
+    },
+    "TÜRÜ OTOMATİK TEŞHİS EDİLİR" : {
+
+    },
+    "Vazgeç" : {
+
+    },
+    "Yakala" : {
+
+    }
   },
   "version" : "1.0"
 }

@@ -1,4 +1,5 @@
 import UIKit
+import CoreLocation
 import Observation
 
 /// §7: every animated element is a state machine tied to app state. This is
@@ -36,6 +37,10 @@ final class CatchFlowModel {
     var released = false
     var note = ""
     private(set) var savedRecord: CatchRecord?
+
+    /// One-shot GPS fix, started the moment a photo lands (§9: permission
+    /// prompt appears in-context, at the first catch).
+    private var locationTask: Task<CLLocationCoordinate2D?, Never>?
 
     private let app: AppModel
 
@@ -77,6 +82,8 @@ final class CatchFlowModel {
         photo = image
         photoJPEG = ImagePipeline.recognitionJPEG(from: image)
         phase = .tanima
+        let locationService = app.location
+        locationTask = Task { await locationService.captureLocation() }
         Task { await recognize() }
     }
 
@@ -116,17 +123,33 @@ final class CatchFlowModel {
 
     func saveCatch() {
         guard let tur = secilenTur else { return }
-        savedRecord = app.log.save(
-            speciesId: tur.id,
-            lengthCm: lengthCm,
-            photoJPEG: photoJPEG,
-            released: released,
-            note: note)
-        phase = .kaydedildi
+        let pendingLocation = locationTask
+        Task {
+            // Wait briefly for the GPS fix; a catch is never held hostage by one.
+            let coordinate = await withTaskGroup(of: CLLocationCoordinate2D?.self) { group in
+                group.addTask { await pendingLocation?.value }
+                group.addTask {
+                    try? await Task.sleep(for: .seconds(3))
+                    return nil
+                }
+                let first = await group.next() ?? nil
+                group.cancelAll()
+                return first
+            }
+            savedRecord = app.log.save(
+                speciesId: tur.id,
+                lengthCm: lengthCm,
+                photoJPEG: photoJPEG,
+                released: released,
+                note: note,
+                latitude: coordinate?.latitude,
+                longitude: coordinate?.longitude)
+            phase = .kaydedildi
+        }
     }
 
     var logCount: Int {
-        app.log.records.count
+        app.log.count
     }
 
     func reset() {
@@ -138,6 +161,7 @@ final class CatchFlowModel {
         released = false
         note = ""
         savedRecord = nil
+        locationTask = nil
         phase = .foto
     }
 }
