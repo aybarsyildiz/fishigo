@@ -18,11 +18,25 @@ struct LogMapView: View {
         } else if located.isEmpty {
             DefterEmptyState(caption: "KONUMLU KAYIT YOK —\nKONUM İZNİ İLE NOKTALAR BURAYA İŞLENİR")
         } else {
+            // Private heat rendering: stacked translucent circles per catch —
+            // overlaps accumulate, so a productive spot literally glows hotter.
+            // (§9: this heat view exists ONLY here, on the owner's own map.
+            // The banned thing is PUBLIC/shared heatmaps — never this.)
             Map(initialPosition: .automatic) {
                 ForEach(located) { record in
                     if let coordinate = record.coordinate {
-                        Annotation(annotationTitle(record), coordinate: coordinate) {
-                            SpotMarker(isFirst: record.isFirstOfSpecies)
+                        MapCircle(center: coordinate, radius: 600)
+                            .foregroundStyle(Ink.muhur.opacity(0.07))
+                        MapCircle(center: coordinate, radius: 280)
+                            .foregroundStyle(Ink.muhur.opacity(0.13))
+                        MapCircle(center: coordinate, radius: 100)
+                            .foregroundStyle(Ink.muhur.opacity(0.22))
+                        Annotation(coordinate: coordinate) {
+                            Circle()
+                                .fill(Ink.kagit)
+                                .frame(width: 4, height: 4)
+                        } label: {
+                            EmptyView()
                         }
                     }
                 }
@@ -41,9 +55,6 @@ struct LogMapView: View {
         }
     }
 
-    private func annotationTitle(_ record: CatchRecord) -> String {
-        app.species.species(id: record.speciesId)?.displayName(lengthCm: record.lengthCm) ?? ""
-    }
 }
 
 /// Ink dot with a paper ring — reads as a chart sounding, not a pin.
