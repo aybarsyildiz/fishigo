@@ -20,6 +20,9 @@ final class CatchRecord {
     /// Share surfaces may show the PROVINCE, never coordinates.
     var latitude: Double?
     var longitude: Double?
+    /// Reverse-geocoded province (il) — the ONLY location detail a share
+    /// card may carry (§9). Resolved best-effort after save.
+    var il: String?
 
     // M7 weather snapshot at catch time (Open-Meteo). Optional so adding the
     // service later needs no migration.

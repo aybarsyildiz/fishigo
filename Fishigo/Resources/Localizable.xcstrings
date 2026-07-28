@@ -1,13 +1,45 @@
 {
   "sourceLanguage" : "tr",
   "strings" : {
+    "· YENİ TÜR" : {
+
+    },
     "%@ mi?" : {
 
     },
     "%lld" : {
 
     },
+    "%lld / %lld" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$lld / %2$lld"
+          }
+        }
+      }
+    },
+    "%lld ADET · REKOR %lld CM" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$lld ADET · REKOR %2$lld CM"
+          }
+        }
+      }
+    },
+    "%lld CM" : {
+
+    },
     "%lld KAYIT" : {
+
+    },
+    "+" : {
+
+    },
+    "≤%lld" : {
 
     },
     "Adet" : {
@@ -19,10 +51,29 @@
     "BALIĞI BİRAZ DAHA YAKINDAN DENE" : {
 
     },
+    "BALIKDEKS" : {
+
+    },
+    "BALIKDEKS %lld/%lld" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "BALIKDEKS %1$lld/%2$lld"
+          }
+        }
+      }
+    },
     "Balığını fotoğrafla" : {
 
     },
     "Balıkdeks" : {
+
+    },
+    "BOY SERİSİ" : {
+
+    },
+    "BOY SERİSİ TAMAMLANDI" : {
 
     },
     "BOYA GÖRE AD DEĞİŞİR" : {
@@ -35,6 +86,9 @@
 
     },
     "Defter henüz boş" : {
+
+    },
+    "Defter seni bekliyor" : {
 
     },
     "DEFTERDE %lld KAYIT" : {
@@ -64,6 +118,9 @@
     "HAVA KAYDIYLA BİRLİKTE GELECEK — M7" : {
 
     },
+    "HENÜZ YAKALANMADI" : {
+
+    },
     "İLK" : {
 
     },
@@ -80,6 +137,15 @@
 
     },
     "REKOR" : {
+
+    },
+    "SERİ TAMAM" : {
+
+    },
+    "SEYİR ARŞİVİ" : {
+
+    },
+    "SON YAKALAYIŞ" : {
 
     },
     "Tümü" : {

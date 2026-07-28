@@ -136,7 +136,7 @@ final class CatchFlowModel {
                 group.cancelAll()
                 return first
             }
-            savedRecord = app.log.save(
+            let record = app.log.save(
                 speciesId: tur.id,
                 lengthCm: lengthCm,
                 photoJPEG: photoJPEG,
@@ -144,7 +144,19 @@ final class CatchFlowModel {
                 note: note,
                 latitude: coordinate?.latitude,
                 longitude: coordinate?.longitude)
+            savedRecord = record
             phase = .kaydedildi
+
+            // §9: enrich with the province (the only shareable location fact),
+            // best-effort in the background.
+            if let coordinate {
+                let log = app.log
+                Task {
+                    if let il = await ProvinceResolver.il(for: coordinate) {
+                        log.attachProvince(il, to: record)
+                    }
+                }
+            }
         }
     }
 

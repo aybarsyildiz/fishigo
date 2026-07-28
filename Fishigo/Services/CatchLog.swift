@@ -63,4 +63,10 @@ final class CatchLog {
         try? context.save()
         return record
     }
+
+    /// Late enrichment: province arrives from reverse geocoding after save.
+    func attachProvince(_ il: String, to record: CatchRecord) {
+        record.il = il
+        try? context.save()
+    }
 }

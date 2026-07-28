@@ -57,7 +57,7 @@ iOS 17+, SwiftUI, Swift 5 language mode. iPhone only, portrait only.
 - [x] M1 catch flow with MOCKED recognition (full anticipation→reveal→stamp choreography)
 - [x] M2 SwiftData models + log + private map + stats v1 (CloudKit sync deferred — needs team/entitlements)
 - [x] M3 deks grid + silhouettes + cascade + evolution lines + hook page v1
-- [ ] M4 specimen card renderer + 9:16 export + share sheet (design for future video export)
+- [x] M4 specimen card renderer + 9:16 export + share sheet (video-ready via progress param)
 - [ ] M5 proxy (Cloud Function/Worker) + real recognition + quota + corrections log
 - [ ] M6 regulations loader + legality states + disclaimer
 - [ ] M7 weather snapshot + condition score + sefer serisi streak + notification

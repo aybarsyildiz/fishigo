@@ -8,6 +8,7 @@ struct LogListView: View {
 
     @State private var speciesFilter: String?
     @State private var monthFilter: Int?
+    @State private var shareRecord: CatchRecord?
 
     private var filtered: [CatchRecord] {
         records.filter { record in
@@ -30,12 +31,20 @@ struct LogListView: View {
                 } else {
                     List(filtered) { record in
                         LogRow(record: record)
+                            .contentShape(Rectangle())
+                            .onTapGesture {
+                                Feel.shared.cardLift()
+                                shareRecord = record
+                            }
                             .listRowBackground(Color.clear)
                             .listRowSeparatorTint(Ink.cizgi.opacity(0.5))
                     }
                     .listStyle(.plain)
                     .scrollContentBackground(.hidden)
                 }
+            }
+            .sheet(item: $shareRecord) { record in
+                SharePreviewSheet(record: record)
             }
         }
     }

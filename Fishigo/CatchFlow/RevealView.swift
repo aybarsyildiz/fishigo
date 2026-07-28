@@ -185,9 +185,12 @@ struct IlkYakalayisStamp: View {
 }
 
 /// Saved confirmation — quiet, plus the deks progress pull. A completed
-/// size-name chain gets its banner and haptic here (§8).
+/// size-name chain gets its banner and haptic here (§8). Sharing lives one
+/// tap away, never forced.
 struct SavedView: View {
     let model: CatchFlowModel
+
+    @State private var showShare = false
 
     var body: some View {
         VStack(spacing: 18) {
@@ -232,9 +235,25 @@ struct SavedView: View {
             .frame(maxWidth: 240)
             .padding(.top, 10)
 
+            Button {
+                Feel.shared.buttonTap()
+                showShare = true
+            } label: {
+                Text("KARTI PAYLAŞ")
+                    .font(Typo.data(12))
+                    .kerning(1.5)
+                    .foregroundStyle(Ink.kagit.opacity(0.6))
+                    .padding(8)
+            }
+
             Spacer()
             Spacer()
         }
         .padding(24)
+        .sheet(isPresented: $showShare) {
+            if let record = model.savedRecord {
+                SharePreviewSheet(record: record)
+            }
+        }
     }
 }

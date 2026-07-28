@@ -15,10 +15,13 @@ struct DoubleRuleFrame: View {
 
 /// §6: nautical-chart fragment — depth contours, soundings, position crosses.
 /// Procedural and deterministic; sits far in the background at low contrast.
+/// `ink` defaults to hairline blue for dark surfaces; pass murekkep for paper.
 struct ChartFragment: View {
+    var ink: Color = Ink.cizgi
+
     var body: some View {
         Canvas { ctx, size in
-            let ink = Ink.cizgi
+            let ink = self.ink
 
             // Depth contours: three lazy iso-lines drifting across the frame.
             for (index, baseY) in [0.22, 0.48, 0.76].enumerated() {
