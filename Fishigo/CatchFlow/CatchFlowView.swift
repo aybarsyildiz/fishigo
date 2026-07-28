@@ -35,6 +35,10 @@ struct CatchFlowView: View {
             ConfirmView(model: model)
         case .fotoYok:
             NoFishView(model: model)
+        case .hata:
+            NetworkErrorView(model: model)
+        case .kota:
+            PaywallStubView(model: model)
         case .olcum:
             DetailsView(model: model)
         case .acilis:

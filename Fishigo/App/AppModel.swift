@@ -18,20 +18,23 @@ final class AppModel {
     let container: ModelContainer
     let species: SpeciesStore
     let log: CatchLog
+    let corrections: CorrectionStore
     let location: LocationService
     let recognizer: any SpeciesRecognizing
     let legality: any LegalityChecking
 
     init() {
         do {
-            container = try ModelContainer(for: CatchRecord.self)
+            container = try ModelContainer(for: CatchRecord.self, CorrectionEntry.self)
         } catch {
             fatalError("ModelContainer kurulamadı: \(error)")
         }
         species = SpeciesStore.loadBundled()
         log = CatchLog(context: container.mainContext)
+        corrections = CorrectionStore(context: container.mainContext)
         location = LocationService()
-        recognizer = MockSpeciesRecognizer()
+        // Geliştirme fikstürleri gerekirse: MockSpeciesRecognizer()
+        recognizer = ProxySpeciesRecognizer()
         legality = StubLegality()
     }
 }

@@ -11,6 +11,8 @@ struct PhotoPickView: View {
 
     @State private var pickerItem: PhotosPickerItem?
     @State private var showCamera = false
+    /// §2.1-11: the free-quota counter is always visible once known (-1 = unknown).
+    @AppStorage("kalanTanima") private var kalanTanima = -1
 
     private var cameraAvailable: Bool {
         UIImagePickerController.isSourceTypeAvailable(.camera)
@@ -78,6 +80,14 @@ struct PhotoPickView: View {
                         .simultaneousGesture(TapGesture().onEnded { Feel.shared.buttonTap() })
                     }
                     .frame(maxWidth: 250)
+
+                    if kalanTanima >= 0 {
+                        Text("BU AY KALAN TANIMA: \(kalanTanima)")
+                            .font(Typo.data(9))
+                            .kerning(1.5)
+                            .foregroundStyle(kalanTanima == 0 ? Ink.muhur : Ink.kagit.opacity(0.4))
+                            .monospacedDigit()
+                    }
                 }
                 .padding(.vertical, 30)
                 .padding(.horizontal, 24)

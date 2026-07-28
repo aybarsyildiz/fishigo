@@ -1,0 +1,2 @@
+# Yerel gelistirme degiskenleri — GERCEK anahtari buraya koyma, dev icin sahte deger yeter.
+ANTHROPIC_API_KEY="dev-yerel-anahtar"

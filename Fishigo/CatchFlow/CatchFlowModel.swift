@@ -19,6 +19,10 @@ final class CatchFlowModel {
         case onay
         /// balik_yok — friendly retry, never blame.
         case fotoYok
+        /// Network/service failure — retry or manual species pick. Never "no fish".
+        case hata
+        /// Free quota exhausted (server 429) — paywall stub + manual pick.
+        case kota
         /// Length ruler + released toggle + note.
         case olcum
         /// Card reveal ceremony (flip, count, stamp).
@@ -89,24 +93,57 @@ final class CatchFlowModel {
 
     private func recognize() async {
         guard let jpeg = photoJPEG else { return retry() }
-        let sonuc = try? await app.recognizer.identify(jpeg)
+        do {
+            let yanit = try await app.recognizer.identify(jpeg)
+            if let kalan = yanit.kalanHak {
+                UserDefaults.standard.set(kalan, forKey: "kalanTanima")
+            }
 
-        // §7 reveal choreography step 2: hold AFTER the result arrives. Intentional.
-        try? await Task.sleep(for: .milliseconds(400))
+            // §7 reveal choreography step 2: hold AFTER the result arrives. Intentional.
+            try? await Task.sleep(for: .milliseconds(400))
 
-        guard phase == .tanima else { return }
-        self.sonuc = sonuc
-        if let sonuc, !sonuc.balikYok, !candidates.isEmpty {
-            phase = .onay
-        } else {
-            phase = .fotoYok
+            guard phase == .tanima else { return }
+            sonuc = yanit.sonuc
+            if !yanit.sonuc.balikYok, !candidates.isEmpty {
+                phase = .onay
+            } else {
+                phase = .fotoYok
+            }
+        } catch TanimaHata.kotaBitti {
+            UserDefaults.standard.set(0, forKey: "kalanTanima")
+            guard phase == .tanima else { return }
+            phase = .kota
+        } catch {
+            guard phase == .tanima else { return }
+            phase = .hata
         }
     }
 
+    /// Retry recognition with the same photo (network hiccups on the water).
+    func tekrarTani() {
+        guard photoJPEG != nil else { return retry() }
+        phase = .tanima
+        Task { await recognize() }
+    }
+
     func confirm(_ species: Species) {
+        logCorrectionIfNeeded(chosen: species)
         secilenTur = species
         Feel.shared.speciesConfirmed()
         phase = .olcum
+    }
+
+    /// §4: the model suggested one thing, the angler confirmed another —
+    /// gold-standard training signal. Photo hash only, never the photo.
+    private func logCorrectionIfNeeded(chosen: Species) {
+        guard let sonuc, !sonuc.balikYok,
+              let onerilen = sonuc.turId,
+              onerilen != chosen.id,
+              let jpeg = photoJPEG else { return }
+        app.corrections.log(
+            photoHash: ImagePipeline.sha256Hex(jpeg),
+            onerilen: onerilen,
+            duzeltilen: chosen.id)
     }
 
     func retry() {

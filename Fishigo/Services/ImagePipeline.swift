@@ -1,9 +1,14 @@
 import UIKit
+import CryptoKit
 
 /// §4 client spec: downscale to max 1024 px long edge, JPEG ~0.7 quality.
 /// Used for the recognizer payload AND for stored catch photos, so what the
 /// model saw is exactly what the log keeps.
 enum ImagePipeline {
+    static func sha256Hex(_ data: Data) -> String {
+        SHA256.hash(data: data).map { String(format: "%02x", $0) }.joined()
+    }
+
     static func recognitionJPEG(from image: UIImage, maxDimension: CGFloat = 1024, quality: CGFloat = 0.7) -> Data? {
         let longEdge = max(image.size.width, image.size.height)
         guard longEdge > maxDimension else {

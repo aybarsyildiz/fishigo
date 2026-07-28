@@ -1,6 +1,12 @@
 {
   "sourceLanguage" : "tr",
   "strings" : {
+    "—" : {
+
+    },
+    "— %@ —" : {
+
+    },
     "· YENİ TÜR" : {
 
     },
@@ -79,10 +85,16 @@
     "BOYA GÖRE AD DEĞİŞİR" : {
 
     },
+    "BU AY" : {
+
+    },
     "CM" : {
 
     },
     "Defter" : {
+
+    },
+    "DEFTER · %lld KAYIT" : {
 
     },
     "Defter henüz boş" : {
@@ -109,6 +121,9 @@
     "Emin değilim —\nhangisi?" : {
 
     },
+    "FISHIGO" : {
+
+    },
     "FISHIGO ARŞİVİ" : {
 
     },
@@ -127,6 +142,21 @@
     "İLK YAKALAYIŞ" : {
 
     },
+    "K" : {
+
+    },
+    "KART BASILIYOR…" : {
+
+    },
+    "KARTI PAYLAŞ" : {
+
+    },
+    "Kartta konum olarak yalnızca il görünür. Noktan sende kalır." : {
+
+    },
+    "KIRILMAYI BEKLİYOR" : {
+
+    },
     "LİSTEDEN ARA" : {
 
     },
@@ -136,13 +166,25 @@
     "Not (isteğe bağlı)" : {
 
     },
+    "PAYLAŞIM KARTI" : {
+
+    },
     "REKOR" : {
+
+    },
+    "REKORUN" : {
+
+    },
+    "SEFER SERİSİ M7'DE BURADA" : {
 
     },
     "SERİ TAMAM" : {
 
     },
     "SEYİR ARŞİVİ" : {
+
+    },
+    "SIRADAKİ KAYIT NO. %lld" : {
 
     },
     "SON YAKALAYIŞ" : {
@@ -164,6 +206,12 @@
 
     },
     "Yakala" : {
+
+    },
+    "YAKALAYIŞ" : {
+
+    },
+    "Yakalayış" : {
 
     }
   },

@@ -58,10 +58,33 @@ iOS 17+, SwiftUI, Swift 5 language mode. iPhone only, portrait only.
 - [x] M2 SwiftData models + log + private map + stats v1 (CloudKit sync deferred — needs team/entitlements)
 - [x] M3 deks grid + silhouettes + cascade + evolution lines + hook page v1
 - [x] M4 specimen card renderer + 9:16 export + share sheet (video-ready via progress param)
-- [ ] M5 proxy (Cloud Function/Worker) + real recognition + quota + corrections log
+- [x] M5 Cloudflare Worker proxy + real recognition + quota + corrections log
 - [ ] M6 regulations loader + legality states + disclaimer
 - [ ] M7 weather snapshot + condition score + sefer serisi streak + notification
 - [ ] M8 polish pass, Reduce Motion audit, empty states, onboarding, ASO stubs
+
+## Proxy (M5)
+
+- Worker `fishigo-tanima` at https://fishigo-tanima.toneamp.workers.dev
+  (`proxy/`, wrangler.jsonc, KV binding KOTA id 474e422b52064b47a137cbc3605e5ffc).
+- Secret: `cd proxy && npx wrangler secret put ANTHROPIC_API_KEY` (owner's
+  terminal only — never in repo/chat). `.dev.vars` (gitignored) for local dev.
+- POST /tanima {gorsel: b64 jpeg} + x-cihaz header → §4 JSON + kalan_hak;
+  429 when the 10/month KV quota (kota:<cihaz>:<YYYY-MM>) is spent. Structured
+  outputs (json_schema) guarantee parseable §4 JSON; server validates ids
+  against the closed list (never invent). POST /duzeltme stores corrections.
+- species prompt is GENERATED: `python3 proxy/generate-species.py` after every
+  species.json change (single source of truth).
+- Prompt caching: cache_control is set but INERT — prompt ~1.2k tokens, Haiku
+  4.5 cache floor is 4096. Engages automatically if the prompt grows past it.
+- Cost ≈ $0.004/recognition uncached (image ~1.3k tok + prompt ~1.2k @$1/MTok,
+  ~80 out @$5/MTok) → ≤ $0.04/free-user/month. Deploy: `npm run deploy`.
+- Client: ProxySpeciesRecognizer default; MockSpeciesRecognizer kept for dev
+  (swap in AppModel). Quota counter via @AppStorage("kalanTanima"); 429 →
+  PaywallStubView (product ids TODO: fishigo.pro.aylik/yillik); network error →
+  NetworkErrorView. Both offer manual species pick — logging is never blocked.
+- Corrections: CorrectionEntry (photo SHA256 + suggested + corrected), local
+  first, best-effort upload; launch sweep TODO(M8).
 
 ## Decisions log
 

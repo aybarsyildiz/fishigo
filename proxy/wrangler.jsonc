@@ -1,0 +1,19 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "fishigo-tanima",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-07-28",
+  "compatibility_flags": ["nodejs_compat"],
+  "observability": {
+    "enabled": true,
+    "head_sampling_rate": 1
+  },
+  "kv_namespaces": [
+    {
+      "binding": "KOTA",
+      "id": "474e422b52064b47a137cbc3605e5ffc"
+    }
+  ]
+  // Gizli anahtar (asla buraya yazma):
+  //   npx wrangler secret put ANTHROPIC_API_KEY
+}
