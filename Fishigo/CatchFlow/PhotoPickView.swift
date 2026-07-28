@@ -123,6 +123,7 @@ struct PhotoPickView: View {
                         RecordHookModule()
                     }
                     KosullarModule()
+                    BugunModule()
                     BosDondumBar()
                 }
               }

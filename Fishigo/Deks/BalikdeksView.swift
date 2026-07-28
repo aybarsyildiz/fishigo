@@ -28,6 +28,8 @@ struct BalikdeksView: View {
                     header
                         .padding(.top, 12)
 
+                    RozetlerBar()
+
                     LazyVGrid(columns: columns, spacing: 10) {
                         ForEach(Array(app.species.all.enumerated()), id: \.element.id) { index, species in
                             DeksTile(species: species, caught: caught.contains(species.id))

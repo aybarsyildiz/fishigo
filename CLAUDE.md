@@ -161,10 +161,20 @@ iOS 17+, SwiftUI, Swift 5 language mode. iPhone only, portrait only.
   list → bulk save. NOT ceremonial (single-catch flow keeps its reveal). Records
   saved with length 0 ("BOY YOK" in log), note "Kova modu", shared photo, one
   weather stamp for the batch. Entry: dashed button on the catch screen.
-- LEADERBOARD: NOT built. "leaderboards" are a permanent OUT; ranking users
-  needs a backend (§3 forbids) and breaks NOT-a-social-network + spots-sacred.
-  Channel that energy into single-player hooks instead (achievements, monthly
-  recap card, "bugün ne tutulur" region suggestions) — proposed, await owner.
+- LEADERBOARD: NOT built (permanent OUT + needs forbidden backend + breaks
+  no-social). Replaced with three SINGLE-PLAYER hooks (all shipped):
+  - Rozetler (achievements): Rozet.swift catalogue (17 badges, closure
+    evaluators over records/deks/streak/wind/sea) + RozetlerView grid +
+    RozetlerBar module on the Balıkdeks header. Placeholder criteria, owner can
+    retune. Earned = inked, unearned = dotted (deks visual language).
+  - Sezon Kartı: monthly recap (SezonOzeti.build) → 9:16 card (reuses M4
+    ChartFragment/DoubleRule grammar) → ShareLink. Entry: button in Defter
+    İstatistik section.
+  - Bugün Ne Tutulur: region+season suggestions from GBIF `denizler` + M6
+    closed-season + SeaLocator (coordinate→sea from last located catch).
+    Open-season first, rarer first; closed-season shown separately as YASAK.
+    Hook-page module (under koşullar) + full sheet. Never a fish promise.
+  - SeaLocator.swift: coordinate → Species.Deniz via the GBIF-fetch boxes.
 
 ## Decisions log
 

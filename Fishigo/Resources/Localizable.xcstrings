@@ -7,6 +7,9 @@
     "— %@ —" : {
 
     },
+    "?" : {
+
+    },
     "· YENİ TÜR" : {
 
     },
@@ -55,6 +58,9 @@
     "+" : {
 
     },
+    "+ BALIK EKLE" : {
+
+    },
     "≤%lld" : {
 
     },
@@ -68,6 +74,9 @@
 
     },
     "BALIĞI BİRAZ DAHA YAKINDAN DENE" : {
+
+    },
+    "BALIK BULUNAMADI —\nLİSTEYE ELLE EKLEYEBİLİRSİN" : {
 
     },
     "BALIKDEKS" : {
@@ -99,6 +108,9 @@
 
     },
     "BOŞ DÖNDÜM · SEFERİ YİNE DE İŞLE" : {
+
+    },
+    "Boy girilmez — kova modu hızlı kayıt içindir." : {
 
     },
     "BOY SERİSİ" : {
@@ -239,7 +251,16 @@
     "KOŞULLAR" : {
 
     },
+    "KOVA MODU · %lld BALIK" : {
+
+    },
+    "Kova modu · birden fazla balık" : {
+
+    },
     "LİSTEDEN ARA" : {
+
+    },
+    "MAKARA TIKLARI · DAMGA · YENİ TÜR" : {
 
     },
     "NOKTAN SENDE KALIR — BU HARİTA SADECE SENİN" : {
@@ -264,6 +285,9 @@
 
     },
     "SERİ TAMAM" : {
+
+    },
+    "Sesler" : {
 
     },
     "SEYİR ARŞİVİ" : {

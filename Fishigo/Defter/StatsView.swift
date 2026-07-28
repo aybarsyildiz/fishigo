@@ -7,12 +7,37 @@ import Charts
 struct StatsView: View {
     @Query private var records: [CatchRecord]
 
+    @State private var showSezon = false
+
     var body: some View {
         if records.isEmpty {
             DefterEmptyState(caption: "İSTATİSTİKLER YAKALAYIŞLARINLA\nBİRLİKTE ORTAYA ÇIKAR")
         } else {
             ScrollView {
                 VStack(spacing: 20) {
+                    Button {
+                        Feel.shared.buttonTap()
+                        showSezon = true
+                    } label: {
+                        HStack(spacing: 10) {
+                            Image(systemName: "doc.text.image")
+                                .font(.system(size: 15))
+                            Text("BU AYIN SEZON KARTI")
+                                .font(Typo.data(11, weight: .medium)).kerning(1.5)
+                            Spacer()
+                            Image(systemName: "chevron.right")
+                                .font(.system(size: 10, weight: .semibold))
+                        }
+                        .foregroundStyle(Ink.kagit.opacity(0.75))
+                        .padding(.horizontal, 16).padding(.vertical, 13)
+                        .background(Ink.murekkep, in: RoundedRectangle(cornerRadius: 12, style: .continuous))
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 12, style: .continuous)
+                                .strokeBorder(Ink.cizgi.opacity(0.6), lineWidth: 0.5))
+                    }
+                    .buttonStyle(PressableStyle())
+                    .padding(.top, 8)
+
                     if let insight {
                         Text(insight)
                             .font(Typo.display(20))
@@ -63,6 +88,7 @@ struct StatsView: View {
                 }
                 .padding(20)
             }
+            .sheet(isPresented: $showSezon) { SezonSheet() }
         }
     }
 
