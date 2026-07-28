@@ -1,0 +1,79 @@
+# Fishigo — Turkish fishing-log iOS app
+
+Türkiye'nin balıkçılık yoldaşı: photograph a catch → species recognized →
+legality shown → collectible specimen card in the "Balıkdeks". Pokémon-collection
+joy × Duolingo responsiveness, skinned as a 1930s naturalist specimen archive.
+NOT social, NOT spot-sharing ("Noktan sende kalır"). All UI text Turkish.
+
+**Hard deadline: bluefish (lüfer) season opens September 2026.** Scope is ruthless.
+
+## Build
+
+```sh
+xcodebuild build -project Fishigo.xcodeproj -target Fishigo -sdk iphonesimulator -configuration Debug
+```
+
+Project uses Xcode 16+ folder-synchronized groups (`objectVersion 77`): any file
+added under `Fishigo/` is picked up automatically — never edit the pbxproj to add files.
+iOS 17+, SwiftUI, Swift 5 language mode. iPhone only, portrait only.
+
+## Architecture (planned)
+
+- MVVM-ish, lightweight observable stores. SwiftData local-first; CloudKit private DB sync.
+- LLM species recognition (claude-haiku-4-5) ONLY via a serverless proxy (M5) — API key
+  never in the client; 10 recognitions/month free quota enforced server-side.
+  Proxy prompt-caching note: Haiku 4.5 min cacheable prefix is 4096 tokens — pad the
+  species-list system prompt above that or caching silently won't engage.
+- Legality is 100% on-device deterministic from regulations.json (bundled + remote,
+  ETag-cached). The LLM NEVER answers legality. Values populated by owner; never fabricate.
+- Weather: Open-Meteo forecast+marine (no key). Solunar computed on device.
+- Rive for ceremonies later; every ceremony first implemented in SwiftUI behind a
+  protocol so Rive can replace it without touching callers.
+
+## Layout
+
+- `Fishigo/App/` — app entry, root tab scaffold
+- `Fishigo/DesignSystem/` — `Ink` (color tokens), `Typo` (fonts, runtime-registered)
+- `Fishigo/FeelKit/` — `Motion` (timing constants, Reduce Motion), `Feel` (haptic map)
+- `Fishigo/Resources/` — assets, `Localizable.xcstrings` (sourceLanguage=tr), `Fonts/`
+
+## Non-negotiables (from the brief)
+
+- §6 design: flat inks + paper only. No neon, no gradients, no glassmorphism, no
+  iOS-blue. `Ink.muhur` (stamp red) max once per screen. Fraunces 900 display /
+  italic Latin; IBM Plex Mono data.
+- §7 feel: every input acknowledged <100 ms (visual + haptic via `Feel`); micro
+  springs 0.3–0.45/0.7–0.85; suspense beat 300–500 ms AFTER recognition result;
+  numbers count up, never appear; Reduce Motion → crossfade, haptics stay; empty
+  catch is warning haptic, NEVER error. All timing/haptics go through FeelKit —
+  no inline generators or magic durations at call sites.
+- Privacy: locations private by default; share shows province (il) only. Copy never
+  shames a fishless day. No loot/paid-randomness mechanics, ever.
+- Ask before adding ANY scope beyond the brief. Prefer the simpler option and flag it.
+
+## Milestones
+
+- [x] M0 scaffold, tokens, FeelKit
+- [ ] M1 catch flow with MOCKED recognition (full anticipation→reveal→stamp choreography)
+- [ ] M2 SwiftData models + log + private map + stats v1
+- [ ] M3 deks grid + silhouettes + cascade + new-species ceremony + evolution lines
+- [ ] M4 specimen card renderer + 9:16 export + share sheet (design for future video export)
+- [ ] M5 proxy (Cloud Function/Worker) + real recognition + quota + corrections log
+- [ ] M6 regulations loader + legality states + disclaimer
+- [ ] M7 weather snapshot + condition score + sefer serisi streak + notification
+- [ ] M8 polish pass, Reduce Motion audit, empty states, onboarding, ASO stubs
+
+## Decisions log
+
+- Project name **Fishigo** (brief header) — brief body once says "Fishing"; assumed typo.
+- Hand-written pbxproj with synchronized folder group instead of XcodeGen (not installed;
+  zero-dependency, files auto-sync).
+- Color tokens in code (`Ink`), not asset catalog — single source, trivially diffable.
+- Fonts: Fraunces variable + IBM Plex Mono statics downloaded from google/fonts (OFL,
+  licenses bundled in `Resources/Fonts/`). Registered at runtime (`Typo.registerBundledFonts`)
+  → no UIAppFonts Info.plist entry needed. System serif/mono fallbacks if lookup fails.
+  TODO: verify Turkish glyph rendering + Fraunces optical size on device.
+- AccentColor = kagit (#EDE5D1); muhur is reserved for THE accent moment per screen.
+- App forced dark (`preferredColorScheme(.dark)`) — archive has no light chrome.
+- Bundle id placeholder `com.netnucleus.fishigo` — confirm before App Store work.
+- Not a git repo yet — suggest `git init` when owner is ready.
