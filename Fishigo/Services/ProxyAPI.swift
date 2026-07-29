@@ -7,6 +7,14 @@ enum ProxyConfig {
     static let baseURL = URL(string: "https://fishigo-tanima.toneamp.workers.dev")!
 }
 
+/// Bridges the StoreKit entitlement to the stateless recognizer calls without
+/// threading AppModel through them. ProStore keeps this current; requests read
+/// it to send the Pro quota flag. (Server-side JWS verification is the
+/// documented hardening path — see CLAUDE.md.)
+enum Entitlement {
+    nonisolated(unsafe) static var isPro = false
+}
+
 /// Anonymous per-install id for the server-side quota. UserDefaults-backed —
 /// a reinstall resets it, which is acceptable for a soft free-tier cap.
 enum DeviceIdentity {
@@ -29,6 +37,7 @@ final class ProxySpeciesRecognizer: SpeciesRecognizing {
         request.timeoutInterval = 30
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue(DeviceIdentity.id, forHTTPHeaderField: "x-cihaz")
+        if Entitlement.isPro { request.setValue("1", forHTTPHeaderField: "x-abone") }
         request.httpBody = try? JSONEncoder().encode(["gorsel": jpeg.base64EncodedString()])
 
         let data: Data
@@ -80,6 +89,7 @@ enum BucketRecognizer {
         request.timeoutInterval = 40
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue(DeviceIdentity.id, forHTTPHeaderField: "x-cihaz")
+        if Entitlement.isPro { request.setValue("1", forHTTPHeaderField: "x-abone") }
         request.httpBody = try? JSONEncoder().encode(["gorsel": jpeg.base64EncodedString()])
 
         let data: Data

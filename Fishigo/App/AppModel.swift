@@ -22,6 +22,7 @@ final class AppModel {
     let location: LocationService
     let regulations: RegulationsStore
     let conditions: ConditionStore
+    let pro: ProStore
     let recognizer: any SpeciesRecognizing
     let legality: any LegalityChecking
 
@@ -37,6 +38,7 @@ final class AppModel {
         location = LocationService()
         regulations = RegulationsStore()
         conditions = ConditionStore()
+        pro = ProStore()
         // Geliştirme fikstürleri gerekirse: MockSpeciesRecognizer()
         recognizer = ProxySpeciesRecognizer()
         legality = RegulationsLegality(store: regulations)

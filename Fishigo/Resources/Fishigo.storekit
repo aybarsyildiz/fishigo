@@ -1,0 +1,65 @@
+{
+  "identifier" : "FISHIGO_SK_CONFIG",
+  "nonRenewingSubscriptions" : [],
+  "products" : [],
+  "settings" : {
+    "_applicationInternalID" : "0",
+    "_developerTeamID" : "",
+    "_lastSynchronizedDate" : 0
+  },
+  "subscriptionGroups" : [
+    {
+      "id" : "FISHIGO_PRO_GROUP",
+      "localizations" : [],
+      "name" : "Fishigo Pro",
+      "subscriptions" : [
+        {
+          "adHocOffers" : [],
+          "codeOffers" : [],
+          "displayPrice" : "39.99",
+          "familyShareable" : false,
+          "groupNumber" : 1,
+          "internalID" : "FISHIGO_PRO_MONTHLY",
+          "introductoryOffer" : null,
+          "localizations" : [
+            {
+              "description" : "Sınırsız tanıma, kova modu ve tüm Pro özellikler.",
+              "displayName" : "Fishigo Pro · Aylık",
+              "locale" : "tr_TR"
+            }
+          ],
+          "productID" : "com.netnucleus.fishigo.pro.monthly",
+          "recurringSubscriptionPeriod" : "P1M",
+          "referenceName" : "Fishigo Pro Monthly",
+          "subscriptionGroupID" : "FISHIGO_PRO_GROUP",
+          "type" : "RecurringSubscription"
+        },
+        {
+          "adHocOffers" : [],
+          "codeOffers" : [],
+          "displayPrice" : "299.99",
+          "familyShareable" : false,
+          "groupNumber" : 1,
+          "internalID" : "FISHIGO_PRO_ANNUAL",
+          "introductoryOffer" : null,
+          "localizations" : [
+            {
+              "description" : "Sınırsız tanıma, kova modu ve tüm Pro özellikler. Yılda iki ay bedava.",
+              "displayName" : "Fishigo Pro · Yıllık",
+              "locale" : "tr_TR"
+            }
+          ],
+          "productID" : "com.netnucleus.fishigo.pro.annual",
+          "recurringSubscriptionPeriod" : "P1Y",
+          "referenceName" : "Fishigo Pro Annual",
+          "subscriptionGroupID" : "FISHIGO_PRO_GROUP",
+          "type" : "RecurringSubscription"
+        }
+      ]
+    }
+  ],
+  "version" : {
+    "major" : 4,
+    "minor" : 0
+  }
+}

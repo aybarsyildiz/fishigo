@@ -59,77 +59,46 @@ struct NetworkErrorView: View {
     }
 }
 
-/// §2.1-11: paywall STUB only — screen + product-id placeholders, no live
-/// purchase flow in v1. Quota running out never blocks logging the fish.
-struct PaywallStubView: View {
+/// §2.1-11 quota wall — free 10/month exhausted. Presents the live paywall,
+/// and (§2.1-11) never blocks logging: the paywall keeps a "pick manually"
+/// escape hatch so the fish still gets into the defter.
+struct QuotaWallView: View {
     let model: CatchFlowModel
 
+    @State private var showPaywall = true
     @State private var showList = false
-
-    // TODO(v1.x): StoreKit products — fishigo.pro.aylik / fishigo.pro.yillik
-    private let features = [
-        "SINIRSIZ TÜR TANIMA",
-        "GELİŞMİŞ KOŞUL PUANI",
-        "ARŞİV DIŞA AKTARIMI",
-    ]
 
     var body: some View {
         VStack(spacing: 18) {
             Spacer()
-
-            VStack(spacing: 14) {
-                Text("BU AYKİ 10 TANIMA HAKKIN DOLDU")
-                    .font(Typo.data(10))
-                    .kerning(1.5)
-                    .foregroundStyle(Ink.kagit.opacity(0.55))
-                Text("Fishigo Pro")
-                    .font(Typo.display(32))
-                    .foregroundStyle(Ink.kagit)
-                Text("YAKINDA")
-                    .font(Typo.data(10, weight: .semibold))
-                    .kerning(3)
-                    .foregroundStyle(Ink.pirinc)
-
-                Rectangle().fill(Ink.cizgi).frame(width: 110, height: 1)
-
-                VStack(spacing: 8) {
-                    ForEach(features, id: \.self) { feature in
-                        Text(feature)
-                            .font(Typo.data(11))
-                            .kerning(1)
-                            .foregroundStyle(Ink.kagit.opacity(0.7))
-                    }
-                }
-            }
-            .padding(28)
-            .frame(maxWidth: .infinity)
-            .background(Ink.murekkep)
-            .overlay(DoubleRuleFrame(color: Ink.pirinc))
-
-            Text("Balığını yine de kaydedebilirsin —\ntanıma hakkı sadece otomatik teşhis için.")
-                .font(Typo.data(11))
-                .foregroundStyle(Ink.kagit.opacity(0.55))
+            Image(systemName: "hourglass")
+                .font(.system(size: 38, weight: .light))
+                .foregroundStyle(Ink.kagit.opacity(0.6))
+            Text("Bu ayki 10 tanıma\nhakkın doldu")
+                .font(Typo.display(24))
+                .foregroundStyle(Ink.kagit)
                 .multilineTextAlignment(.center)
-
+            ArchiveButton(title: "Fishigo Pro", systemImage: "rosette") {
+                showPaywall = true
+            }
+            .frame(maxWidth: 240)
             ArchiveButton(title: "Türü listeden seç", systemImage: "list.bullet") {
                 showList = true
             }
-            .frame(maxWidth: 250)
-
+            .frame(maxWidth: 240)
             Button {
                 Feel.shared.buttonTap()
                 model.retry()
             } label: {
-                Text("VAZGEÇ")
-                    .font(Typo.data(12))
-                    .kerning(1.5)
-                    .foregroundStyle(Ink.kagit.opacity(0.5))
-                    .padding(8)
+                Text("VAZGEÇ").font(Typo.data(12)).kerning(1.5)
+                    .foregroundStyle(Ink.kagit.opacity(0.5)).padding(8)
             }
-
-            Spacer()
+            Spacer(); Spacer()
         }
         .padding(24)
+        .sheet(isPresented: $showPaywall) {
+            PaywallView(kotaBitti: true, onManualPick: { showList = true })
+        }
         .sheet(isPresented: $showList) {
             SpeciesListSheet { species in
                 showList = false

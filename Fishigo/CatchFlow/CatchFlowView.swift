@@ -38,7 +38,7 @@ struct CatchFlowView: View {
         case .hata:
             NetworkErrorView(model: model)
         case .kota:
-            PaywallStubView(model: model)
+            QuotaWallView(model: model)
         case .olcum:
             DetailsView(model: model)
         case .acilis:

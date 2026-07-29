@@ -8,6 +8,11 @@
     "enabled": true,
     "head_sampling_rate": 1
   },
+  "vars": {
+    // App Review demo kill-switch. "1" while a build is under review (lets the
+    // reviewer unlock Pro); set to "0" and redeploy after approval.
+    "DEMO_ACIK": "1"
+  },
   "kv_namespaces": [
     {
       "binding": "KOTA",

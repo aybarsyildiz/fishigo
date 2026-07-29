@@ -7,6 +7,7 @@ import PhotosUI
 /// below (deks fraction, last catch). M7 adds the streak and condition
 /// modules to this same shelf.
 struct PhotoPickView: View {
+    @Environment(AppModel.self) private var app
     let model: CatchFlowModel
 
     @State private var pickerItem: PhotosPickerItem?
@@ -14,6 +15,7 @@ struct PhotoPickView: View {
     /// Bucket mode: a whole-catch photo routed to bulk recognition.
     @State private var bucketItem: PhotosPickerItem?
     @State private var bucketImage: UIImage?
+    @State private var showPaywall = false
     /// §2.1-11: the free-quota counter is always visible once known (-1 = unknown).
     @AppStorage("kalanTanima") private var kalanTanima = -1
 
@@ -81,20 +83,20 @@ struct PhotoPickView: View {
                         }
                         .simultaneousGesture(TapGesture().onEnded { Feel.shared.buttonTap() })
 
-                        PhotosPicker(selection: $bucketItem, matching: .images) {
-                            HStack(spacing: 8) {
-                                Image(systemName: "square.grid.2x2")
-                                Text("Kova modu · birden fazla balık")
-                                    .font(Typo.data(11))
+                        // Kova modu is a Pro feature. Free users see it with a
+                        // brass lock that opens the paywall instead of the picker.
+                        if app.pro.isPro {
+                            PhotosPicker(selection: $bucketItem, matching: .images) {
+                                bucketLabel(locked: false)
                             }
-                            .foregroundStyle(Ink.kagit.opacity(0.65))
-                            .frame(maxWidth: .infinity)
-                            .padding(.vertical, 10)
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 10, style: .continuous)
-                                    .strokeBorder(Ink.cizgi.opacity(0.7), style: StrokeStyle(lineWidth: 1, dash: [3, 3])))
+                            .simultaneousGesture(TapGesture().onEnded { Feel.shared.buttonTap() })
+                        } else {
+                            Button {
+                                Feel.shared.buttonTap()
+                                showPaywall = true
+                            } label: { bucketLabel(locked: true) }
+                            .buttonStyle(PressableStyle())
                         }
-                        .simultaneousGesture(TapGesture().onEnded { Feel.shared.buttonTap() })
                     }
                     .frame(maxWidth: 250)
 
@@ -124,6 +126,7 @@ struct PhotoPickView: View {
                     }
                     KosullarModule()
                     BugunModule()
+                    ProNudge()
                     BosDondumBar()
                 }
               }
@@ -160,6 +163,26 @@ struct PhotoPickView: View {
         .fullScreenCover(item: $bucketImage) { image in
             BucketView(image: image)
         }
+        .sheet(isPresented: $showPaywall) { PaywallView() }
+    }
+
+    private func bucketLabel(locked: Bool) -> some View {
+        HStack(spacing: 8) {
+            Image(systemName: locked ? "lock" : "square.grid.2x2")
+            Text("Kova modu · birden fazla balık")
+                .font(Typo.data(11))
+            if locked {
+                Text("PRO")
+                    .font(Typo.data(8, weight: .semibold)).kerning(1)
+                    .foregroundStyle(Ink.pirinc)
+            }
+        }
+        .foregroundStyle(Ink.kagit.opacity(0.65))
+        .frame(maxWidth: .infinity)
+        .padding(.vertical, 10)
+        .overlay(
+            RoundedRectangle(cornerRadius: 10, style: .continuous)
+                .strokeBorder(Ink.cizgi.opacity(0.7), style: StrokeStyle(lineWidth: 1, dash: [3, 3])))
     }
 }
 

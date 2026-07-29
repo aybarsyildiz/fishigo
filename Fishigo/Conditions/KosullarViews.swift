@@ -140,9 +140,16 @@ struct KosullarSheet: View {
                             .padding(.vertical, 60)
                     }
 
+                    ProSettingsRow()
+
                     // §9: notifications only after the first completed catch.
+                    // Also a Pro perk — free users get the paywall.
                     if app.log.count > 0 {
-                        bildirimBolumu
+                        if app.pro.isPro {
+                            bildirimBolumu
+                        } else {
+                            proKilitBildirim
+                        }
                     }
 
                     sesBolumu
@@ -278,6 +285,33 @@ struct KosullarSheet: View {
         .padding(14)
         .background(Ink.murekkep)
         .overlay(DoubleRuleFrame())
+    }
+
+    @State private var showPaywallBildirim = false
+    private var proKilitBildirim: some View {
+        Button {
+            Feel.shared.buttonTap()
+            showPaywallBildirim = true
+        } label: {
+            HStack(spacing: 12) {
+                Image(systemName: "lock").foregroundStyle(Ink.kagit.opacity(0.5))
+                VStack(alignment: .leading, spacing: 2) {
+                    HStack(spacing: 6) {
+                        Text("Günlük koşul bildirimi")
+                            .font(Typo.data(13)).foregroundStyle(Ink.kagit)
+                        Text("PRO").font(Typo.data(8, weight: .semibold)).kerning(1).foregroundStyle(Ink.pirinc)
+                    }
+                    Text("HER SABAH TEK HATIRLATMA")
+                        .font(Typo.data(8)).kerning(1).foregroundStyle(Ink.kagit.opacity(0.45))
+                }
+                Spacer()
+            }
+            .padding(14)
+            .frame(maxWidth: .infinity)
+            .background(Ink.murekkep)
+            .overlay(DoubleRuleFrame())
+        }
+        .sheet(isPresented: $showPaywallBildirim) { PaywallView() }
     }
 
     /// §7: all sounds optional. The silent switch is the hardware control; this

@@ -176,6 +176,37 @@ iOS 17+, SwiftUI, Swift 5 language mode. iPhone only, portrait only.
     Hook-page module (under koşullar) + full sheet. Never a fish promise.
   - SeaLocator.swift: coordinate → Species.Deniz via the GBIF-fetch boxes.
 
+## Monetization (Fishigo Pro — owner override of v1 stub-only)
+
+- StoreKit 2 real subscriptions. Products: com.netnucleus.fishigo.pro.monthly
+  (P1M), .pro.annual (P1Y). ProStore = entitlement source of truth (isPro).
+  Local testing: Fishigo.storekit + the shared scheme's StoreKitConfiguration
+  reference (works in simulator without ASC). OWNER MUST create these exact
+  product IDs in App Store Connect + a "Fishigo Pro" subscription group before
+  submitting; playbook §5 (add the GROUP as its own review item) applies.
+- Paywall (PaywallView) is review-built (Guideline 3.1.2): per-plan price+period
+  from StoreKit, feature list, auto-renew disclosure, Restore button, and
+  FUNCTIONAL Terms + Privacy links (hosted on the Worker: /kosullar, /gizlilik —
+  DRAFT legal, owner+lawyer to finalize + set real support email).
+- FREE/PRO split — free is deliberately limited: free = 10 recognitions/mo,
+  logging, deks, private map, regulations, condition score, achievements. PRO =
+  unlimited(200/mo fair-use) recognition, kova/bucket mode, Bugün Ne Tutulur,
+  Sezon Kartı, daily notification. Each gated site shows a brass PRO lock →
+  PaywallView. ProNudge (hook shelf) + ProSettingsRow (KosullarSheet) let users
+  subscribe anywhere. Quota wall still keeps the manual-pick escape (§2.1-11).
+- Server quota gating: client sends `x-abone: 1` when StoreKit-entitled →
+  Worker raises limit 10→200. This is CLIENT-ASSERTED (bounded cost ~$2.60/mo
+  if spoofed). HARDENING PATH (not done): verify the StoreKit 2 JWS / App Store
+  Server API in the Worker. Chose bounded-simple over untested server crypto so
+  a verification bug can't silently break the perk for paying users.
+- Reviewer demo (playbook §6, 2.1a): 7 taps on the paywall seal → code
+  "LUFER2026" → checks Worker GET /demo kill-switch (var DEMO_ACIK, "1" now).
+  Flip DEMO_ACIK to "0" + redeploy after approval; put steps in review notes.
+- ADS: NOT built. Recommended against a real ad network (AdMob = heavy SDK +
+  ATT prompt + SKAdNetwork privacy manifest + clashes with the premium archive
+  aesthetic, for tiny niche revenue). ProNudge is the in-app "ad" for Pro
+  itself — no SDK, no tracking, no review surface. Revisit only if owner insists.
+
 ## Decisions log
 
 - Project name **Fishigo** (brief header) — brief body once says "Fishing"; assumed typo.

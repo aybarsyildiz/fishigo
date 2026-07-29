@@ -5,9 +5,11 @@ import Charts
 /// Stats v1 (§2.1-8): catches by month and by hour-band, one insight line.
 /// The wind-direction panel arrives with M7's weather snapshots.
 struct StatsView: View {
+    @Environment(AppModel.self) private var app
     @Query private var records: [CatchRecord]
 
     @State private var showSezon = false
+    @State private var showPaywall = false
 
     var body: some View {
         if records.isEmpty {
@@ -17,15 +19,19 @@ struct StatsView: View {
                 VStack(spacing: 20) {
                     Button {
                         Feel.shared.buttonTap()
-                        showSezon = true
+                        if app.pro.isPro { showSezon = true } else { showPaywall = true }
                     } label: {
                         HStack(spacing: 10) {
                             Image(systemName: "doc.text.image")
                                 .font(.system(size: 15))
                             Text("BU AYIN SEZON KARTI")
                                 .font(Typo.data(11, weight: .medium)).kerning(1.5)
+                            if !app.pro.isPro {
+                                Text("PRO").font(Typo.data(8, weight: .semibold)).kerning(1)
+                                    .foregroundStyle(Ink.pirinc)
+                            }
                             Spacer()
-                            Image(systemName: "chevron.right")
+                            Image(systemName: app.pro.isPro ? "chevron.right" : "lock")
                                 .font(.system(size: 10, weight: .semibold))
                         }
                         .foregroundStyle(Ink.kagit.opacity(0.75))
@@ -89,6 +95,7 @@ struct StatsView: View {
                 .padding(20)
             }
             .sheet(isPresented: $showSezon) { SezonSheet() }
+            .sheet(isPresented: $showPaywall) { PaywallView() }
         }
     }
 

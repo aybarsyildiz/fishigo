@@ -157,22 +157,28 @@ struct BugunModule: View {
     @Query(sort: \CatchRecord.date, order: .reverse) private var records: [CatchRecord]
 
     @State private var show = false
+    @State private var showPaywall = false
 
     var body: some View {
         let model = BugunModel.build(records: records, app: app)
         let acik = model.oneriler.filter { !$0.inClosedSeason }.prefix(3)
+        let pro = app.pro.isPro
 
         Button {
             Feel.shared.buttonTap()
-            show = true
+            if pro { show = true } else { showPaywall = true }
         } label: {
             VStack(alignment: .leading, spacing: 8) {
                 HStack {
                     Text("BUGÜN NE TUTULUR")
                         .font(Typo.data(9, weight: .medium)).kerning(1.5)
                         .foregroundStyle(Ink.kagit.opacity(0.45))
+                    if !pro {
+                        Text("PRO").font(Typo.data(8, weight: .semibold)).kerning(1)
+                            .foregroundStyle(Ink.pirinc)
+                    }
                     Spacer()
-                    Image(systemName: "chevron.right")
+                    Image(systemName: pro ? "chevron.right" : "lock")
                         .font(.system(size: 9, weight: .semibold))
                         .foregroundStyle(Ink.kagit.opacity(0.4))
                 }
@@ -199,5 +205,6 @@ struct BugunModule: View {
         }
         .buttonStyle(PressableStyle())
         .sheet(isPresented: $show) { BugunSheet() }
+        .sheet(isPresented: $showPaywall) { PaywallView() }
     }
 }

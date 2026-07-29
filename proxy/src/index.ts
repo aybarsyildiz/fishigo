@@ -14,7 +14,16 @@ import kurallar from "../regulations.json";
  * - The LLM answers SPECIES only. Legality never touches this service (§5).
  */
 
-const AYLIK_LIMIT = 10;
+/** Free tier: 10/month (§2.1-11). Pro: a fair-use ceiling that is effectively
+ * unlimited for a real angler while bounding cost against a spoofed x-abone
+ * header (200 × ~$0.013 ≈ $2.60/mo worst case). Hardening path — verify the
+ * StoreKit 2 JWS / App Store Server API — documented in CLAUDE.md. */
+const FREE_LIMIT = 10;
+const PRO_LIMIT = 200;
+function aylikLimit(request: Request): number {
+  return request.headers.get("x-abone") === "1" ? PRO_LIMIT : FREE_LIMIT;
+}
+
 /** Recognition model. haiku-4-5 ≈ $0.004/tanima; sonnet-4-6 ≈ $0.013/tanima —
  * switched after haiku misread body plans on hard photos (see CLAUDE.md). */
 const MODEL = "claude-sonnet-4-6";
@@ -61,6 +70,17 @@ export default {
       if (request.method === "GET" && url.pathname === "/kurallar") {
         return kurallarYaniti(request);
       }
+      // App Review demo kill-switch (playbook §6, 2.1a). Fail open unless the
+      // env var is explicitly "0" so a review can always unlock Pro features.
+      if (request.method === "GET" && url.pathname === "/demo") {
+        return json({ enabled: (env.DEMO_ACIK as string) !== "0" });
+      }
+      if (request.method === "GET" && url.pathname === "/gizlilik") {
+        return html(GIZLILIK_HTML);
+      }
+      if (request.method === "GET" && url.pathname === "/kosullar") {
+        return html(KOSULLAR_HTML);
+      }
       return json({ hata: "bulunamadi" }, 404);
     } catch (error) {
       console.log(JSON.stringify({ olay: "hata", yol: url.pathname, mesaj: String(error) }));
@@ -78,10 +98,11 @@ async function tanima(request: Request, env: Env): Promise<Response> {
   if (!gorsel || gorsel.length > MAX_GORSEL_B64) return json({ hata: "gorsel" }, 400);
 
   // Quota check — key rolls over monthly, entries expire on their own.
+  const limit = aylikLimit(request);
   const ay = new Date().toISOString().slice(0, 7); // "2026-07"
   const kotaAnahtari = `kota:${cihaz}:${ay}`;
   const kullanilan = parseInt((await env.KOTA.get(kotaAnahtari)) ?? "0", 10);
-  if (kullanilan >= AYLIK_LIMIT) {
+  if (kullanilan >= limit) {
     return json({ hata: "kota", kalan_hak: 0 }, 429);
   }
 
@@ -142,7 +163,7 @@ async function tanima(request: Request, env: Env): Promise<Response> {
 
   // analiz is server-side telemetry — the client contract stays §4-exact.
   const { analiz: _analiz, ...istemciYaniti } = sonuc;
-  return json({ ...istemciYaniti, kalan_hak: AYLIK_LIMIT - kullanilan - 1 });
+  return json({ ...istemciYaniti, kalan_hak: limit - kullanilan - 1 });
 }
 
 /** Bucket mode: identify EVERY fish in one photo (a full catch), so anglers
@@ -184,10 +205,11 @@ async function coklu(request: Request, env: Env): Promise<Response> {
   const gorsel = govde.gorsel;
   if (!gorsel || gorsel.length > MAX_GORSEL_B64) return json({ hata: "gorsel" }, 400);
 
+  const limit = aylikLimit(request);
   const ay = new Date().toISOString().slice(0, 7);
   const kotaAnahtari = `kota:${cihaz}:${ay}`;
   const kullanilan = parseInt((await env.KOTA.get(kotaAnahtari)) ?? "0", 10);
-  if (kullanilan >= AYLIK_LIMIT) return json({ hata: "kota", kalan_hak: 0 }, 429);
+  if (kullanilan >= limit) return json({ hata: "kota", kalan_hak: 0 }, 429);
 
   const anthropic = new Anthropic({ apiKey: env.ANTHROPIC_API_KEY });
   const yanit = await anthropic.messages.create({
@@ -228,7 +250,7 @@ async function coklu(request: Request, env: Env): Promise<Response> {
   );
 
   await env.KOTA.put(kotaAnahtari, String(kullanilan + 1), { expirationTtl: 60 * 60 * 24 * 40 });
-  return json({ baliklar: temiz, balik_yok: sonuc.balik_yok, kalan_hak: AYLIK_LIMIT - kullanilan - 1 });
+  return json({ baliklar: temiz, balik_yok: sonuc.balik_yok, kalan_hak: limit - kullanilan - 1 });
 }
 
 /** Correction log (§4): photo hash + suggested vs corrected id — the future
@@ -287,3 +309,50 @@ function json(body: unknown, status = 200): Response {
     headers: { "content-type": "application/json" },
   });
 }
+
+function html(body: string): Response {
+  return new Response(body, {
+    headers: { "content-type": "text/html; charset=utf-8", "cache-control": "max-age=3600" },
+  });
+}
+
+// Apple requires functional Privacy Policy + Terms links on the paywall
+// (Guideline 3.1.2). Hosting them here keeps the links real. DRAFT — the owner
+// should have these reviewed and swap in a real support email before launch.
+const SAYFA = (baslik: string, govde: string) => `<!doctype html><html lang="tr"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>${baslik} · Fishigo</title>
+<style>body{font-family:-apple-system,system-ui,sans-serif;max-width:680px;margin:0 auto;padding:32px 20px;color:#16303D;background:#EDE5D1;line-height:1.6}h1{font-weight:800}h2{margin-top:28px;font-size:1.1rem}a{color:#C2402F}small{color:#28414E}</style>
+</head><body>${govde}<hr><small>Fishigo · Son güncelleme 2026-07 · Taslak, resmî yayından önce hukuki incelemeden geçirilecektir.</small></body></html>`;
+
+const GIZLILIK_HTML = SAYFA("Gizlilik Politikası", `
+<h1>Gizlilik Politikası</h1>
+<p>Fishigo, gizliliği ürünün merkezine koyar. "Noktan sende kalır."</p>
+<h2>Cihazında kalan veriler</h2>
+<p>Yakalayışların, fotoğrafların, konumların ve notların cihazında saklanır. İstersen Apple'ın iCloud özel veritabanı ile yalnızca senin erişebileceğin şekilde eşitlenir. Bu verileri biz görmeyiz.</p>
+<h2>Tür tanıma</h2>
+<p>Tanıma için fotoğrafın, işlenmek üzere tanıma servisimize (Anthropic API üzerinden çalışan aracımıza) geçici olarak gönderilir. Tanıma sonrası fotoğraf saklanmaz. Yalnızca sen bir teşhisi düzeltirsen, fotoğrafın <em>özeti</em> (geri döndürülemez bir hash) ve tür bilgisi doğruluk verisi olarak tutulabilir; fotoğrafın kendisi gönderilmez.</p>
+<h2>Konum</h2>
+<p>Konum yalnızca kendi özel haritan, hava durumu ve il bilgisi için kullanılır. Paylaşım kartlarında yalnızca <strong>il</strong> görünür; koordinat veya nokta asla paylaşılmaz veya herkese açık hale getirilmez.</p>
+<h2>Anonim kimlik</h2>
+<p>Aylık ücretsiz tanıma hakkını saymak için cihazına anonim bir kimlik atanır. Kişisel bilgilerinle ilişkilendirilmez.</p>
+<h2>Abonelik</h2>
+<p>Fishigo Pro ödemeleri Apple üzerinden yapılır; ödeme bilgilerini biz görmeyiz veya saklamayız.</p>
+<h2>Üçüncü taraf takip / reklam</h2>
+<p>Fishigo üçüncü taraf reklam veya takip teknolojisi kullanmaz.</p>
+<h2>Dış kaynaklar</h2>
+<p>Hava durumu Open-Meteo'dan, tür bölge verisi GBIF ve OBIS açık verisinden alınır.</p>
+<h2>İletişim</h2>
+<p>Sorular için: <a href="mailto:destek@example.com">destek@example.com</a> (yayından önce güncellenecek).</p>`);
+
+const KOSULLAR_HTML = SAYFA("Kullanım Koşulları", `
+<h1>Kullanım Koşulları</h1>
+<p>Fishigo'yu kullanarak bu koşulları kabul edersin.</p>
+<h2>Bilgilendirme amaçlıdır</h2>
+<p>Uygulamadaki tür teşhisi, boy/sezon yasağı ve koşul puanı <strong>bilgilendirme amaçlıdır ve bağlayıcı değildir</strong>. Avlanma kurallarında bağlayıcı kaynak Resmî Gazete ve Tarım ve Orman Bakanlığı amatör balıkçılık tebliğidir. Koşul puanı bir balık vaadi değildir. Yasal ve güvenli avlanmaktan kullanıcı sorumludur.</p>
+<h2>Abonelik (Fishigo Pro)</h2>
+<p>Fishigo Pro, aylık veya yıllık otomatik yenilenen bir aboneliktir. Ödeme, satın alma onayında Apple Kimliğine işlenir. Abonelik, dönem bitiminden en az 24 saat önce kapatılmadıkça otomatik yenilenir ve yenileme ücreti dönem bitiminden önceki 24 saat içinde alınır. Abonelikleri satın aldıktan sonra cihazının Ayarlar &gt; Apple Kimliği &gt; Abonelikler bölümünden yönetebilir veya iptal edebilirsin.</p>
+<h2>Standart lisans</h2>
+<p>Aksi belirtilmedikçe Apple'ın standart Son Kullanıcı Lisans Sözleşmesi (EULA) geçerlidir: <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">apple.com/legal/…/stdeula</a></p>
+<h2>İletişim</h2>
+<p><a href="mailto:destek@example.com">destek@example.com</a> (yayından önce güncellenecek).</p>`);
