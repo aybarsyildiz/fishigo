@@ -6,7 +6,7 @@ import SwiftData
 /// and the copy around it never shames.
 @Model
 final class EmptyTrip {
-    var date: Date
+    var date: Date = Date()
 
     init(date: Date) {
         self.date = date

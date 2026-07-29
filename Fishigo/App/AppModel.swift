@@ -28,7 +28,14 @@ final class AppModel {
 
     init() {
         do {
-            container = try ModelContainer(for: CatchRecord.self, CorrectionEntry.self, EmptyTrip.self)
+            // Private CloudKit backup + cross-device sync, pinned to our
+            // container (never .default). Falls back to local-only when the
+            // device has no iCloud account — a catch is never blocked.
+            let config = ModelConfiguration(
+                cloudKitDatabase: .private("iCloud.com.netnucleus.fishigo"))
+            container = try ModelContainer(
+                for: CatchRecord.self, CorrectionEntry.self, EmptyTrip.self,
+                configurations: config)
         } catch {
             fatalError("ModelContainer kurulamadı: \(error)")
         }

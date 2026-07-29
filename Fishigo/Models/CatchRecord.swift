@@ -6,15 +6,17 @@ import CoreLocation
 /// TODO(M2.5): CloudKit private-database sync once entitlements/team are set.
 @Model
 final class CatchRecord {
-    var speciesId: String
-    var lengthCm: Int
+    // CloudKit mirroring requires every non-optional attribute to carry a
+    // default value (records can arrive with fields missing).
+    var speciesId: String = ""
+    var lengthCm: Int = 0
     /// Downscaled JPEG (same pipeline the recognizer uses).
     @Attribute(.externalStorage) var photoJPEG: Data?
-    var date: Date
-    var released: Bool
-    var note: String
-    var isFirstOfSpecies: Bool
-    var isPersonalRecord: Bool
+    var date: Date = Date()
+    var released: Bool = false
+    var note: String = ""
+    var isFirstOfSpecies: Bool = false
+    var isPersonalRecord: Bool = false
 
     /// §9: private by default — only ever rendered on the user's own map.
     /// Share surfaces may show the PROVINCE, never coordinates.

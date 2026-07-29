@@ -51,7 +51,7 @@ struct OnboardingView: View {
 
                     OnboardPage(
                         title: "Noktan\nsende kalır",
-                        caption: "KONUM YALNIZCA KENDİ HARİTANDA — BOŞ DÖNMEK DE KAYITTIR, SERİ BOZULMAZ") {
+                        caption: "KONUM SENDE KALIR · YAKALAYIŞLARIN iCLOUD'A GİZLİCE YEDEKLENİR") {
                         SpotMarker(isFirst: true)
                             .scaleEffect(1.6)
                     }

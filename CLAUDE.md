@@ -221,6 +221,31 @@ iOS 17+, SwiftUI, Swift 5 language mode. iPhone only, portrait only.
   NOT background modes, NOT Sign in with Apple. Camera/location/photos/maps are
   Info.plist usage strings + runtime prompts, not capabilities.
 
+## CloudKit backup (owner decision: iCloud backup, no login wall)
+
+- SwiftData ModelContainer now uses `cloudKitDatabase: .private("iCloud.com.netnucleus.fishigo")`.
+  Private CloudKit → automatic per-user backup + cross-device sync via their
+  own iCloud. NO accounts, NO login gate, NO custom backend (fits brief §3).
+  Falls back to local-only if no iCloud account — a catch is never blocked.
+- All @Model non-optional props now have DEFAULT VALUES (CloudKit requirement).
+  No @Attribute(.unique), no relationships — CloudKit-compatible.
+- Entitlements: repo-root `Fishigo.entitlements` (iCloud CloudKit +
+  container iCloud.com.netnucleus.fishigo), wired via CODE_SIGN_ENTITLEMENTS in
+  both configs. Kept OUT of the synced Fishigo/ folder so it isn't bundled.
+- App Privacy UNCHANGED: CloudKit private data lives in the user's iCloud and
+  the developer can't access it → not "collected." Label answers still hold.
+- OWNER STEPS (only they can do): (1) set signing Team in Xcode — automatic
+  signing provisions the iCloud capability from the entitlement (or add via
+  Signing & Capabilities → iCloud → CloudKit → the container). (2) Run once on a
+  device to create the CloudKit schema in Development. (3) CloudKit Dashboard →
+  Deploy Schema Changes to PRODUCTION before submitting — else sync silently
+  no-ops in the shipped build (playbook §4).
+- Settings (KosullarSheet) shows an iCloud backup on/off row; onboarding page 3
+  reassures "yakalayışların iCloud'a gizlice yedeklenir".
+- Timely cross-device push (Background Modes: remote-notifications) NOT added —
+  sync happens on launch/save, which is enough for backup. Add later for
+  instant multi-device.
+
 ## Decisions log
 
 - Project name **Fishigo** (brief header) — brief body once says "Fishing"; assumed typo.

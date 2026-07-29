@@ -142,6 +142,8 @@ struct KosullarSheet: View {
 
                     ProSettingsRow()
 
+                    iCloudBolumu
+
                     // §9: notifications only after the first completed catch.
                     // Also a Pro perk — free users get the paywall.
                     if app.log.count > 0 {
@@ -312,6 +314,27 @@ struct KosullarSheet: View {
             .overlay(DoubleRuleFrame())
         }
         .sheet(isPresented: $showPaywallBildirim) { PaywallView() }
+    }
+
+    /// iCloud backup status. Data syncs to the user's private iCloud
+    /// automatically — no login. If they're not signed into iCloud, backup is
+    /// off and we say so (data stays local; nothing is lost, just not backed up).
+    private var iCloudBolumu: some View {
+        let acik = FileManager.default.ubiquityIdentityToken != nil
+        return HStack(spacing: 12) {
+            Image(systemName: acik ? "checkmark.icloud" : "xmark.icloud")
+                .foregroundStyle(acik ? Ink.kagit.opacity(0.7) : Ink.muhur)
+            VStack(alignment: .leading, spacing: 2) {
+                Text(acik ? "iCloud yedekleme açık" : "iCloud yedekleme kapalı")
+                    .font(Typo.data(13)).foregroundStyle(Ink.kagit)
+                Text(acik ? "YAKALAYIŞLARIN OTOMATİK YEDEKLENİR" : "AYARLAR'DAN iCLOUD'A GİRİŞ YAP")
+                    .font(Typo.data(8)).kerning(1).foregroundStyle(Ink.kagit.opacity(0.45))
+            }
+            Spacer()
+        }
+        .padding(14)
+        .background(Ink.murekkep)
+        .overlay(DoubleRuleFrame())
     }
 
     /// §7: all sounds optional. The silent switch is the hardware control; this
