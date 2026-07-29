@@ -257,6 +257,7 @@
 				DEVELOPMENT_TEAM = 4MPDY99CJW;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_NSCameraUsageDescription = "Yakaladığın balığı fotoğraflamak için kameraya erişim gerekli. Fotoğraflar cihazında kalır.";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Yakaladığın noktayı sadece senin görebileceğin haritana işlemek için konum gerekli. Noktan sende kalır.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -287,6 +288,7 @@
 				DEVELOPMENT_TEAM = 4MPDY99CJW;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_NSCameraUsageDescription = "Yakaladığın balığı fotoğraflamak için kameraya erişim gerekli. Fotoğraflar cihazında kalır.";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Yakaladığın noktayı sadece senin görebileceğin haritana işlemek için konum gerekli. Noktan sende kalır.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;

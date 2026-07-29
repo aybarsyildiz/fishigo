@@ -29,6 +29,16 @@
     "%@ · SON KONUMUNA GÖRE" : {
 
     },
+    "%@ / %@" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ / %2$@"
+          }
+        }
+      }
+    },
     "%@ mi?" : {
 
     },
@@ -70,10 +80,22 @@
     "≤%lld" : {
 
     },
+    "ABONELİĞİ YÖNET" : {
+
+    },
+    "Aç" : {
+
+    },
     "Adet" : {
 
     },
+    "ARŞİVİNİ SINIRSIZ BÜYÜT" : {
+
+    },
     "Ay" : {
+
+    },
+    "Aylık" : {
 
     },
     "Bağlantı\nkurulamadı" : {
@@ -101,10 +123,10 @@
     "Balığını fotoğrafla" : {
 
     },
-    "Balığını yine de kaydedebilirsin —\ntanıma hakkı sadece otomatik teşhis için." : {
+    "Balıkdeks" : {
 
     },
-    "Balıkdeks" : {
+    "Bir sorun oldu" : {
 
     },
     "BÖLGE & KAYIT" : {
@@ -141,6 +163,9 @@
 
     },
     "BU AYKİ 10 TANIMA HAKKIN DOLDU" : {
+
+    },
+    "Bu ayki 10 tanıma\nhakkın doldu" : {
 
     },
     "BU BÖLGE İÇİN VERİ YOK" : {
@@ -185,6 +210,9 @@
     "DEĞİŞTİR" : {
 
     },
+    "Demo kodu" : {
+
+    },
     "Denize geri bıraktım" : {
 
     },
@@ -203,7 +231,16 @@
     "Fishigo Pro" : {
 
     },
+    "Fishigo Pro · Etkin" : {
+
+    },
+    "Fishigo Pro'ya geç" : {
+
+    },
     "Fotoğrafta balık\ngöremedim" : {
+
+    },
+    "Gizlilik" : {
 
     },
     "GÖZLEM KAYITLARI (GBIF) — AV SEZONU DEĞİL" : {
@@ -233,10 +270,16 @@
     "HER SABAH 07:30 · GÜNDE EN FAZLA 1" : {
 
     },
+    "HER SABAH TEK HATIRLATMA" : {
+
+    },
     "İLK" : {
 
     },
     "İLK YAKALAYIŞ" : {
+
+    },
+    "İnceleme demo erişimi." : {
 
     },
     "K" : {
@@ -263,6 +306,9 @@
     "KIYIDA ÇEKMİYOR OLABİLİR — KAYIT YİNE DE SENDE" : {
 
     },
+    "Kod" : {
+
+    },
     "KOŞUL PUANI BALIK SÖZÜ DEĞİLDİR — SADECE ŞARTLARI ÖZETLER." : {
 
     },
@@ -276,6 +322,9 @@
 
     },
     "Kova modu · birden fazla balık" : {
+
+    },
+    "Kullanım Koşulları" : {
 
     },
     "LİSTEDEN ARA" : {
@@ -293,7 +342,16 @@
     "Not (isteğe bağlı)" : {
 
     },
+    "Ödeme, satın alma onayında Apple Kimliğine işlenir. Abonelik, dönem bitiminden en az 24 saat önce kapatılmazsa otomatik yenilenir; yenileme ücreti dönemin bitiminden önceki 24 saat içinde alınır. Abonelikleri satın aldıktan sonra Ayarlar'dan yönetebilir veya iptal edebilirsin." : {
+
+    },
     "PAYLAŞIM KARTI" : {
+
+    },
+    "PLANLAR YÜKLENİYOR…" : {
+
+    },
+    "PRO" : {
 
     },
     "REKOR" : {
@@ -303,6 +361,9 @@
 
     },
     "ROZETLER" : {
+
+    },
+    "Satın alımları geri yükle" : {
 
     },
     "SEFER İŞLENDİ — BOŞ DÖNMEK DE BALIKÇILIKTIR" : {
@@ -332,6 +393,12 @@
     "SEZONDA" : {
 
     },
+    "SINIRSIZ TANIMA · KOVA MODU · ÖNERİLER" : {
+
+    },
+    "SINIRSIZ TANIMA VE DAHA FAZLASI" : {
+
+    },
     "SIRADAKİ KAYIT NO. %lld" : {
 
     },
@@ -342,6 +409,9 @@
 
     },
     "ŞU AN DÖNEM YASAĞINDA" : {
+
+    },
+    "Tamam" : {
 
     },
     "Tümü" : {
@@ -368,10 +438,13 @@
     "Yakalayış" : {
 
     },
-    "YAKINDA" : {
+    "YASAK" : {
 
     },
-    "YASAK" : {
+    "YİNE DE TÜRÜ LİSTEDEN SEÇ" : {
+
+    },
+    "Yıllık" : {
 
     },
     "Yön" : {

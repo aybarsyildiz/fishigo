@@ -61,10 +61,11 @@ iOS 17+, SwiftUI, Swift 5 language mode. iPhone only, portrait only.
 - [x] M5 Cloudflare Worker proxy + real recognition + quota + corrections log
 - [x] M6 regulations loader + legality states + disclaimer (values = SAMPLE; owner fills)
 - [x] M7 weather snapshot + condition score + sefer serisi streak + notification
-- [~] M8 IN PROGRESS: sound done ✓; onboarding done ✓ (earlier); remaining →
-      Reduce Motion full audit, VoiceOver/Dynamic Type, corrections launch sweep,
-      settings screen, App Store metadata + screenshots. Owner-only: real
-      regulation values, rarity/threshold tuning, signing team, bundle id.
+- [~] M8 IN PROGRESS: sound ✓, onboarding ✓, privacy manifest ✓, encryption
+      flag ✓. Remaining → Reduce Motion full audit, VoiceOver/Dynamic Type,
+      corrections launch sweep, settings screen, App Store metadata +
+      screenshots. Owner-only: real regulation values, rarity/threshold tuning,
+      signing team, bundle id, ASC subscription products + nutrition label.
 
 ## Proxy (M5)
 
@@ -206,6 +207,19 @@ iOS 17+, SwiftUI, Swift 5 language mode. iPhone only, portrait only.
   ATT prompt + SKAdNetwork privacy manifest + clashes with the premium archive
   aesthetic, for tiny niche revenue). ProNudge is the in-app "ad" for Pro
   itself — no SDK, no tracking, no review surface. Revisit only if owner insists.
+
+## Submission readiness
+
+- PrivacyInfo.xcprivacy (Resources/, bundles to .app root): no tracking, no
+  third-party SDKs, declares UserDefaults required-reason API (CA92.1).
+  NSPrivacyCollectedDataTypes left empty — fill the ASC nutrition label from
+  the hosted /gizlilik policy (photos transient, location→weather).
+- ITSAppUsesNonExemptEncryption=NO via INFOPLIST_KEY_ (both configs) → verified
+  bool false in the built Info.plist; skips the per-upload export prompt.
+- App ID capabilities needed: In-App Purchase only (default-on). NOT push
+  (local notifications only), NOT iCloud/CloudKit (sync still a TODO comment),
+  NOT background modes, NOT Sign in with Apple. Camera/location/photos/maps are
+  Info.plist usage strings + runtime prompts, not capabilities.
 
 ## Decisions log
 
