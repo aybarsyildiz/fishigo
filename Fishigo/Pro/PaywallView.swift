@@ -19,9 +19,6 @@ struct PaywallView: View {
     @State private var demoTaps = 0
     @State private var showDemoCode = false
     @State private var demoCode = ""
-    /// Tracks whether a product-load attempt has finished, so we can tell
-    /// "loading" apart from "loaded but empty" (config/ASC not available).
-    @State private var yuklemeDenendi = false
 
     private var pro: ProStore { app.pro }
 
@@ -90,10 +87,8 @@ struct PaywallView: View {
             Button("Vazgeç", role: .cancel) { }
         } message: { Text("İnceleme demo erişimi.") }
         .task {
-            // Re-attempt loading when the paywall opens (products load at launch,
-            // but a transient miss or a just-selected StoreKit config resolves here).
+            // Upgrade the fallback prices to live StoreKit prices when possible.
             if pro.products.isEmpty { await pro.load() }
-            yuklemeDenendi = true
         }
     }
 
@@ -141,36 +136,21 @@ struct PaywallView: View {
         .overlay(DoubleRuleFrame())
     }
 
+    // Fallback display prices (ToneAmp pattern): the rows always render these,
+    // so the paywall is never blank; the live StoreKit price replaces them the
+    // moment products load (config or ASC). Keep in sync with ASC pricing.
+    private static let yillikFallback = "₺299,99 / yıl"
+    private static let aylikFallback = "₺39,99 / ay"
+
     private var planlar: some View {
         VStack(spacing: 10) {
-            if let annual = pro.annual {
-                PlanRow(product: annual, period: "yıl", secili: seciliYillik, rozet: "2 AY BEDAVA") {
-                    seciliYillik = true; Feel.shared.buttonTap()
-                }
+            PlanRow(product: pro.annual, unit: "yıl", fallbackPrice: Self.yillikFallback,
+                    secili: seciliYillik, rozet: "2 AY BEDAVA") {
+                seciliYillik = true; Feel.shared.buttonTap()
             }
-            if let monthly = pro.monthly {
-                PlanRow(product: monthly, period: "ay", secili: !seciliYillik, rozet: nil) {
-                    seciliYillik = false; Feel.shared.buttonTap()
-                }
-            }
-            if pro.products.isEmpty {
-                VStack(spacing: 10) {
-                    Text(yuklemeDenendi ? "PLANLARA ŞU AN ULAŞILAMIYOR" : "PLANLAR YÜKLENİYOR…")
-                        .font(Typo.data(10)).kerning(1)
-                        .foregroundStyle(Ink.kagit.opacity(0.4))
-                    if yuklemeDenendi {
-                        Button {
-                            Feel.shared.buttonTap()
-                            Task { await pro.load() }
-                        } label: {
-                            Text("TEKRAR DENE")
-                                .font(Typo.data(11)).kerning(1.5)
-                                .foregroundStyle(Ink.kagit.opacity(0.7))
-                                .padding(8)
-                        }
-                    }
-                }
-                .padding(.vertical, 20)
+            PlanRow(product: pro.monthly, unit: "ay", fallbackPrice: Self.aylikFallback,
+                    secili: !seciliYillik, rozet: nil) {
+                seciliYillik = false; Feel.shared.buttonTap()
             }
         }
     }
@@ -180,8 +160,7 @@ struct PaywallView: View {
             Task { await satinAl() }
         }
         .frame(maxWidth: .infinity)
-        .disabled(calisiyor || pro.products.isEmpty)
-        .opacity(pro.products.isEmpty ? 0.4 : 1)
+        .disabled(calisiyor)
     }
 
     private var altBaglantilar: some View {
@@ -204,8 +183,13 @@ struct PaywallView: View {
     }
 
     private func satinAl() async {
-        let product = seciliYillik ? pro.annual : pro.monthly
-        guard let product else { return }
+        // Live prices may be shown from fallback before products load; the
+        // actual purchase needs the loaded Product, so try a reload first.
+        if pro.products.isEmpty { await pro.load() }
+        guard let product = seciliYillik ? pro.annual : pro.monthly else {
+            hata = "Planlara şu an ulaşılamıyor. Lütfen birazdan tekrar dene."
+            return
+        }
         calisiyor = true
         defer { calisiyor = false }
         switch await pro.purchase(product) {
@@ -226,11 +210,18 @@ struct PaywallView: View {
 }
 
 private struct PlanRow: View {
-    let product: Product
-    let period: String
+    let product: Product?
+    let unit: String
+    let fallbackPrice: String
     let secili: Bool
     let rozet: String?
     let action: () -> Void
+
+    /// Live StoreKit price when loaded, hardcoded fallback otherwise.
+    private var priceText: String {
+        if let product { return "\(product.displayPrice) / \(unit)" }
+        return fallbackPrice
+    }
 
     var body: some View {
         Button(action: action) {
@@ -239,7 +230,7 @@ private struct PlanRow: View {
                     .foregroundStyle(secili ? Ink.muhur : Ink.kagit.opacity(0.4))
                 VStack(alignment: .leading, spacing: 2) {
                     HStack(spacing: 6) {
-                        Text(period == "yıl" ? "Yıllık" : "Aylık")
+                        Text(unit == "yıl" ? "Yıllık" : "Aylık")
                             .font(Typo.data(15, weight: .medium)).foregroundStyle(Ink.kagit)
                         if let rozet {
                             Text(rozet)
@@ -249,7 +240,7 @@ private struct PlanRow: View {
                                 .background(Ink.pirinc)
                         }
                     }
-                    Text("\(product.displayPrice) / \(period)")
+                    Text(priceText)
                         .font(Typo.data(11)).foregroundStyle(Ink.kagit.opacity(0.6))
                         .monospacedDigit()
                 }
