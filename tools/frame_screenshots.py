@@ -9,8 +9,8 @@ WORKFLOW:
   2. Run:  python3 tools/frame_screenshots.py
   3. Upload appstore/framed/*.png to App Store Connect (iPhone 6.9" slot).
 
-Output is 1290x2796 (iPhone 6.9" display — the size App Store Connect asks for
-now). Flat ink background, Fraunces caption (2nd line in stamp red), faint
+Output is 1284x2778 (the 6.5" iPhone slot App Store Connect accepts; also valid
+for 6.9"). Flat ink background, Fraunces caption (2nd line in stamp red), faint
 chart contours, a paper-bordered rounded screenshot. No gradients (§6).
 
 Needs Pillow:  pip install pillow
@@ -20,7 +20,7 @@ import os
 import sys
 from PIL import Image, ImageDraw, ImageFont
 
-W, H = 1290, 2796
+W, H = 1284, 2778   # 6.5" slot — the size App Store Connect accepts (matches ToneAmp)
 BG = (15, 34, 44)        # --murekkep-koyu  #0F222C
 FG = (237, 229, 209)     # --kagit          #EDE5D1
 ACCENT = (194, 64, 47)   # --muhur          #C2402F
@@ -35,7 +35,7 @@ CAPTIONS = [
     ("Balığını fotoğrafla,", "türü anında öğren."),
     ("Her yakalayış,", "bir koleksiyon kartı."),
     ("70 tür seni bekliyor.", "Balıkdeks'ini doldur."),
-    ("Boy ve sezon kuralları,", "tek bakışta."),
+    ("Her tür,", "hangi denizde?"),
     ("Yakaladığın nokta", "sende kalır."),
     ("Bugün ne tutulur?", "Koşullar hazır."),
 ]
