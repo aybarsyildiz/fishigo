@@ -1,3 +1,10 @@
+// NOTE: App Store rejects any alpha channel in the app icon. This generator's
+// CGContext is RGBA and the eye/gill are punched out with .clear (transparent),
+// so after rendering you MUST flatten onto the paper ground to strip alpha:
+//   python3 -c "from PIL import Image; p='AppIcon.png'; im=Image.open(p).convert('RGBA'); \
+//     bg=Image.new('RGB',im.size,(0xED,0xE5,0xD1)); bg.paste(im,mask=im.split()[3]); bg.save(p)"
+// (The committed AppIcon.png is already flattened.)
+
 import CoreGraphics
 import ImageIO
 import Foundation
