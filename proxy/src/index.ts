@@ -81,6 +81,9 @@ export default {
       if (request.method === "GET" && url.pathname === "/kosullar") {
         return html(KOSULLAR_HTML);
       }
+      if (request.method === "GET" && url.pathname === "/destek") {
+        return html(DESTEK_HTML);
+      }
       return json({ hata: "bulunamadi" }, 404);
     } catch (error) {
       console.log(JSON.stringify({ olay: "hata", yol: url.pathname, mesaj: String(error) }));
@@ -343,7 +346,7 @@ const GIZLILIK_HTML = SAYFA("Gizlilik Politikası", `
 <h2>Dış kaynaklar</h2>
 <p>Hava durumu Open-Meteo'dan, tür bölge verisi GBIF ve OBIS açık verisinden alınır.</p>
 <h2>İletişim</h2>
-<p>Sorular için: <a href="mailto:destek@example.com">destek@example.com</a> (yayından önce güncellenecek).</p>`);
+<p>Sorular için: <a href="mailto:aybars@netnucleus.solutions">aybars@netnucleus.solutions</a>.</p>`);
 
 const KOSULLAR_HTML = SAYFA("Kullanım Koşulları", `
 <h1>Kullanım Koşulları</h1>
@@ -355,4 +358,15 @@ const KOSULLAR_HTML = SAYFA("Kullanım Koşulları", `
 <h2>Standart lisans</h2>
 <p>Aksi belirtilmedikçe Apple'ın standart Son Kullanıcı Lisans Sözleşmesi (EULA) geçerlidir: <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">apple.com/legal/…/stdeula</a></p>
 <h2>İletişim</h2>
-<p><a href="mailto:destek@example.com">destek@example.com</a> (yayından önce güncellenecek).</p>`);
+<p><a href="mailto:aybars@netnucleus.solutions">aybars@netnucleus.solutions</a>.</p>`);
+
+const DESTEK_HTML = SAYFA("Destek", `
+<h1>Fishigo Destek</h1>
+<p>Bir sorun, öneri veya soru için bize ulaş. Genellikle birkaç iş günü içinde yanıt veriyoruz.</p>
+<h2>İletişim</h2>
+<p>E-posta: <a href="mailto:aybars@netnucleus.solutions">aybars@netnucleus.solutions</a></p>
+<h2>Sık sorulanlar</h2>
+<p><strong>Tür yanlış tanındı, ne yapmalıyım?</strong><br>Onay ekranında "Değiştir" ile doğru türü seç; bu düzeltmeler tanımayı zamanla iyileştirir.</p>
+<p><strong>Boy limiti / sezon bilgisi bağlayıcı mı?</strong><br>Hayır, bilgilendirme amaçlıdır. Bağlayıcı kaynak Resmî Gazete ve Tarım ve Orman Bakanlığı amatör balıkçılık tebliğidir.</p>
+<p><strong>Konumum paylaşılıyor mu?</strong><br>Hayır. Yakaladığın noktalar yalnızca kendi haritanda görünür. Paylaşım kartlarında yalnızca il görünür. Noktan sende kalır.</p>
+<p><strong>Aboneliğimi nasıl yönetirim?</strong><br>iPhone Ayarlar &gt; Apple Kimliği &gt; Abonelikler bölümünden yönetebilir veya iptal edebilirsin.</p>`);
