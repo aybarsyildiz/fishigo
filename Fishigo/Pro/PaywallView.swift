@@ -19,6 +19,9 @@ struct PaywallView: View {
     @State private var demoTaps = 0
     @State private var showDemoCode = false
     @State private var demoCode = ""
+    /// Tracks whether a product-load attempt has finished, so we can tell
+    /// "loading" apart from "loaded but empty" (config/ASC not available).
+    @State private var yuklemeDenendi = false
 
     private var pro: ProStore { app.pro }
 
@@ -86,6 +89,12 @@ struct PaywallView: View {
             Button("Aç") { Task { await denemeDemo() } }
             Button("Vazgeç", role: .cancel) { }
         } message: { Text("İnceleme demo erişimi.") }
+        .task {
+            // Re-attempt loading when the paywall opens (products load at launch,
+            // but a transient miss or a just-selected StoreKit config resolves here).
+            if pro.products.isEmpty { await pro.load() }
+            yuklemeDenendi = true
+        }
     }
 
     private var baslik: some View {
@@ -145,10 +154,23 @@ struct PaywallView: View {
                 }
             }
             if pro.products.isEmpty {
-                Text("PLANLAR YÜKLENİYOR…")
-                    .font(Typo.data(10)).kerning(1)
-                    .foregroundStyle(Ink.kagit.opacity(0.4))
-                    .padding(.vertical, 20)
+                VStack(spacing: 10) {
+                    Text(yuklemeDenendi ? "PLANLARA ŞU AN ULAŞILAMIYOR" : "PLANLAR YÜKLENİYOR…")
+                        .font(Typo.data(10)).kerning(1)
+                        .foregroundStyle(Ink.kagit.opacity(0.4))
+                    if yuklemeDenendi {
+                        Button {
+                            Feel.shared.buttonTap()
+                            Task { await pro.load() }
+                        } label: {
+                            Text("TEKRAR DENE")
+                                .font(Typo.data(11)).kerning(1.5)
+                                .foregroundStyle(Ink.kagit.opacity(0.7))
+                                .padding(8)
+                        }
+                    }
+                }
+                .padding(.vertical, 20)
             }
         }
     }

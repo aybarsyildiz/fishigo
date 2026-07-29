@@ -1,16 +1,26 @@
 {
-  "identifier" : "FISHIGO_SK_CONFIG",
+  "identifier" : "A1B2C3D4-0000-0000-0000-00000000F154",
   "nonRenewingSubscriptions" : [],
   "products" : [],
   "settings" : {
-    "_applicationInternalID" : "0",
-    "_developerTeamID" : "",
-    "_lastSynchronizedDate" : 0
+    "_billingIssuesEnabled" : false,
+    "_billingRetryPeriodEnabled" : false,
+    "_disableDialogsEnabled" : false,
+    "_failTransactionsEnabled" : false,
+    "_locale" : "tr_TR",
+    "_storefront" : "TUR",
+    "_timeRate" : 0
   },
   "subscriptionGroups" : [
     {
-      "id" : "FISHIGO_PRO_GROUP",
-      "localizations" : [],
+      "id" : "20000001",
+      "localizations" : [
+        {
+          "description" : "Fishigo Pro",
+          "displayName" : "Fishigo Pro",
+          "locale" : "tr_TR"
+        }
+      ],
       "name" : "Fishigo Pro",
       "subscriptions" : [
         {
@@ -19,7 +29,7 @@
           "displayPrice" : "39.99",
           "familyShareable" : false,
           "groupNumber" : 1,
-          "internalID" : "FISHIGO_PRO_MONTHLY",
+          "internalID" : "30000001",
           "introductoryOffer" : null,
           "localizations" : [
             {
@@ -31,8 +41,9 @@
           "productID" : "com.netnucleus.fishigo.pro.monthly",
           "recurringSubscriptionPeriod" : "P1M",
           "referenceName" : "Fishigo Pro Monthly",
-          "subscriptionGroupID" : "FISHIGO_PRO_GROUP",
-          "type" : "RecurringSubscription"
+          "subscriptionGroupID" : "20000001",
+          "type" : "RecurringSubscription",
+          "winbackOffers" : []
         },
         {
           "adHocOffers" : [],
@@ -40,7 +51,7 @@
           "displayPrice" : "299.99",
           "familyShareable" : false,
           "groupNumber" : 1,
-          "internalID" : "FISHIGO_PRO_ANNUAL",
+          "internalID" : "30000002",
           "introductoryOffer" : null,
           "localizations" : [
             {
@@ -52,8 +63,9 @@
           "productID" : "com.netnucleus.fishigo.pro.annual",
           "recurringSubscriptionPeriod" : "P1Y",
           "referenceName" : "Fishigo Pro Annual",
-          "subscriptionGroupID" : "FISHIGO_PRO_GROUP",
-          "type" : "RecurringSubscription"
+          "subscriptionGroupID" : "20000001",
+          "type" : "RecurringSubscription",
+          "winbackOffers" : []
         }
       ]
     }
