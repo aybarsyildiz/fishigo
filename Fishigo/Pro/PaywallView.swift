@@ -139,13 +139,13 @@ struct PaywallView: View {
     // Fallback display prices (ToneAmp pattern): the rows always render these,
     // so the paywall is never blank; the live StoreKit price replaces them the
     // moment products load (config or ASC). Keep in sync with ASC pricing.
-    private static let yillikFallback = "₺299,99 / yıl"
-    private static let aylikFallback = "₺39,99 / ay"
+    private static let yillikFallback = "₺149,99 / yıl"
+    private static let aylikFallback = "₺149,99 / ay"
 
     private var planlar: some View {
         VStack(spacing: 10) {
             PlanRow(product: pro.annual, unit: "yıl", fallbackPrice: Self.yillikFallback,
-                    secili: seciliYillik, rozet: "2 AY BEDAVA") {
+                    secili: seciliYillik, rozet: "EN AVANTAJLI") {
                 seciliYillik = true; Feel.shared.buttonTap()
             }
             PlanRow(product: pro.monthly, unit: "ay", fallbackPrice: Self.aylikFallback,

@@ -29,16 +29,6 @@
     "%@ · SON KONUMUNA GÖRE" : {
 
     },
-    "%@ / %@" : {
-      "localizations" : {
-        "tr" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "%1$@ / %2$@"
-          }
-        }
-      }
-    },
     "%@ mi?" : {
 
     },
@@ -348,12 +338,6 @@
     "PAYLAŞIM KARTI" : {
 
     },
-    "PLANLAR YÜKLENİYOR…" : {
-
-    },
-    "PLANLARA ŞU AN ULAŞILAMIYOR" : {
-
-    },
     "PRO" : {
 
     },
@@ -415,9 +399,6 @@
 
     },
     "Tamam" : {
-
-    },
-    "TEKRAR DENE" : {
 
     },
     "Tümü" : {

@@ -1,77 +1,77 @@
 {
-  "identifier" : "A1B2C3D4-0000-0000-0000-00000000F154",
-  "nonRenewingSubscriptions" : [],
-  "products" : [],
-  "settings" : {
-    "_billingIssuesEnabled" : false,
-    "_billingRetryPeriodEnabled" : false,
-    "_disableDialogsEnabled" : false,
-    "_failTransactionsEnabled" : false,
-    "_locale" : "tr_TR",
-    "_storefront" : "TUR",
-    "_timeRate" : 0
+  "identifier": "A1B2C3D4-0000-0000-0000-00000000F154",
+  "nonRenewingSubscriptions": [],
+  "products": [],
+  "settings": {
+    "_billingIssuesEnabled": false,
+    "_billingRetryPeriodEnabled": false,
+    "_disableDialogsEnabled": false,
+    "_failTransactionsEnabled": false,
+    "_locale": "tr_TR",
+    "_storefront": "TUR",
+    "_timeRate": 0
   },
-  "subscriptionGroups" : [
+  "subscriptionGroups": [
     {
-      "id" : "20000001",
-      "localizations" : [
+      "id": "20000001",
+      "localizations": [
         {
-          "description" : "Fishigo Pro",
-          "displayName" : "Fishigo Pro",
-          "locale" : "tr_TR"
+          "description": "Fishigo Pro",
+          "displayName": "Fishigo Pro",
+          "locale": "tr_TR"
         }
       ],
-      "name" : "Fishigo Pro",
-      "subscriptions" : [
+      "name": "Fishigo Pro",
+      "subscriptions": [
         {
-          "adHocOffers" : [],
-          "codeOffers" : [],
-          "displayPrice" : "39.99",
-          "familyShareable" : false,
-          "groupNumber" : 1,
-          "internalID" : "30000001",
-          "introductoryOffer" : null,
-          "localizations" : [
+          "adHocOffers": [],
+          "codeOffers": [],
+          "displayPrice": "149.99",
+          "familyShareable": false,
+          "groupNumber": 1,
+          "internalID": "30000001",
+          "introductoryOffer": null,
+          "localizations": [
             {
-              "description" : "Sınırsız tanıma, kova modu ve tüm Pro özellikler.",
-              "displayName" : "Fishigo Pro · Aylık",
-              "locale" : "tr_TR"
+              "description": "Sınırsız tanıma, kova modu ve tüm Pro özellikler.",
+              "displayName": "Fishigo Pro · Aylık",
+              "locale": "tr_TR"
             }
           ],
-          "productID" : "com.netnucleus.fishigo.pro.monthly",
-          "recurringSubscriptionPeriod" : "P1M",
-          "referenceName" : "Fishigo Pro Monthly",
-          "subscriptionGroupID" : "20000001",
-          "type" : "RecurringSubscription",
-          "winbackOffers" : []
+          "productID": "com.netnucleus.fishigo.pro.monthly",
+          "recurringSubscriptionPeriod": "P1M",
+          "referenceName": "Fishigo Pro Monthly",
+          "subscriptionGroupID": "20000001",
+          "type": "RecurringSubscription",
+          "winbackOffers": []
         },
         {
-          "adHocOffers" : [],
-          "codeOffers" : [],
-          "displayPrice" : "299.99",
-          "familyShareable" : false,
-          "groupNumber" : 1,
-          "internalID" : "30000002",
-          "introductoryOffer" : null,
-          "localizations" : [
+          "adHocOffers": [],
+          "codeOffers": [],
+          "displayPrice": "149.99",
+          "familyShareable": false,
+          "groupNumber": 1,
+          "internalID": "30000002",
+          "introductoryOffer": null,
+          "localizations": [
             {
-              "description" : "Sınırsız tanıma, kova modu ve tüm Pro özellikler. Yılda iki ay bedava.",
-              "displayName" : "Fishigo Pro · Yıllık",
-              "locale" : "tr_TR"
+              "description": "Sınırsız tanıma, kova modu ve tüm Pro özellikler.",
+              "displayName": "Fishigo Pro · Yıllık",
+              "locale": "tr_TR"
             }
           ],
-          "productID" : "com.netnucleus.fishigo.pro.annual",
-          "recurringSubscriptionPeriod" : "P1Y",
-          "referenceName" : "Fishigo Pro Annual",
-          "subscriptionGroupID" : "20000001",
-          "type" : "RecurringSubscription",
-          "winbackOffers" : []
+          "productID": "com.netnucleus.fishigo.pro.annual",
+          "recurringSubscriptionPeriod": "P1Y",
+          "referenceName": "Fishigo Pro Annual",
+          "subscriptionGroupID": "20000001",
+          "type": "RecurringSubscription",
+          "winbackOffers": []
         }
       ]
     }
   ],
-  "version" : {
-    "major" : 4,
-    "minor" : 0
+  "version": {
+    "major": 4,
+    "minor": 0
   }
 }
